@@ -1,5 +1,6 @@
 import Text from "./Text";
 import { ElementType } from "react";
+import { getImagePath, getBackgroundImageUrl } from "@/utils/imagePath";
 
 const CARD_STYLES = {
   large:
@@ -67,9 +68,9 @@ export default function Card({
       return `/api/proxy?url=${encodeURIComponent("https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4")}`;
     }
     
-    // /default_img.png인 경우 proxy 사용하지 않음
+    // /default_img.png인 경우 경로 처리 후 proxy 사용하지 않음
     if (imageUrl === '/default_img.png') {
-      return imageUrl;
+      return getImagePath(imageUrl);
     }
     
     // 외부 URL인 경우 proxy 사용
@@ -96,7 +97,7 @@ export default function Card({
           >
             {region}
           </Text>
-          <img src="/icons/link.svg" alt="icon" className="w-6 h-6 mt-[2px]" />
+          <img src={getImagePath("/icons/link.svg")} alt="icon" className="w-6 h-6 mt-[2px]" />
         </div>
 
         {size !== "small" && (

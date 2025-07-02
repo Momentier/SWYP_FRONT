@@ -1,4 +1,5 @@
 const isStorybookExport = process.env.STORYBOOK === "true";
+const isGithubPages = process.env.NODE_ENV === "production" && process.env.GITHUB_PAGES === "true";
 
 const nextConfig = {
   async redirects() {
@@ -10,12 +11,13 @@ const nextConfig = {
       },
     ];
   },
-  basePath: "",
-  assetPrefix: isStorybookExport ? "/SWYP_FRONT/" : "",
+  basePath: isGithubPages ? "/SWYP_FRONT" : "",
+  assetPrefix: isStorybookExport ? "/SWYP_FRONT/" : (isGithubPages ? "/SWYP_FRONT/" : ""),
   images: {
-    unoptimized: isStorybookExport,
+    unoptimized: isStorybookExport || isGithubPages,
   },
   output: "standalone",
+  trailingSlash: isGithubPages,
 };
 
 export default nextConfig;
