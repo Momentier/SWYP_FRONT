@@ -51,6 +51,9 @@ const sampleAttractionData = {
   travelWalkTime: "5분",
   travelCarTime: "10분",
   travelDistance: "1.2km",
+  type: "Historical",
+  latitude: 37.579617,
+  longitude: 126.977041,
 };
 
 export const Default: Story = {
@@ -61,7 +64,6 @@ export const Default: Story = {
     hours: "09:00 - 18:00",
     rating: 4.5,
     imageUrl: "/default_img.png",
-    attractionData: sampleAttractionData,
   },
 };
 
@@ -73,11 +75,6 @@ export const Restaurant: Story = {
     hours: "10:30 - 21:30",
     rating: 4.2,
     imageUrl: "https://via.placeholder.com/280x160?text=Restaurant",
-    attractionData: {
-      ...sampleAttractionData,
-      name: "명동교자",
-      description: "예약 필수 / 한식 맛집",
-    },
   },
 };
 
@@ -89,11 +86,6 @@ export const TouristSpot: Story = {
     hours: "10:00 - 23:00",
     rating: 4.7,
     imageUrl: "https://via.placeholder.com/280x160?text=Seoul+Tower",
-    attractionData: {
-      ...sampleAttractionData,
-      name: "남산서울타워",
-      description: "서울의 랜드마크 / 전망대",
-    },
   },
 };
 
@@ -105,11 +97,6 @@ export const ShoppingMall: Story = {
     hours: "09:30 - 22:00",
     rating: 4.6,
     imageUrl: "https://via.placeholder.com/280x160?text=Lotte+Tower",
-    attractionData: {
-      ...sampleAttractionData,
-      name: "롯데월드타워 서울스카이",
-      description: "세계 최고층 전망대 / 쇼핑",
-    },
   },
 };
 
@@ -121,11 +108,6 @@ export const LongTitle: Story = {
     hours: "09:00 - 18:00 (월요일 휴관)",
     rating: 4.3,
     imageUrl: "https://via.placeholder.com/280x160?text=Museum",
-    attractionData: {
-      ...sampleAttractionData,
-      name: "국립중앙박물관 어린이박물관 체험관",
-      description: "가족 친화적 박물관 / 교육 체험",
-    },
   },
 };
 
@@ -137,11 +119,5 @@ export const NoImage: Story = {
     hours: "11:00 - 20:00",
     rating: 4.8,
     imageUrl: "",
-    attractionData: {
-      ...sampleAttractionData,
-      name: "숨겨진 맛집",
-      description: "현지인 추천 / 로컬 맛집",
-      coverImage: "",
-    },
   },
 };
