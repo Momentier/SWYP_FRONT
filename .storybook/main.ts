@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import webpack from "webpack";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -23,6 +24,19 @@ const config: StorybookConfig = {
         '@emotion/styled': require.resolve('@emotion/styled'),
       };
     }
+
+    config.plugins = config.plugins || [];
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        "process.env.GITHUB_PAGES": JSON.stringify(process.env.GITHUB_PAGES || "false"),
+      })
+    );
+
+    if (config.output) {
+      config.output.publicPath = (process.env.GITHUB_PAGES === "true") ? "/SWYP_FRONT/" : "/";
+    }
+
+
     return config;
   },
 };
