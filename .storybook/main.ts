@@ -15,7 +15,7 @@ const config: StorybookConfig = {
   staticDirs: [
     {
       from: "../public",
-      to: process.env.GITHUB_PAGES === "true" ? "/SWYP_FRONT" : "/"
+      to: process.env.STORYBOOK_GITHUB_PAGES === "true" ? "/SWYP_FRONT" : "/"
     }
   ],
 
@@ -31,3 +31,5 @@ const config: StorybookConfig = {
     return config;
   },
 };
+
+export default config;
