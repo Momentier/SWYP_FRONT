@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Card from "@/components/Card";
 
 const meta: Meta<typeof Card> = {
-  title: "Example/Card",
+  title: "Components/Card",
   component: Card,
   tags: ["autodocs"],
   argTypes: {
@@ -16,8 +16,7 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-const imageUrl =
-  "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4";
+const imageUrl = "/default_img.png";
 
 export const Large: Story = {
   args: {

@@ -33,6 +33,7 @@ type CardProps = {
   infoTextStyle?: TextStyle;
   size?: CardSize;
   width?: string;
+  className?: string;
   as?: ElementType;
   onClick?: () => void;
 };
@@ -45,6 +46,7 @@ export default function Card({
   infoTextStyle,
   size = "large",
   width,
+  className,
   onClick,
   as: Component = "div",
 }: CardProps) {
@@ -53,17 +55,30 @@ export default function Card({
 
   const textAlignClass = size === "small" ? "justify-start" : "justify-end";
   const endAlignClass = size === "small" ? "items-start" : "items-end";
-  const customStyles = {
+  
+  // className이 제공되면 width를 무시하고 className 사용
+  const customStyles = className ? {} : {
     width: width ?? CARD_WIDTHS[size],
   };
 
-  const resolvedImageUrl = imageUrl?.trim()
-    ? `/api/proxy?url=${encodeURIComponent(imageUrl)}`
-    : `/api/proxy?url=${encodeURIComponent("https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4")}`;
+  const resolvedImageUrl = (() => {
+    if (!imageUrl?.trim()) {
+      // 기본 이미지 사용
+      return `/api/proxy?url=${encodeURIComponent("https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4")}`;
+    }
+    
+    // /default_img.png인 경우 proxy 사용하지 않음
+    if (imageUrl === '/default_img.png') {
+      return imageUrl;
+    }
+    
+    // 외부 URL인 경우 proxy 사용
+    return `/api/proxy?url=${encodeURIComponent(imageUrl)}`;
+  })();
 
   return (
     <Component
-      className={`${CARD_STYLES[size]} relative overflow-hidden cursor-pointer`}
+      className={`${CARD_STYLES[size]} relative overflow-hidden cursor-pointer ${className || ''}`}
       style={customStyles}
       onClick={onClick}
     >

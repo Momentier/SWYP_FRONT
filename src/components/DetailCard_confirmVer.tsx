@@ -54,9 +54,20 @@ const DetailCard: React.FC<DetailCardProps> = ({
 
                 <div className="w-[280px] h-[160px] overflow-hidden rounded-2xl">
                     <img
-                        src={imageUrl && imageUrl.trim() !== ""
-                            ? `/api/proxy?url=${encodeURIComponent(imageUrl)}`
-                            : `/api/proxy?url=${encodeURIComponent("https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4")}`
+                        src={(() => {
+                            if (!imageUrl || imageUrl.trim() === "") {
+                                // 기본 이미지 사용
+                                return `/api/proxy?url=${encodeURIComponent("https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4")}`;
+                            }
+                            
+                            // /default_img.png인 경우 proxy 사용하지 않음
+                            if (imageUrl === '/default_img.png') {
+                                return imageUrl;
+                            }
+                            
+                            // 외부 URL인 경우 proxy 사용
+                            return `/api/proxy?url=${encodeURIComponent(imageUrl)}`;
+                        })()
                         }
                         alt={title}
                         crossOrigin="anonymous"

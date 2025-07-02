@@ -1,0 +1,129 @@
+/* 스토리북 전용 반응형 스타일 */
+@layer components {
+  .storybook-responsive-container {
+    container-type: inline-size;
+    width: 100%;
+  }
+
+  .storybook-adaptive-width {
+    /* 기본 크기 */
+    max-width: 1100px;
+  }
+
+  /* 컨테이너 쿼리를 사용한 세밀한 조절 */
+  @container (max-width: 1200px) {
+    .storybook-adaptive-width {
+      max-width: 900px;
+    }
+  }
+
+  @container (max-width: 1000px) {
+    .storybook-adaptive-width {
+      max-width: 700px;
+    }
+  }
+
+  @container (max-width: 800px) {
+    .storybook-adaptive-width {
+      max-width: 500px;
+    }
+  }
+
+  @container (max-width: 600px) {
+    .storybook-adaptive-width {
+      max-width: 400px;
+    }
+  }
+
+  /* 스토리북용 카드 그리드 */
+  .storybook-card-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @container (max-width: 900px) {
+    .storybook-card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @container (max-width: 600px) {
+    .storybook-card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* 스토리북용 세부 페이지 */
+  .storybook-detail-container {
+    width: 980px;
+    max-width: 90vw;
+  }
+
+  @container (max-width: 1200px) {
+    .storybook-detail-container {
+      width: 800px;
+    }
+  }
+
+  @container (max-width: 1000px) {
+    .storybook-detail-container {
+      width: 700px;
+    }
+  }
+
+  @container (max-width: 800px) {
+    .storybook-detail-container {
+      width: 600px;
+    }
+  }
+
+  @container (max-width: 600px) {
+    .storybook-detail-container {
+      width: 100%;
+    }
+  }
+}
+
+/* 미디어 쿼리 백업 (컨테이너 쿼리 미지원 브라우저용) */
+@media (max-width: 1200px) {
+  .storybook-adaptive-width {
+    max-width: 900px;
+  }
+  .storybook-detail-container {
+    width: 800px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .storybook-adaptive-width {
+    max-width: 700px;
+  }
+  .storybook-detail-container {
+    width: 700px;
+  }
+  .storybook-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .storybook-adaptive-width {
+    max-width: 500px;
+  }
+  .storybook-detail-container {
+    width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .storybook-adaptive-width {
+    max-width: 400px;
+  }
+  .storybook-detail-container {
+    width: 100%;
+  }
+  .storybook-card-grid {
+    grid-template-columns: 1fr;
+  }
+}

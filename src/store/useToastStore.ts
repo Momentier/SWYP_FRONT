@@ -9,16 +9,17 @@ interface ToastMessage {
 
 interface ToastStore {
   toasts: ToastMessage[];
-  addToast: (toast: Omit<ToastMessage, 'id'>) => void;
+  addToast: (message: string, type: 'success' | 'error') => void;
   removeToast: (id: string) => void;
+  clearToasts: () => void;
 }
 
 export const useToastStore = create<ToastStore>((set) => ({
   toasts: [],
-  addToast: (toast) => {
+  addToast: (message, type) => {
     const id = uuidv4();
     set((state) => ({
-      toasts: [...state.toasts, { ...toast, id }],
+      toasts: [...state.toasts, { id, message, type }],
     }));
     setTimeout(() => {
       set((state) => ({
@@ -30,11 +31,15 @@ export const useToastStore = create<ToastStore>((set) => ({
     set((state) => ({
       toasts: state.toasts.filter((t) => t.id !== id),
     })),
+  clearToasts: () =>
+    set(() => ({
+      toasts: [],
+    })),
 }));
 
 export const toast = {
   success: (message: string) =>
-    useToastStore.getState().addToast({ type: 'success', message }),
+    useToastStore.getState().addToast(message, 'success'),
   error: (message: string) =>
-    useToastStore.getState().addToast({ type: 'error', message }),
+    useToastStore.getState().addToast(message, 'error'),
 };

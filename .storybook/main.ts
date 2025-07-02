@@ -13,5 +13,18 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ["../public"], // storybook에서 public 폴더를 사용하기 위해 추가
+  
+  webpackFinal: async (config) => {
+    // framer-motion과 관련된 모듈 해결 문제 수정
+    if (config.resolve) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@emotion/is-prop-valid': require.resolve('@emotion/is-prop-valid'),
+        '@emotion/styled': require.resolve('@emotion/styled'),
+      };
+    }
+    return config;
+  },
 };
+
 export default config;

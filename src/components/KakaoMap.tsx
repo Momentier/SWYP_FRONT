@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecommendTravelDetailStore, usePublicTravelDetailStore } from "@/store/useRecommendTravelStore";
 import { usePathname } from "next/navigation";
+import Text from "./Text";
 
 declare global {
     interface Window {
@@ -11,12 +12,13 @@ declare global {
 
 const KakaoMap: React.FC = () => {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY;
 
     // ✅ 현재 경로 확인
     const pathname = usePathname();
     const isDetailPage = pathname === "/travel/detail";
-    const isDetailIdPage = pathname.startsWith("/travel/detail/");
+    const isDetailIdPage = pathname?.startsWith("/travel/detail/");
 
     // ✅ 상태 분리
     const itinerary = isDetailPage
@@ -33,9 +35,10 @@ const KakaoMap: React.FC = () => {
         "#8B00FF",
     ];
 
+    // API 키 검증 및 에러 처리
     useEffect(() => {
         if (!KAKAO_API_KEY) {
-            console.error("❌ Kakao Map API Key가 설정되지 않았습니다.");
+            setError("카카오맵 API 키가 설정되지 않았습니다.");
             return;
         }
 
@@ -49,9 +52,59 @@ const KakaoMap: React.FC = () => {
                 window.kakao.maps.load(() => {
                     setIsLoaded(true);
                 });
+            } else {
+                setError("카카오맵 라이브러리를 불러올 수 없습니다.");
+            }
+        };
+
+        script.onerror = () => {
+            setError("카카오맵 스크립트를 불러오는데 실패했습니다.");
+        };
+
+        return () => {
+            // 컴포넌트 언마운트 시 스크립트 제거
+            const existingScript = document.querySelector(`script[src*="dapi.kakao.com"]`);
+            if (existingScript) {
+                document.head.removeChild(existingScript);
             }
         };
     }, [KAKAO_API_KEY]);
+
+    // 에러 상태 렌더링
+    if (error) {
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                <div className="text-center p-8">
+                    <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Text textStyle="title2">🗺️</Text>
+                    </div>
+                    <Text textStyle="heading2" className="font-semibold mb-2 text-gray-700">
+                        지도를 불러올 수 없습니다
+                    </Text>
+                    <Text textStyle="body2" className="text-gray-500 mb-4">
+                        {error}
+                    </Text>
+                    <Text textStyle="caption1" className="text-gray-400">
+                        관리자에게 문의해주세요.
+                    </Text>
+                </div>
+            </div>
+        );
+    }
+
+    // 로딩 상태 렌더링
+    if (!isLoaded) {
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-gray-50 rounded-lg">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                    <Text textStyle="body2" className="text-gray-500">
+                        지도를 불러오는 중...
+                    </Text>
+                </div>
+            </div>
+        );
+    }
 
     useEffect(() => {
         if (isLoaded) {
