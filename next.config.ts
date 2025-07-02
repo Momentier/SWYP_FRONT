@@ -16,7 +16,7 @@ const nextConfig = {
   images: {
     unoptimized: isStorybookExport || isGithubPages,
   },
-  output: "standalone",
+  output: "export",
   trailingSlash: isGithubPages,
 };
 
