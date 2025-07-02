@@ -30,6 +30,9 @@ const sampleDailySchedule = {
       travelWalkTime: "5분",
       travelCarTime: "10분",
       travelDistance: "1.2km",
+      type: "place" as const,
+      latitude: 37.579617,
+      longitude: 126.977041,
     },
     {
       id: 2,
@@ -42,6 +45,9 @@ const sampleDailySchedule = {
       travelWalkTime: "15분",
       travelCarTime: "",
       travelDistance: "",
+      type: "place" as const,
+      latitude: 37.571400,
+      longitude: 126.986330,
     },
     {
       id: 3,
@@ -54,6 +60,9 @@ const sampleDailySchedule = {
       travelWalkTime: "",
       travelCarTime: "20분",
       travelDistance: "3.5km",
+      type: "place" as const,
+      latitude: 37.563656,
+      longitude: 126.982041,
     },
   ],
 };
@@ -80,6 +89,9 @@ export const Day2: Story = {
           travelWalkTime: "10분",
           travelCarTime: "15분",
           travelDistance: "2.1km",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
         {
           id: 5,
@@ -92,6 +104,9 @@ export const Day2: Story = {
           travelWalkTime: "20분",
           travelCarTime: "",
           travelDistance: "",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
       ],
     },
@@ -114,6 +129,9 @@ export const SingleAttraction: Story = {
           travelWalkTime: "",
           travelCarTime: "",
           travelDistance: "",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
       ],
     },
@@ -136,6 +154,9 @@ export const ManyAttractions: Story = {
           travelWalkTime: "3분",
           travelCarTime: "",
           travelDistance: "",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
         {
           id: 8,
@@ -148,6 +169,9 @@ export const ManyAttractions: Story = {
           travelWalkTime: "7분",
           travelCarTime: "",
           travelDistance: "",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
         {
           id: 9,
@@ -160,6 +184,9 @@ export const ManyAttractions: Story = {
           travelWalkTime: "10분",
           travelCarTime: "",
           travelDistance: "",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
         {
           id: 10,
@@ -172,6 +199,9 @@ export const ManyAttractions: Story = {
           travelWalkTime: "",
           travelCarTime: "12분",
           travelDistance: "2.8km",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
         {
           id: 11,
@@ -184,6 +214,9 @@ export const ManyAttractions: Story = {
           travelWalkTime: "",
           travelCarTime: "25분",
           travelDistance: "5.2km",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
       ],
     },
@@ -206,6 +239,9 @@ export const NoTravelInfo: Story = {
           travelWalkTime: "",
           travelCarTime: "",
           travelDistance: "",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
         {
           id: 13,
@@ -218,6 +254,9 @@ export const NoTravelInfo: Story = {
           travelWalkTime: "",
           travelCarTime: "",
           travelDistance: "",
+          type: "place",
+          latitude: 0,
+          longitude: 0
         },
       ],
     },
