@@ -34,10 +34,15 @@ jobs:
         env:
           GITHUB_PAGES: true
           NODE_ENV: production
-        run: npm run build-storybook
+          STORYBOOK_GITHUB_PAGES: true
+        run: npx storybook build --output-dir storybook-static --quiet
+
+      - name: Create .nojekyll file
+        run: echo "" > ./storybook-static/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./storybook-static
+          force_orphan: true
