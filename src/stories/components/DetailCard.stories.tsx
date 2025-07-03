@@ -65,7 +65,7 @@ const sampleAttractionWithPrevious: Attraction = {
   address: "서울특별시 중구 명동10길 29",
   businessTime: "10:30 - 21:30",
   rating: 4.2,
-  coverImage: "https://via.placeholder.com/280x160?text=Restaurant",
+  coverImage: "/default_img.png",
   previousData: sampleAttractionData,
 };
 
@@ -90,7 +90,7 @@ export const Restaurant: Story = {
     address: "서울특별시 중구 명동10길 29",
     hours: "10:30 - 21:30",
     rating: 4.2,
-    imageUrl: "https://via.placeholder.com/280x160?text=Restaurant",
+    imageUrl: "/default_img.png",
     attractionData: {
       ...sampleAttractionData,
       id: 2,
@@ -107,7 +107,7 @@ export const TouristSpot: Story = {
     address: "서울특별시 용산구 남산공원길 105",
     hours: "10:00 - 23:00",
     rating: 4.7,
-    imageUrl: "https://via.placeholder.com/280x160?text=Seoul+Tower",
+    imageUrl: "/default_img.png",
     attractionData: {
       ...sampleAttractionData,
       id: 3,
@@ -124,7 +124,7 @@ export const WithPreviousData: Story = {
     address: "서울특별시 중구 명동10길 29",
     hours: "10:30 - 21:30",
     rating: 4.2,
-    imageUrl: "https://via.placeholder.com/280x160?text=Restaurant",
+    imageUrl: "/default_img.png",
     attractionData: sampleAttractionWithPrevious,
   },
   parameters: {
@@ -143,7 +143,7 @@ export const LongTitle: Story = {
     address: "서울특별시 용산구 서빙고로 137",
     hours: "09:00 - 18:00 (월요일 휴관)",
     rating: 4.3,
-    imageUrl: "https://via.placeholder.com/280x160?text=Museum",
+    imageUrl: "/default_img.png",
     attractionData: {
       ...sampleAttractionData,
       id: 4,

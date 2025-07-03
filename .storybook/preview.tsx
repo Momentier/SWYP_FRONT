@@ -6,7 +6,7 @@ import React from "react";
 
 // GitHub Pages Storybook 환경 감지
 const isGitHubPagesStorybook = typeof window !== 'undefined' && 
-  window.location.hostname.includes('github.io');
+  (window.location.hostname.includes('github.io') || window.location.pathname.includes('/SWYP_FRONT/'));
 
 const preview: Preview = {
   parameters: {
@@ -58,34 +58,33 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => {
-      // 이미지 경로 자동 수정 (GitHub Pages Storybook용)
+      // 이미지 경로 자동 수정
       React.useEffect(() => {
-        if (isGitHubPagesStorybook) {
-          const fixImagePaths = () => {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-              const src = img.getAttribute('src');
-              if (src && src.startsWith('/') && !src.startsWith('/SWYP_FRONT/')) {
-                // /default_img.png -> /SWYP_FRONT/default_img.png
-                // /icons/... -> /SWYP_FRONT/icons/...
-                img.src = `/SWYP_FRONT${src}`;
-              }
-            });
-          };
-
-          // 초기 실행
-          fixImagePaths();
-
-          // DOM 변경 감지해서 새로 추가된 이미지도 처리
-          const observer = new MutationObserver(fixImagePaths);
-          observer.observe(document.body, {
-            childList: true,
-            subtree: true
+        const fixImagePaths = () => {
+          const images = document.querySelectorAll('img');
+          images.forEach(img => {
+            const src = img.getAttribute('src');
+            // GitHub Pages에서만 수정 (호스트명 체크)
+            if (src && src.startsWith('/') && !src.startsWith('/SWYP_FRONT/') && 
+                window.location.hostname.includes('github.io')) {
+              img.src = `/SWYP_FRONT${src}`;
+              console.log(`Fixed image path: ${src} -> ${img.src}`);
+            }
           });
+        };
 
-          // 컴포넌트 언마운트시 observer 정리
-          return () => observer.disconnect();
-        }
+        // 초기 실행
+        fixImagePaths();
+
+        // DOM 변경 감지해서 새로 추가된 이미지도 처리
+        const observer = new MutationObserver(fixImagePaths);
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+
+        // 컴포넌트 언마운트시 observer 정리
+        return () => observer.disconnect();
       }, []);
 
       return (
