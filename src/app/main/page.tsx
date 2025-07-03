@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
 import Image from "next/image";
 import Button from "@/components/Button";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function Main() {
   const [cards, setCards] = useState<PublicItinerary[]>([]);
@@ -134,7 +135,7 @@ export default function Main() {
               onClick={() => openPopupAndHandleLogin()
               }
             >
-              <Image src="/icons/kakao.png" alt="kakao icon" width={28} height={28} />
+              <Image src={COMMON_IMAGES.KAKAO_ICON} alt="kakao icon" width={28} height={28} />
               <Text textStyle="headline1" className="ml-2 font-semibold">
                 카카오로 시작하기
               </Text>

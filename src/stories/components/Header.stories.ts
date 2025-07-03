@@ -7,7 +7,7 @@ import { COMMON_IMAGES } from "@/utils/imagePath";
 const mockUser: User = {
   userName: 'Jane Doe',
   accessToken: 'dummy-access-token',
-  profileImage: COMMON_IMAGES.AVARTAR, // or 다른 이미지 URL
+  profileImage: COMMON_IMAGES.AVATAR, // or 다른 이미지 URL
 };
 const meta = {
   title: "Layout/Header",

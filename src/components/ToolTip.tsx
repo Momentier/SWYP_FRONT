@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import { COMMON_IMAGES } from '@/utils/imagePath'
 
 type TooltipProps = {
     text: string
@@ -68,7 +69,7 @@ export default function Tooltip({ text, direction = 'bottom', children }: Toolti
                                 {text}
                             </div>
                             <Image
-                                src="/icons/Arrow.svg"
+                                src={COMMON_IMAGES.ARROW}
                                 alt="arrow"
                                 width={24}
                                 height={8}
@@ -79,7 +80,7 @@ export default function Tooltip({ text, direction = 'bottom', children }: Toolti
                     {!isTop && (
                         <>
                             <Image
-                                src="/icons/Arrow.svg"
+                                src={COMMON_IMAGES.ARROW}
                                 alt="arrow"
                                 width={24}
                                 height={8}

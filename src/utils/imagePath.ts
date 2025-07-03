@@ -18,7 +18,7 @@ const detectStorybookRuntime = () => {
 // basePath 설정
 const getBasePath = () => {
   // 빌드 타임 환경변수 체크
-  if (isGithubPages || isStorybookExport || isStorybookGithubPages) {
+  if (isGithubPages || isStorybookGithubPages) {
     return '/SWYP_FRONT';
   }
 
@@ -120,7 +120,23 @@ export const COMMON_IMAGES = {
   COUPLE: './icons/Couple.png',
   FAMILY: './icons/Family.png',
   FRIEND: './icons/Friend.png',
-  AVARTAR: '/icons/Avatar.svg',
+  AVATAR: './icons/Avatar.svg',
+  MAIN_LOGO: './icons/MainLogo.webp',
+  LINK: './icons/Link.svg',
+  HANDLE_DESKTOP: './icons/Handle Desktop.svg',
+  RE_REQUEST: './icons/Re_Request.svg',
+  RESET: './icons/Reset.svg',
+  PDF_DOWNLOAD: './icons/Pdf Download.svg',
+  STAR_FILLED: './icons/Star_Filled.svg',
+  STAR_NORMAL: './icons/Star_Normal.svg',
+  CHECK_UNCHECKED: './icons/Check_Unchecked.svg',
+  CHECK_CHECKED: './icons/Check_Checked.svg',
+  SUCCESS: './icons/Success.svg',
+  FAIL: './icons/Fail.svg',
+  ARROW: './icons/Arrow.svg',
+  URL: './icons/URL.svg',
+  SHARE: './icons/Share.svg',
+  INFO: './icons/Info.svg'
 } as const;
 
 // 처리된 이미지 경로들

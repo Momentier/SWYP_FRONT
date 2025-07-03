@@ -3,6 +3,7 @@
 import React from "react";
 import Text from "./Text";
 import { Attraction } from "@/lib/api/itinerary";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 type DetailCardProps = {
     title: string;
@@ -37,17 +38,17 @@ const DetailCard: React.FC<DetailCardProps> = ({
                     </Text>
 
                     <div className="flex items-center gap-2">
-                        <img src="/icons/Location.svg" alt="address icon" className="w-5 h-5" />
+                        <img src={COMMON_IMAGES.LOCATION} alt="address icon" className="w-5 h-5" />
                         <Text textStyle="body1" className="text-[#364153] truncate">{address}</Text>
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <img src="/icons/Clock.svg" alt="hours icon" className="w-5 h-5" />
+                        <img src={COMMON_IMAGES.CLOCK} alt="hours icon" className="w-5 h-5" />
                         <Text textStyle="body1" className="text-[#364153] truncate">{hours}</Text>
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <img src="/icons/Star.svg" alt="rating icon" className="w-5 h-5" />
+                        <img src={COMMON_IMAGES.STAR} alt="rating icon" className="w-5 h-5" />
                         <Text textStyle="body1" className="text-[#364153] truncate">{rating}</Text>
                     </div>
                 </div>
@@ -59,12 +60,12 @@ const DetailCard: React.FC<DetailCardProps> = ({
                                 // 기본 이미지 사용
                                 return `/api/proxy?url=${encodeURIComponent("https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4")}`;
                             }
-                            
+
                             // /default_img.png인 경우 proxy 사용하지 않음
-                            if (imageUrl === '/default_img.png') {
+                            if (imageUrl.includes('/default_img.png')) {
                                 return imageUrl;
                             }
-                            
+
                             // 외부 URL인 경우 proxy 사용
                             return `/api/proxy?url=${encodeURIComponent(imageUrl)}`;
                         })()

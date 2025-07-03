@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import TextField from './TextField';
+import { COMMON_IMAGES } from '@/utils/imagePath';
 
 interface UserExperienceRateProps {
   initRate?: number;
@@ -54,7 +55,7 @@ export default function UserExperienceRate({
               type="button"
             >
               <Image
-                src={isFilled ? '/icons/Star_Filled.svg' : '/icons/Star_Normal.svg'}
+                src={isFilled ? COMMON_IMAGES.STAR_FILLED : COMMON_IMAGES.STAR_NORMAL}
                 alt={`${index}점`}
                 width={60}
                 height={60}

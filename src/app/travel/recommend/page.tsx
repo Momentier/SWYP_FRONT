@@ -12,6 +12,7 @@ import { useRecommendTravelDetailStore, useRecommendTravelListStore, useUserInpu
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function TravelRecommendPage() {
   // 라우터 정의 영역
@@ -124,7 +125,7 @@ export default function TravelRecommendPage() {
             className="flex items-center justify-center w-[287px] h-[50px] px-5 gap-2"
             onClick={onClickOtherItinerary}
           >
-            <Image src="/icons/Refresh.svg" alt="icon" width={24} height={24} />
+            <Image src={COMMON_IMAGES.REFRESH} alt="icon" width={24} height={24} />
             <Text
               as="span"
               className="text-white font-[600] text-[16px] leading-[26.1px] tracking-[-0.0002em] font-['Pretendard_JP']"

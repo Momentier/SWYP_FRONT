@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import Text from '../Text';
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 interface AlertBoxProps {
     message: string;
@@ -21,7 +22,7 @@ const AlertBox: FC<AlertBoxProps> = ({ message, description }) => {
                 <div className="flex flex-col">
                     <div className="flex items-center mb-1">
                         <img
-                            src="/icons/Inform.svg"
+                            src={COMMON_IMAGES.INFO}
                             alt="Info Icon"
                             className="w-5 h-5 mr-2"
                         />
@@ -37,7 +38,7 @@ const AlertBox: FC<AlertBoxProps> = ({ message, description }) => {
                     onClick={handleClose}
                     className="ml-4 transition-colors hover:opacity-80"
                 >
-                    <img src="/icons/Close.svg" alt="Close Icon" className="w-5 h-5" />
+                    <img src={COMMON_IMAGES.CLOSE} alt="Close Icon" className="w-5 h-5" />
                 </button>
             </div>
         </div>

@@ -7,6 +7,7 @@ import { Reorder } from "framer-motion";
 import { Attraction, DailyScheduleDtos } from "@/lib/api/itinerary";
 import { useRecommendTravelDetailStore } from "@/store/useRecommendTravelStore";
 import { debounce } from "lodash";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 type DayScheduleCardProps = {
     dailySchedule: DailyScheduleDtos;
@@ -47,9 +48,9 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
                     className="w-[28px] h-[28px] transition"
                 >
                     {isExpanded ? (
-                        <img src="/icons/Chevron Down.svg" alt="expand" className="w-full h-full" />
+                        <img src={COMMON_IMAGES.CHEVRON_DOWN} alt="expand" className="w-full h-full" />
                     ) : (
-                        <img src="/icons/Chevron Right.svg" alt="collapse" className="w-full h-full" />
+                        <img src={COMMON_IMAGES.CHEVRON_RIGHT} alt="collapse" className="w-full h-full" />
                     )}
                 </button>
             </div>
@@ -83,27 +84,27 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
 
                                 {index < dailySchedule.attractions.length - 1 && (
                                     <div className="flex items-center w-full pl-[60px] pr-[60px] py-[4px] gap-2">
-                                        <div className="w-[2px] h-[40px] bg-[url('/icons/DotLine.svg')] bg-repeat-y bg-center" />
+                                        <div className="w-[2px] h-[40px] bg-repeat-y bg-center" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT_LINE})` }} />
                                         {place.travelWalkTime && (
                                             <div className="flex items-center gap-2">
-                                                <img src="/icons/Walk.svg" alt="walk icon" className="w-5 h-5" />
+                                                <img src={COMMON_IMAGES.WALK} alt="walk icon" className="w-5 h-5" />
                                                 <span className="text-gray-700">{place.travelWalkTime}</span>
                                             </div>
                                         )}
 
                                         {place.travelWalkTime && place.travelCarTime && (
-                                            <div className="w-5 h-5 bg-[url('/icons/Dot.svg')] bg-contain bg-no-repeat" />
+                                            <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }} />
                                         )}
 
                                         {place.travelCarTime && (
                                             <div className="flex items-center gap-2">
-                                                <img src="/icons/Car.svg" alt="car icon" className="w-5 h-5" />
+                                                <img src={COMMON_IMAGES.CAR} alt="car icon" className="w-5 h-5" />
                                                 <span className="text-gray-700">{place.travelCarTime}</span>
                                             </div>
                                         )}
 
                                         {place.travelCarTime && place.travelDistance && (
-                                            <div className="w-5 h-5 bg-[url('/icons/Dot.svg')] bg-contain bg-no-repeat" />
+                                            <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }} />
                                         )}
 
                                         {place.travelDistance && (

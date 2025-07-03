@@ -1,8 +1,10 @@
+import { COMMON_IMAGES } from '@/utils/imagePath';
+
 export const COMPANIONS = [
-  { value: 'alone', label: "혼자", imageSrc: "/icons/alone.png" },
-  { value: 'family', label: "가족", imageSrc: "/icons/family.png" },
-  { value: 'friends', label: "친구/지인", imageSrc: "/icons/friend.png" },
-  { value: 'lover', label: "연인", imageSrc: "/icons/couple.png" },
+  { value: 'alone', label: "혼자", imageSrc: COMMON_IMAGES.ALONE },
+  { value: 'family', label: "가족", imageSrc: COMMON_IMAGES.FAMILY },
+  { value: 'friends', label: "친구/지인", imageSrc: COMMON_IMAGES.FRIEND },
+  { value: 'lover', label: "연인", imageSrc: COMMON_IMAGES.COUPLE },
 ];
 
 export const DURATIONS = [

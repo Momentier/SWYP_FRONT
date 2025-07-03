@@ -4,6 +4,7 @@ import domtoimage from 'dom-to-image';
 import jsPDF from 'jspdf';
 import Image from 'next/image';
 import Text from './Text';
+import { COMMON_IMAGES } from '@/utils/imagePath';
 
 interface SavePdfButtonProps {
   onClickButton: () => void;
@@ -68,7 +69,7 @@ export default function SavePdfButton({ onClickButton, fileName = 'my-document' 
       className='flex flex-col w-[80px] h-[90px] justify-center items-center text-[#C1C1C1]'
       onClick={handleDownloadPDF}>
       <Image
-        src="/icons/Pdf Download.svg"
+        src={COMMON_IMAGES.PDF_DOWNLOAD}
         alt='Pdf Download'
         width={60}
         height={60}

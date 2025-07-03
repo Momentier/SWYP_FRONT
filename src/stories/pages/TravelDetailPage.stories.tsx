@@ -3,6 +3,7 @@ import Text from "@/components/Text";
 import Button from "@/components/Button";
 import ScheduleCard from "@/components/ScheduleCard";
 import { DailyScheduleDtos } from "@/lib/api/itinerary";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 // 실제 여행 상세 페이지와 동일한 구조
 const TravelDetailPageStorybook = ({

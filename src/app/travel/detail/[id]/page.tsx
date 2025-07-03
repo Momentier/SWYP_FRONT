@@ -19,6 +19,7 @@ import Tooltip from "@/components/ToolTip";
 import Button from "@/components/Button";
 import ConfirmModal from "@/components/modals/ConfirmModal";
 import { useRouter } from 'next/navigation';
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const TravelSchedulePage: React.FC = () => {
     const router = useRouter();
@@ -114,7 +115,7 @@ const TravelSchedulePage: React.FC = () => {
                     className='flex flex-col w-[80px] h-[90px] justify-center items-center'
                     onClick={handleShareKakao}>
                     <Image
-                        src="/icons/kakao_round.png"
+                        src={COMMON_IMAGES.KAKAO_ROUND}
                         alt='kakaoTalk'
                         width={60}
                         height={60}
@@ -126,7 +127,7 @@ const TravelSchedulePage: React.FC = () => {
                     className='flex flex-col w-[80px] h-[90px] justify-center items-center text-[#C1C1C1]'
                     onClick={handleCopyUrl}>
                     <Image
-                        src="/icons/URL.svg"
+                        src={COMMON_IMAGES.URL}
                         alt='URL'
                         width={60}
                         height={60}
@@ -216,7 +217,7 @@ const TravelSchedulePage: React.FC = () => {
                                     <Tooltip text="여행 일정을 공유할 수 있어요!" direction="top">
                                         <button onClick={shareModal.open}>
                                             <img
-                                                src="/icons/Share.svg"
+                                                src={COMMON_IMAGES.SHARE}
                                                 alt="공유 아이콘"
                                                 className="absolute top-0 right-0 w-[28px] h-[28px] object-cover"
                                             />

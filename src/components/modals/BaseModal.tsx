@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { COMMON_IMAGES } from '@/utils/imagePath';
 
 interface BaseModalProps {
   children: React.ReactNode;
@@ -51,7 +52,7 @@ export default function BaseModal({ children, onClose }: BaseModalProps) {
       >
         <div className="flex justify-end mb-[24px]">
           <button onClick={triggerClose} aria-label="Close">
-            <img src="/icons/Close.svg" alt="닫기" />
+            <img src={COMMON_IMAGES.CLOSE} alt="닫기" />
           </button>
         </div>
         {children}

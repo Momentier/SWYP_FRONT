@@ -6,6 +6,7 @@ import { Attraction } from "@/lib/api/itinerary";
 import { useRecommendTravelDetailStore } from "@/store/useRecommendTravelStore";
 import { changeAttraction } from "@/lib/api/itinerary";
 import Tooltip from "./ToolTip";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 type DetailCardProps = {
     title: string;
@@ -60,7 +61,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
                 <div className="flex p-6 gap-4">
                     <div className="w-6 h-full flex flex-col items-center gap-2">
                         <img
-                            src="/icons/Handle Desktop.svg"
+                            src={COMMON_IMAGES.HANDLE_DESKTOP}
                             alt="icon"
                             className="w-6 h-6 object-contain"
                         />
@@ -89,7 +90,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
 
                     <div className="w-6 h-full flex flex-col items-center gap-2">
                         <img
-                            src="/icons/Re_Request.svg"
+                            src={COMMON_IMAGES.RE_REQUEST}
                             alt="icon"
                             className="w-6 h-6 object-contain cursor-pointer"
                         />
@@ -105,7 +106,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
                 <div className="w-6 h-full flex flex-col items-center gap-2">
                     <Tooltip text="드래그해서 일정 순서를 바꿀 수 있어요!" direction="top">
                         <img
-                            src="/icons/Handle Desktop.svg"
+                            src={COMMON_IMAGES.HANDLE_DESKTOP}
                             alt="handle"
                             className="w-6 h-6 object-contain cursor-grab"
                         />
@@ -121,17 +122,17 @@ const DetailCard: React.FC<DetailCardProps> = ({
                     </Text>
 
                     <div className="flex items-center gap-2">
-                        <img src="/icons/Location.svg" alt="address icon" className="w-5 h-5" />
+                        <img src={COMMON_IMAGES.LOCATION} alt="address icon" className="w-5 h-5" />
                         <Text textStyle="body1" className="text-gray-700">{address}</Text>
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <img src="/icons/Clock.svg" alt="hours icon" className="w-5 h-5" />
+                        <img src={COMMON_IMAGES.CLOCK} alt="hours icon" className="w-5 h-5" />
                         <Text textStyle="body1" className="text-gray-700 truncate">{hours}</Text>
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <img src="/icons/Star.svg" alt="rating icon" className="w-5 h-5" />
+                        <img src={COMMON_IMAGES.STAR} alt="rating icon" className="w-5 h-5" />
                         <Text textStyle="body1" className="text-gray-700">{rating}</Text>
                     </div>
                 </div>
@@ -143,12 +144,12 @@ const DetailCard: React.FC<DetailCardProps> = ({
                                 // 기본 이미지 사용
                                 return "https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5dc87836-b647-45ef-ae17-e3247f91b8b4";
                             }
-                            
+
                             // /default_img.png인 경우 proxy 사용하지 않음
-                            if (imageUrl === '/default_img.png') {
+                            if (imageUrl.includes('/default_img.png')) {
                                 return imageUrl;
                             }
-                            
+
                             // 외부 URL인 경우 그대로 사용 (img 태그는 proxy 불필요)
                             return imageUrl;
                         })()
@@ -160,7 +161,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
                 <div className="w-6 h-full flex flex-col items-center gap-2">
                     <Tooltip text="비슷한 다른 장소를 추천 받을 수 있어요!" direction="top">
                         <img
-                            src="/icons/Re_Request.svg"
+                            src={COMMON_IMAGES.RE_REQUEST}
                             alt="ReRequest icon"
                             className="w-6 h-6 object-contain cursor-pointer"
                             onClick={handleUpdateClick}
@@ -170,7 +171,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
                     {attractionData.previousData && (
                         <Tooltip text="처음 추천받았던 장소로 되돌릴 수 있어요!">
                             <img
-                                src="/icons/Reset.svg"
+                                src={COMMON_IMAGES.RESET}
                                 alt="Reset icon"
                                 className="w-6 h-6 object-contain cursor-pointer"
                                 onClick={handleRollbackClick}

@@ -8,12 +8,6 @@ import router from 'next/router';
 export const Page: React.FC = () => {
   const [user, setUser] = React.useState<User | null>(null);
 
-  const mockUser: User = {
-    userName: 'Jane Doe',
-    accessToken: 'dummy-access-token',
-    profileImage: '/icons/Avatar.svg', // or 다른 이미지 URL
-  };
-
   return (
     <article>
       <Header

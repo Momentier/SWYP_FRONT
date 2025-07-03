@@ -12,6 +12,7 @@ import { unlinkKakaoAccount } from "@/lib/api/auth";
 import { useModal } from "@/hooks/useModal";
 import ConfirmModal from "@/components/modals/ConfirmModal";
 import { getMyInfo } from "@/lib/api/user";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function MyPage() {
     const [courseList, setCourseList] = useState<Itinerary[]>([]);
@@ -131,7 +132,7 @@ export default function MyPage() {
         <div className="w-full flex flex-col gap-[40px] max-w-[1100px] min-h[1180px] mx-auto px-5 py-[60px]">
             <div className="flex items-center gap-2 ">
                 <Image
-                    src="/icons/Chevron Left Bold.svg"
+                    src={COMMON_IMAGES.CHEVRON_LEFT}
                     alt="chip icon"
                     width={20}
                     height={20}
@@ -143,7 +144,7 @@ export default function MyPage() {
             </div>
             <div className="flex items-center bg-white py-[20px] px-[28px] rounded-lg shadow-md gap-4">
                 <Image
-                    src="/icons/kakao_round.png"
+                    src={COMMON_IMAGES.KAKAO_ROUND}
                     alt="profile"
                     width={52}
                     height={52}
@@ -197,7 +198,7 @@ export default function MyPage() {
                                 >
                                     <span>{isExpanded ? "접기" : "더보기"}</span>
                                     <Image
-                                        src="/icons/Chevron Down.svg"
+                                        src={COMMON_IMAGES.CHEVRON_DOWN}
                                         alt="chevron"
                                         className={`${isExpanded ? "rotate-180" : ""}`}
                                         width={12}

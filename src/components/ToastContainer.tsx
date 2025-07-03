@@ -2,6 +2,7 @@
 
 import { useToastStore } from '@/store/useToastStore';
 import Text from '@/components/Text';
+import { COMMON_IMAGES } from '@/utils/imagePath';
 
 export default function ToastContainer() {
   const { toasts } = useToastStore();
@@ -18,7 +19,7 @@ export default function ToastContainer() {
             }
         `}
         >
-          {toast.type === 'success' ? <img src="/icons/Success.svg" alt="success" /> : <img src="/icons/Fail.svg" alt="fail" />}
+          {toast.type === 'success' ? <img src={COMMON_IMAGES.SUCCESS} alt="success" /> : <img src={COMMON_IMAGES.FAIL} alt="fail" />}
 
           <Text textStyle='body1' className='font-semibold'>
             {toast.message}

@@ -2,6 +2,7 @@
 
 import { useRecommendTravelDetailStore } from "@/store/useRecommendTravelStore";
 import { useEffect } from "react";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 type DayScheduleCardSkeletonProps = {
     count: number;
@@ -18,7 +19,7 @@ const DayScheduleCardSkeleton = ({ count }: DayScheduleCardSkeletonProps) => {
         <>
 
             <div className='h-[54px] rounded-[11px] animate-pulse bg-[#E8E8EA] flex items-center justify-end px-[24px] mb-2'>
-                <img src="/icons/Chevron Down.svg" alt="expand" className="w-[28px] h-[28px]" />
+                <img src={COMMON_IMAGES.CHEVRON_DOWN} alt="expand" className="w-[28px] h-[28px]" />
             </div>
             {/* 아래영역을 count만큼 반복시킬거야 */}
             {Array.from({ length: count }).map((_, i) => (
@@ -26,7 +27,7 @@ const DayScheduleCardSkeleton = ({ count }: DayScheduleCardSkeletonProps) => {
                     <div className="flex p-6 gap-4">
                         <div className="w-6 h-full flex flex-col items-center gap-2">
                             <img
-                                src="/icons/Handle Desktop.svg"
+                                src={COMMON_IMAGES.HANDLE_DESKTOP}
                                 alt="icon"
                                 className="w-6 h-6 object-contain"
                             />
@@ -55,7 +56,7 @@ const DayScheduleCardSkeleton = ({ count }: DayScheduleCardSkeletonProps) => {
 
                         <div className="w-6 h-full flex flex-col items-center gap-2">
                             <img
-                                src="/icons/Re_Request.svg"
+                                src={COMMON_IMAGES.RE_REQUEST}
                                 alt="icon"
                                 className="w-6 h-6 object-contain cursor-pointer"
                             />

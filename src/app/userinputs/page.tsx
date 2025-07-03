@@ -10,6 +10,7 @@ import { COMPANIONS, DURATIONS } from '@/constants/UserInputConstants';
 import { useModal } from '@/hooks/useModal';
 import { getRecommendedDestinations, getRecommendText } from '@/lib/api/itinerary';
 import { useRecommendTravelListStore, useUserInputStore } from '@/store/useRecommendTravelStore';
+import { COMMON_IMAGES } from '@/utils/imagePath';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -289,7 +290,7 @@ export default function UserInputs() {
             onClick={onClickAutoFillInput}
             disabled={isTextLoading}
           >
-            <img src='./icons/AI.svg' alt='추천을위한 별모양 아이콘' />
+            <img src={COMMON_IMAGES.AI} alt='추천을위한 별모양 아이콘' />
             <Text as='p' className='ml-2 font-normal'>잘 모르겠어요. 추천해주세요!</Text>
           </button>
         </div>
@@ -314,7 +315,7 @@ export default function UserInputs() {
           >
             <Text textStyle='body1' className='relative z-10 flex justify-between'>
               다음
-              <img src="./icons/Arrow Right White.svg" alt="오른쪽을 가리키는 화살표" />
+              <img src={COMMON_IMAGES.ARROW_RIGHT_WHITE} alt="오른쪽을 가리키는 화살표" />
             </Text>
           </button>
         </div>
