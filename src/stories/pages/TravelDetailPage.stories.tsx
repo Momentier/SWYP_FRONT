@@ -5,7 +5,7 @@ import ScheduleCard from "@/components/ScheduleCard";
 import { DailyScheduleDtos } from "@/lib/api/itinerary";
 
 // 실제 여행 상세 페이지와 동일한 구조
-const TravelDetailPageStorybook = ({ 
+const TravelDetailPageStorybook = ({
   userName = "김여행",
   isLoading = false,
   showSkeleton = false
@@ -28,7 +28,7 @@ const TravelDetailPageStorybook = ({
           rating: 4.5,
           latitude: 37.5796,
           longitude: 126.9770,
-          coverImage: "/default_img.png",
+          coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "5분",
           travelCarTime: "10분",
           travelDistance: "1.2km",
@@ -43,7 +43,7 @@ const TravelDetailPageStorybook = ({
           rating: 4.3,
           latitude: 37.5703,
           longitude: 126.9850,
-          coverImage: "/default_img.png",
+          coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "15분",
           travelCarTime: "",
           travelDistance: "",
@@ -58,7 +58,7 @@ const TravelDetailPageStorybook = ({
           rating: 4.1,
           latitude: 37.5636,
           longitude: 126.9834,
-          coverImage: "/default_img.png",
+          coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "",
           travelCarTime: "20분",
           travelDistance: "3.5km",
@@ -78,7 +78,7 @@ const TravelDetailPageStorybook = ({
           rating: 4.4,
           latitude: 37.5797,
           longitude: 126.9831,
-          coverImage: "/default_img.png",
+          coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "10분",
           travelCarTime: "",
           travelDistance: "",
@@ -93,7 +93,7 @@ const TravelDetailPageStorybook = ({
           rating: 4.2,
           latitude: 37.5842,
           longitude: 126.9822,
-          coverImage: "/default_img.png",
+          coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "8분",
           travelCarTime: "",
           travelDistance: "",
@@ -113,7 +113,7 @@ const TravelDetailPageStorybook = ({
           rating: 4.6,
           latitude: 37.5512,
           longitude: 126.9881,
-          coverImage: "/default_img.png",
+          coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "",
           travelCarTime: "30분",
           travelDistance: "5.2km",

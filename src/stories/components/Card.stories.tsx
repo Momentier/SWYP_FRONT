@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Card from "@/components/Card";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const meta: Meta<typeof Card> = {
   title: "Components/Card",
@@ -16,7 +17,7 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof Card>;
 
-const imageUrl = "/default_img.png";
+const imageUrl = COMMON_IMAGES.DEFAULT_IMG;
 
 export const Large: Story = {
   args: {

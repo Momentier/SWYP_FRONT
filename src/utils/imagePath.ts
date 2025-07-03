@@ -21,12 +21,12 @@ const getBasePath = () => {
   if (isGithubPages || isStorybookExport || isStorybookGithubPages) {
     return '/SWYP_FRONT';
   }
-  
+
   // 런타임 감지 (폴백)
   if (detectStorybookRuntime()) {
     return '/SWYP_FRONT';
   }
-  
+
   return '';
 };
 
@@ -97,17 +97,30 @@ export function forceImagePath(imagePath: string): string {
   return imagePath;
 }
 
-// 자주 사용되는 이미지들을 미리 정의
+// 자주 사용되는 이미지들을 미리 정의 (명시적 상대경로 사용)
 export const COMMON_IMAGES = {
-  DEFAULT_IMG: '/default_img.png',
-  KAKAO_ICON: '/icons/kakao.png',
-  KAKAO_ROUND: '/icons/kakao_round.png',
-  REFRESH: '/icons/Refresh.svg',
-  STAR: '/icons/Star.svg',
-  LOCATION: '/icons/Location.svg',
-  CLOCK: '/icons/Clock.svg',
-  CHEVRON_LEFT: '/icons/Chevron Left Bold.svg',
-  CHEVRON_DOWN: '/icons/Chevron Down.svg',
+  DEFAULT_IMG: './default_img.png',
+  KAKAO_ICON: './icons/kakao.png',
+  KAKAO_ROUND: './icons/kakao_round.png',
+  REFRESH: './icons/Refresh.svg',
+  STAR: './icons/Star.svg',
+  LOCATION: './icons/Location.svg',
+  CLOCK: './icons/Clock.svg',
+  CHEVRON_LEFT: './icons/Chevron Left Bold.svg',
+  CHEVRON_DOWN: './icons/Chevron Down.svg',
+  CHEVRON_RIGHT: './icons/Chevron Right.svg',
+  DOT_LINE: './icons/DotLine.svg',
+  DOT: './icons/Dot.svg',
+  WALK: './icons/Walk.svg',
+  CAR: './icons/Car.svg',
+  AI: './icons/AI.svg',
+  ARROW_RIGHT_WHITE: './icons/Arrow Right White.svg',
+  CLOSE: './icons/Close.svg',
+  ALONE: './icons/Alone.png',
+  COUPLE: './icons/Couple.png',
+  FAMILY: './icons/Family.png',
+  FRIEND: './icons/Friend.png',
+  AVARTAR: '/icons/Avatar.svg',
 } as const;
 
 // 처리된 이미지 경로들

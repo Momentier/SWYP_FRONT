@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Chip from "@/components/Chip";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const meta: Meta<typeof Chip> = {
   title: "Components/Chip",
@@ -45,7 +46,7 @@ export const Selected: Story = {
 export const WithImage: Story = {
   args: {
     children: "이미지 칩",
-    imageSrc: "/icons/Location.svg",
+    imageSrc: COMMON_IMAGES.LOCATION,
     selected: false,
   },
 };
@@ -53,7 +54,7 @@ export const WithImage: Story = {
 export const WithImageSelected: Story = {
   args: {
     children: "선택된 이미지 칩",
-    imageSrc: "/icons/Location.svg",
+    imageSrc: COMMON_IMAGES.LOCATION,
     selected: true,
   },
 };

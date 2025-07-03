@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import DetailCard_confirmVer from "@/components/DetailCard_confirmVer";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const meta: Meta<typeof DetailCard_confirmVer> = {
   title: "Components/DetailCard_confirmVer",
@@ -47,7 +48,7 @@ const sampleAttractionData = {
   address: "서울특별시 종로구 사직로 161",
   businessTime: "09:00 - 18:00",
   rating: 4.5,
-  coverImage: "/default_img.png",
+  coverImage: COMMON_IMAGES.DEFAULT_IMG,
   travelWalkTime: "5분",
   travelCarTime: "10분",
   travelDistance: "1.2km",
@@ -63,7 +64,7 @@ export const Default: Story = {
     address: "서울특별시 종로구 사직로 161",
     hours: "09:00 - 18:00",
     rating: 4.5,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
   },
 };
 
@@ -74,7 +75,7 @@ export const Restaurant: Story = {
     address: "서울특별시 중구 명동10길 29",
     hours: "10:30 - 21:30",
     rating: 4.2,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
   },
 };
 
@@ -85,7 +86,7 @@ export const TouristSpot: Story = {
     address: "서울특별시 용산구 남산공원길 105",
     hours: "10:00 - 23:00",
     rating: 4.7,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
   },
 };
 
@@ -96,7 +97,7 @@ export const ShoppingMall: Story = {
     address: "서울특별시 송파구 올림픽로 300",
     hours: "09:30 - 22:00",
     rating: 4.6,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
   },
 };
 
@@ -107,7 +108,7 @@ export const LongTitle: Story = {
     address: "서울특별시 용산구 서빙고로 137",
     hours: "09:00 - 18:00 (월요일 휴관)",
     rating: 4.3,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
   },
 };
 

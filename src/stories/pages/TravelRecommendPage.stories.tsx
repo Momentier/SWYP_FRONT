@@ -3,9 +3,10 @@ import Text from "@/components/Text";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 import Image from "next/image";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 // 실제 여행 추천 페이지와 동일한 구조
-const TravelRecommendPageStorybook = ({ 
+const TravelRecommendPageStorybook = ({
   userName = "김여행",
   requestCount = 0,
   maxRequests = 1,
@@ -20,11 +21,11 @@ const TravelRecommendPageStorybook = ({
     {
       id: 1,
       name: "제주도",
-      theme: "자연과 힐링", 
+      theme: "자연과 힐링",
       address: "제주특별자치도",
       latitude: 33.4996,
       longitude: 126.5312,
-      imageUrl: "/default_img.png",
+      imageUrl: COMMON_IMAGES.DEFAULT_IMG,
     },
     {
       id: 2,
@@ -33,7 +34,7 @@ const TravelRecommendPageStorybook = ({
       address: "부산광역시",
       latitude: 35.1796,
       longitude: 129.0756,
-      imageUrl: "/default_img.png",
+      imageUrl: COMMON_IMAGES.DEFAULT_IMG,
     },
     {
       id: 3,
@@ -42,7 +43,7 @@ const TravelRecommendPageStorybook = ({
       address: "경상북도 경주시",
       latitude: 35.8562,
       longitude: 129.2247,
-      imageUrl: "/default_img.png",
+      imageUrl: COMMON_IMAGES.DEFAULT_IMG,
     },
   ];
 
@@ -93,7 +94,7 @@ const TravelRecommendPageStorybook = ({
           className="flex items-center justify-center w-[287px] h-[50px] px-5 gap-2"
           onClick={handleOtherItinerary}
         >
-          <Image src="/icons/Refresh.svg" alt="icon" width={24} height={24} />
+          <Image src={COMMON_IMAGES.REFRESH} alt="icon" width={24} height={24} />
           <Text
             as="span"
             className="text-white font-[600] text-[16px] leading-[26.1px] tracking-[-0.0002em] font-['Pretendard_JP']"

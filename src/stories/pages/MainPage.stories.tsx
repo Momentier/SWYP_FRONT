@@ -4,6 +4,7 @@ import Card from "@/components/Card";
 import Text from "@/components/Text";
 import Button from "@/components/Button";
 import Image from "next/image";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 // 실제 메인 페이지 컴포넌트 구조를 그대로 사용하는 스토리북용 컴포넌트
 const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }: {
@@ -19,27 +20,27 @@ const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }
     {
       id: 1,
       title: "제주도 3일 힐링 여행",
-      image_url: "/default_img.png",
+      image_url: COMMON_IMAGES.DEFAULT_IMG,
     },
     {
       id: 2,
       title: "부산 바다 여행",
-      image_url: "/default_img.png",
+      image_url: COMMON_IMAGES.DEFAULT_IMG,
     },
     {
       id: 3,
       title: "서울 문화 탐방",
-      image_url: "/default_img.png",
+      image_url: COMMON_IMAGES.DEFAULT_IMG,
     },
     {
       id: 4,
       title: "경주 역사 여행",
-      image_url: "/default_img.png",
+      image_url: COMMON_IMAGES.DEFAULT_IMG,
     },
     {
       id: 5,
       title: "강릉 커피 투어",
-      image_url: "/default_img.png",
+      image_url: COMMON_IMAGES.DEFAULT_IMG,
     },
   ];
 
@@ -116,15 +117,15 @@ const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }
                 className="transition-transform duration-300 hover:scale-105"
               >
                 <Card
-                size="small"
-                region={card.title}
-                distanceInfo="알 수 없음"
-                onClick={() => console.log('카드 클릭:', card.title)}
-                imageUrl={
-                  card.image_url && isValidUrl(card.image_url)
-                    ? card.image_url
-                    : "/default_img.png"
-                }
+                  size="small"
+                  region={card.title}
+                  distanceInfo="알 수 없음"
+                  onClick={() => console.log('카드 클릭:', card.title)}
+                  imageUrl={
+                    card.image_url && isValidUrl(card.image_url)
+                      ? card.image_url
+                      : COMMON_IMAGES.DEFAULT_IMG
+                  }
                 />
               </div>
             ))}
@@ -138,7 +139,7 @@ const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }
             className="flex px-5 py-[13px] bg-[#FFE812] rounded-full cursor-pointer"
             onClick={() => console.log('카카오 로그인 클릭')}
           >
-            <Image src="/icons/kakao.png" alt="kakao icon" width={28} height={28} />
+            <Image src={COMMON_IMAGES.KAKAO_ICON} alt="kakao icon" width={28} height={28} />
             <Text textStyle="headline1" className="ml-2 font-semibold">
               카카오로 시작하기
             </Text>

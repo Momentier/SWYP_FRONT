@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Attraction } from "@/lib/api/itinerary";
 import Text from "@/components/Text";
 import DetailCard from "@/components/DetailCard";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 // Storybook용 간단한 ScheduleCard 컴포넌트 (framer-motion 없이)
 const SimpleScheduleCard = ({ dailySchedule }: { dailySchedule: any }) => {
@@ -11,7 +12,7 @@ const SimpleScheduleCard = ({ dailySchedule }: { dailySchedule: any }) => {
         <Text textStyle="headline1" className="font-bold">
           {dailySchedule.dayDate}일 차
         </Text>
-        <img src="/icons/Chevron Down.svg" alt="expand" className="w-[28px] h-[28px]" />
+        <img src={COMMON_IMAGES.CHEVRON_DOWN} alt="expand" className="w-[28px] h-[28px]" />
       </div>
 
       <div className="flex flex-col gap-2">
@@ -29,27 +30,30 @@ const SimpleScheduleCard = ({ dailySchedule }: { dailySchedule: any }) => {
 
             {index < dailySchedule.attractions.length - 1 && (
               <div className="flex items-center w-full pl-[60px] pr-[60px] py-[4px] gap-2">
-                <div className="w-[2px] h-[40px] bg-[url('/icons/DotLine.svg')] bg-repeat-y bg-center" />
+                <div 
+                  className="w-[2px] h-[40px] bg-repeat-y bg-center"
+                  style={{ backgroundImage: `url('${COMMON_IMAGES.DOT_LINE}')` }}
+                />
                 {place.travelWalkTime && (
                   <div className="flex items-center gap-2">
-                    <img src="/icons/Walk.svg" alt="walk icon" className="w-5 h-5" />
+                    <img src={COMMON_IMAGES.WALK} alt="walk icon" className="w-5 h-5" />
                     <span className="text-gray-700">{place.travelWalkTime}</span>
                   </div>
                 )}
 
                 {place.travelWalkTime && place.travelCarTime && (
-                  <div className="w-5 h-5 bg-[url('/icons/Dot.svg')] bg-contain bg-no-repeat" />
+                  <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url('${COMMON_IMAGES.DOT}')` }} />
                 )}
 
                 {place.travelCarTime && (
                   <div className="flex items-center gap-2">
-                    <img src="/icons/Car.svg" alt="car icon" className="w-5 h-5" />
+                    <img src={COMMON_IMAGES.CAR} alt="car icon" className="w-5 h-5" />
                     <span className="text-gray-700">{place.travelCarTime}</span>
                   </div>
                 )}
 
                 {place.travelCarTime && place.travelDistance && (
-                  <div className="w-5 h-5 bg-[url('/icons/Dot.svg')] bg-contain bg-no-repeat" />
+                  <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url('${COMMON_IMAGES.DOT}')` }} />
                 )}
 
                 {place.travelDistance && (
@@ -98,7 +102,7 @@ const attractionsData: Attraction[] = [
         name: "강릉짬뽕순두부 동화가든 본점",
         address: "강원 강릉시 강동면 순두부길 77번길 15 동화가든",
         description: "두부요리 / 예약필수",
-        coverImage: "/default_img.png",
+        coverImage: COMMON_IMAGES.DEFAULT_IMG,
         businessTime: "매일 07:00 ~ 19:30",
         rating: 4.68,
         latitude: 37.751853,
@@ -113,7 +117,7 @@ const attractionsData: Attraction[] = [
         name: "오죽헌",
         address: "강원 강릉시 율곡로3139번길 24 오죽헌",
         description: "입장료 있음 / 운영시간 1시간 전 입장 마감",
-        coverImage: "/default_img.png",
+        coverImage: COMMON_IMAGES.DEFAULT_IMG,
         businessTime: "09:00 ~ 18:00",
         rating: 4.68,
         latitude: 37.763283,
@@ -128,7 +132,7 @@ const attractionsData: Attraction[] = [
         name: "경포해변",
         address: "강원 강릉시 강문동 산1",
         description: "강릉시에 있는 동해안 최대의 해변",
-        coverImage: "/default_img.png",
+        coverImage: COMMON_IMAGES.DEFAULT_IMG,
         businessTime: "00:00 ~ 24:00 상시이용 가능",
         rating: 4.41,
         latitude: 37.803517,
@@ -146,7 +150,7 @@ const seoulAttractionsData: Attraction[] = [
         name: "경복궁",
         address: "서울특별시 종로구 사직로 161",
         description: "조선왕조 제1의 법궁",
-        coverImage: "/default_img.png",
+        coverImage: COMMON_IMAGES.DEFAULT_IMG,
         businessTime: "09:00 ~ 18:00",
         rating: 4.5,
         latitude: 37.5796,
@@ -161,7 +165,7 @@ const seoulAttractionsData: Attraction[] = [
         name: "인사동",
         address: "서울특별시 종로구 인사동길",
         description: "전통 문화의 거리",
-        coverImage: "/default_img.png",
+        coverImage: COMMON_IMAGES.DEFAULT_IMG,
         businessTime: "10:00 ~ 22:00",
         rating: 4.3,
         latitude: 37.5703,
@@ -176,7 +180,7 @@ const seoulAttractionsData: Attraction[] = [
         name: "명동교자",
         address: "서울특별시 중구 명동10길 29",
         description: "예약 필수 / 한식 맛집",
-        coverImage: "/default_img.png",
+        coverImage: COMMON_IMAGES.DEFAULT_IMG,
         businessTime: "10:30 ~ 21:30",
         rating: 4.2,
         latitude: 37.5636,
@@ -235,7 +239,7 @@ export const ManyPlaces: Story = {
                     name: "강릉중앙시장",
                     address: "강원 강릉시 금성로 21",
                     description: "전통시장 / 먹거리 골목",
-                    coverImage: "/default_img.png",
+                    coverImage: COMMON_IMAGES.DEFAULT_IMG,
                     businessTime: "09:00 ~ 20:00",
                     rating: 4.1,
                     latitude: 37.7519,
@@ -250,7 +254,7 @@ export const ManyPlaces: Story = {
                     name: "초당순두부마을",
                     address: "강원 강릉시 초당동",
                     description: "순두부 맛집 거리",
-                    coverImage: "/default_img.png",
+                    coverImage: COMMON_IMAGES.DEFAULT_IMG,
                     businessTime: "08:00 ~ 21:00",
                     rating: 4.4,
                     latitude: 37.7856,

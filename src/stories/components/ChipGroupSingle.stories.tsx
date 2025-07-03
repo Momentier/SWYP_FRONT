@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ChipGroupSingle from "@/components/ChipGroupSingle";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const meta: Meta<typeof ChipGroupSingle> = {
   title: "Components/ChipGroupSingle",
@@ -29,10 +30,10 @@ export default meta;
 type Story = StoryObj<typeof ChipGroupSingle>;
 
 const sampleItems = [
-  { label: "혼자", value: "solo", imageSrc: "/icons/alone.png" },
-  { label: "커플", value: "couple", imageSrc: "/icons/couple.png" },
-  { label: "가족", value: "family", imageSrc: "/icons/family.png" },
-  { label: "친구", value: "friends", imageSrc: "/icons/friend.png" },
+  { label: "혼자", value: "solo", imageSrc: COMMON_IMAGES.ALONE },
+  { label: "커플", value: "couple", imageSrc: COMMON_IMAGES.COUPLE },
+  { label: "가족", value: "family", imageSrc: COMMON_IMAGES.FAMILY },
+  { label: "친구", value: "friends", imageSrc: COMMON_IMAGES.FRIEND },
   { label: "단체", value: "group" },
 ];
 

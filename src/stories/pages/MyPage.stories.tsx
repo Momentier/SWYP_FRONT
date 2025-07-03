@@ -4,9 +4,10 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 // 실제 MyPage와 동일한 구조
-const MyPageStorybook = ({ 
+const MyPageStorybook = ({
   userName = "김여행",
   hasItineraries = true,
   itineraryCount = 5,
@@ -27,7 +28,7 @@ const MyPageStorybook = ({
   const courseList = hasItineraries ? Array.from({ length: itineraryCount }, (_, index) => ({
     id: index + 1,
     title: `${["서울", "부산", "제주도", "경주", "강릉"][index % 5]} ${Math.floor(index / 5) + 2}박 ${Math.floor(index / 5) + 3}일 여행`,
-    image_url: ["/default_img.png"],
+    image_url: [COMMON_IMAGES.DEFAULT_IMG],
     createdAt: "2024.12.15",
     isPublic: index % 2 === 0,
   })) : [];
@@ -91,7 +92,7 @@ const MyPageStorybook = ({
                     min-h[1180px]">
       <div className="flex items-center gap-2 ">
         <Image
-          src="/icons/Chevron Left Bold.svg"
+          src={COMMON_IMAGES.CHEVRON_LEFT}
           alt="chip icon"
           width={20}
           height={20}
@@ -105,7 +106,7 @@ const MyPageStorybook = ({
 
       <div className="flex items-center bg-white py-[20px] px-[28px] rounded-lg shadow-md gap-4">
         <Image
-          src="/icons/kakao_round.png"
+          src={COMMON_IMAGES.KAKAO_ROUND}
           alt="profile"
           width={52}
           height={52}
@@ -161,7 +162,7 @@ const MyPageStorybook = ({
                   >
                     <span>{isExpanded ? "접기" : "더보기"}</span>
                     <Image
-                      src="/icons/Chevron Down.svg"
+                      src={COMMON_IMAGES.CHEVRON_DOWN}
                       alt="chevron"
                       className={`${isExpanded ? "rotate-180" : ""}`}
                       width={12}

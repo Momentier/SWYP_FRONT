@@ -3,10 +3,11 @@ import { fn } from "@storybook/test";
 
 import Header from "@/components/Header";
 import { User } from "@/store/useAuthStore";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 const mockUser: User = {
   userName: 'Jane Doe',
   accessToken: 'dummy-access-token',
-  profileImage: '/icons/Avatar.svg', // or 다른 이미지 URL
+  profileImage: COMMON_IMAGES.AVARTAR, // or 다른 이미지 URL
 };
 const meta = {
   title: "Layout/Header",

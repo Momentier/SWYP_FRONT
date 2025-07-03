@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ChipGroupMulti from "@/components/ChipGroupMulti";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const meta: Meta<typeof ChipGroupMulti> = {
   title: "Components/ChipGroupMulti",
@@ -29,9 +30,9 @@ export default meta;
 type Story = StoryObj<typeof ChipGroupMulti>;
 
 const sampleItems = [
-  { label: "여행지1", imageSrc: "/icons/Location.svg" },
+  { label: "여행지1", imageSrc: COMMON_IMAGES.LOCATION },
   { label: "여행지2" },
-  { label: "여행지3", imageSrc: "/icons/Star.svg" },
+  { label: "여행지3", imageSrc: COMMON_IMAGES.STAR },
   { label: "여행지4" },
   { label: "여행지5" },
 ];

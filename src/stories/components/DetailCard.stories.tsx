@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import DetailCard from "@/components/DetailCard";
 import { Attraction } from "@/lib/api/itinerary";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const meta: Meta<typeof DetailCard> = {
   title: "Components/DetailCard",
@@ -51,7 +52,7 @@ const sampleAttractionData: Attraction = {
   rating: 4.5,
   latitude: 37.5796,
   longitude: 126.9770,
-  coverImage: "/default_img.png",
+  coverImage: COMMON_IMAGES.DEFAULT_IMG,
   travelWalkTime: "5분",
   travelCarTime: "10분",
   travelDistance: "1.2km",
@@ -65,11 +66,11 @@ const sampleAttractionWithPrevious: Attraction = {
   address: "서울특별시 중구 명동10길 29",
   businessTime: "10:30 - 21:30",
   rating: 4.2,
-  coverImage: "/default_img.png",
+  coverImage: COMMON_IMAGES.DEFAULT_IMG,
   previousData: sampleAttractionData,
 };
 
-const imageUrl = "/default_img.png";
+const imageUrl = COMMON_IMAGES.DEFAULT_IMG;
 
 export const Default: Story = {
   args: {
@@ -90,7 +91,7 @@ export const Restaurant: Story = {
     address: "서울특별시 중구 명동10길 29",
     hours: "10:30 - 21:30",
     rating: 4.2,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
     attractionData: {
       ...sampleAttractionData,
       id: 2,
@@ -107,7 +108,7 @@ export const TouristSpot: Story = {
     address: "서울특별시 용산구 남산공원길 105",
     hours: "10:00 - 23:00",
     rating: 4.7,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
     attractionData: {
       ...sampleAttractionData,
       id: 3,
@@ -124,7 +125,7 @@ export const WithPreviousData: Story = {
     address: "서울특별시 중구 명동10길 29",
     hours: "10:30 - 21:30",
     rating: 4.2,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
     attractionData: sampleAttractionWithPrevious,
   },
   parameters: {
@@ -143,7 +144,7 @@ export const LongTitle: Story = {
     address: "서울특별시 용산구 서빙고로 137",
     hours: "09:00 - 18:00 (월요일 휴관)",
     rating: 4.3,
-    imageUrl: "/default_img.png",
+    imageUrl: COMMON_IMAGES.DEFAULT_IMG,
     attractionData: {
       ...sampleAttractionData,
       id: 4,

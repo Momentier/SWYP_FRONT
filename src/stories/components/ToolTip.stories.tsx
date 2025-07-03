@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ToolTip from "@/components/ToolTip";
 import Button from "@/components/Button";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 const meta: Meta<typeof ToolTip> = {
   title: "Components/ToolTip",
@@ -68,7 +69,7 @@ export const WithImage: Story = {
     direction: "bottom",
     children: (
       <img
-        src="/default_img.png"
+        src={COMMON_IMAGES.DEFAULT_IMG}
         alt="예시 이미지"
         className="rounded-lg cursor-pointer"
       />
