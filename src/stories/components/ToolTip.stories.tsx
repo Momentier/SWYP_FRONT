@@ -67,9 +67,9 @@ export const WithImage: Story = {
     text: "이미지에 마우스를 올려보세요",
     direction: "bottom",
     children: (
-      <img 
-        src="https://via.placeholder.com/100" 
-        alt="예시 이미지" 
+      <img
+        src="/default_img.png"
+        alt="예시 이미지"
         className="rounded-lg cursor-pointer"
       />
     ),

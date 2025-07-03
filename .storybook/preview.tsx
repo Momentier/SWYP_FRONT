@@ -67,8 +67,31 @@ const preview: Preview = {
             // GitHub Pages에서만 수정 (호스트명 체크)
             if (src && src.startsWith('/') && !src.startsWith('/SWYP_FRONT/') && 
                 window.location.hostname.includes('github.io')) {
-              img.src = `/SWYP_FRONT${src}`;
-              console.log(`Fixed image path: ${src} -> ${img.src}`);
+              
+              const newSrc = `/SWYP_FRONT${src}`;
+              
+              // 기존 이미지 요소를 새로 만들어서 교체
+              const newImg = document.createElement('img');
+              
+              // 모든 속성 복사
+              Array.from(img.attributes).forEach(attr => {
+                if (attr.name === 'src') {
+                  newImg.setAttribute('src', newSrc);
+                } else {
+                  newImg.setAttribute(attr.name, attr.value);
+                }
+              });
+              
+              // 스타일 복사
+              newImg.className = img.className;
+              newImg.style.cssText = img.style.cssText;
+              
+              // 부모 요소에서 교체
+              if (img.parentNode) {
+                img.parentNode.replaceChild(newImg, img);
+              }
+              
+              console.log(`Replaced image: ${src} -> ${newSrc}`);
             }
           });
         };
