@@ -5,7 +5,7 @@ import "../src/app/globals.css";
 import React from "react";
 
 // GitHub Pages Storybook 환경 감지
-const isGitHubPagesStorybook = typeof window !== 'undefined' && 
+const isGitHubPagesStorybook = typeof window !== 'undefined' &&
   (window.location.hostname.includes('github.io') || window.location.pathname.includes('/SWYP_FRONT/'));
 
 const preview: Preview = {
@@ -58,56 +58,42 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => {
-      // 이미지 경로 자동 수정
+      // GitHub Pages에서 이미지 모킹
       React.useEffect(() => {
-        const fixImagePaths = () => {
-          const images = document.querySelectorAll('img');
-          images.forEach(img => {
-            const src = img.getAttribute('src');
-            // GitHub Pages에서만 수정 (호스트명 체크)
-            if (src && src.startsWith('/') && !src.startsWith('/SWYP_FRONT/') && 
-                window.location.hostname.includes('github.io')) {
-              
-              const newSrc = `/SWYP_FRONT${src}`;
-              
-              // 기존 이미지 요소를 새로 만들어서 교체
-              const newImg = document.createElement('img');
-              
-              // 모든 속성 복사
-              Array.from(img.attributes).forEach(attr => {
-                if (attr.name === 'src') {
-                  newImg.setAttribute('src', newSrc);
-                } else {
-                  newImg.setAttribute(attr.name, attr.value);
-                }
-              });
-              
-              // 스타일 복사
-              newImg.className = img.className;
-              newImg.style.cssText = img.style.cssText;
-              
-              // 부모 요소에서 교체
-              if (img.parentNode) {
-                img.parentNode.replaceChild(newImg, img);
-              }
-              
-              console.log(`Replaced image: ${src} -> ${newSrc}`);
+        if (window.location.hostname.includes('github.io')) {
+          // 네트워크 요청 차단
+          const originalFetch = window.fetch;
+          window.fetch = function (url, options) {
+            if (typeof url === 'string' && (url.includes('/icons/') || url.includes('/default_img.png')) && !url.includes('/SWYP_FRONT/')) {
+              const newUrl = url.replace(/^\//, '/SWYP_FRONT/');
+              console.log(`Mocked fetch: ${url} -> ${newUrl}`);
+              return originalFetch(newUrl, options);
             }
-          });
-        };
+            return originalFetch(url, options);
+          };
 
-        // 초기 실행
-        fixImagePaths();
+          // XMLHttpRequest도 차단
+          const OriginalXHR = window.XMLHttpRequest;
+          window.XMLHttpRequest = function () {
+            const xhr = new OriginalXHR();
+            const originalOpen = xhr.open;
+            xhr.open = function (method, url, ...args) {
+              if (typeof url === 'string' && (url.includes('/icons/') || url.includes('/default_img.png')) && !url.includes('/SWYP_FRONT/')) {
+                const newUrl = url.replace(/^\//, '/SWYP_FRONT/');
+                console.log(`Mocked XHR: ${url} -> ${newUrl}`);
+                return originalOpen.call(this, method, newUrl, ...args);
+              }
+              return originalOpen.call(this, method, url, ...args);
+            };
+            return xhr;
+          } as any;
 
-        // DOM 변경 감지해서 새로 추가된 이미지도 처리
-        const observer = new MutationObserver(fixImagePaths);
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true
-        });
-
-        // 컴포넌트 언마운트시 observer 정리
-        return () => observer.disconnect();
+          // 정리 함수
+          return () => {
+            window.fetch = originalFetch;
+            window.XMLHttpRequest = OriginalXHR;
+          };
+        }
       }, []);
 
       return (
