@@ -18,6 +18,10 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const updateItinerary = useRecommendTravelDetailStore((state) => state.updateItinerary);
 
+    // 이미지 URL 도움 변수들
+    const dotLineImageUrl = COMMON_IMAGES.DOT_LINE;
+    const dotImageUrl = COMMON_IMAGES.DOT;
+
     const handleExpandClick = () => {
         setIsExpanded(!isExpanded);
     };
@@ -84,7 +88,10 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
 
                                 {index < dailySchedule.attractions.length - 1 && (
                                     <div className="flex items-center w-full pl-[60px] pr-[60px] py-[4px] gap-2">
-                                        <div className="w-[2px] h-[40px] bg-repeat-y bg-center" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT_LINE})` }} />
+                                        <div 
+                                            className="w-[2px] h-[40px] bg-repeat-y bg-center" 
+                                            style={{ backgroundImage: `url(${dotLineImageUrl})` }} 
+                                        />
                                         {place.travelWalkTime && (
                                             <div className="flex items-center gap-2">
                                                 <img src={COMMON_IMAGES.WALK} alt="walk icon" className="w-5 h-5" />
@@ -93,7 +100,10 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
                                         )}
 
                                         {place.travelWalkTime && place.travelCarTime && (
-                                            <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }} />
+                                            <div 
+                                                className="w-5 h-5 bg-contain bg-no-repeat" 
+                                                style={{ backgroundImage: `url(${dotImageUrl})` }} 
+                                            />
                                         )}
 
                                         {place.travelCarTime && (
@@ -104,7 +114,10 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
                                         )}
 
                                         {place.travelCarTime && place.travelDistance && (
-                                            <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }} />
+                                            <div 
+                                                className="w-5 h-5 bg-contain bg-no-repeat" 
+                                                style={{ backgroundImage: `url(${dotImageUrl})` }} 
+                                            />
                                         )}
 
                                         {place.travelDistance && (
