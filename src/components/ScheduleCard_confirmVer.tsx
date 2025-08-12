@@ -61,7 +61,7 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
                                 <div className="flex items-center w-full pl-[60px] pr-[60px] py-[4px] gap-2">
                                     <div
                                         className="w-[2px] h-[40px] bg-repeat-y bg-center"
-                                        style={{ backgroundImage: `url(${COMMON_IMAGES.DOT_LINE}}` }}
+                                        style={{ backgroundImage: `url(${COMMON_IMAGES.DOT_LINE}` }}
                                     />
                                     {place.travelWalkTime && (
                                         <div className="flex items-center gap-2">
