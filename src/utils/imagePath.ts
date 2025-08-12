@@ -97,49 +97,49 @@ export function forceImagePath(imagePath: string): string {
   return imagePath;
 }
 
-// 자주 사용되는 이미지들을 미리 정의 (명시적 상대경로 사용)
-export const COMMON_IMAGES = {
-  DEFAULT_IMG: './default_img.png',
-  KAKAO_ICON: './icons/kakao.png',
-  KAKAO_ROUND: './icons/kakao_round.png',
-  REFRESH: './icons/Refresh.svg',
-  STAR: './icons/Star.svg',
-  LOCATION: './icons/Location.svg',
-  CLOCK: './icons/Clock.svg',
-  CHEVRON_LEFT: './icons/Chevron Left Bold.svg',
-  CHEVRON_DOWN: './icons/Chevron Down.svg',
-  CHEVRON_RIGHT: './icons/Chevron Right.svg',
-  DOT_LINE: './icons/DotLine.svg',
-  DOT: './icons/Dot.svg',
-  WALK: './icons/Walk.svg',
-  CAR: './icons/Car.svg',
-  AI: './icons/AI.svg',
-  ARROW_RIGHT_WHITE: './icons/Arrow Right White.svg',
-  CLOSE: './icons/Close.svg',
-  ALONE: './icons/Alone.png',
-  COUPLE: './icons/Couple.png',
-  FAMILY: './icons/Family.png',
-  FRIEND: './icons/Friend.png',
-  AVATAR: './icons/Avatar.svg',
-  MAIN_LOGO: './icons/MainLogo.webp',
-  LINK: './icons/Link.svg',
-  HANDLE_DESKTOP: './icons/Handle Desktop.svg',
-  RE_REQUEST: './icons/Re_Request.svg',
-  RESET: './icons/Reset.svg',
-  PDF_DOWNLOAD: './icons/Pdf Download.svg',
-  STAR_FILLED: './icons/Star_Filled.svg',
-  STAR_NORMAL: './icons/Star_Normal.svg',
-  CHECK_UNCHECKED: './icons/Check_Unchecked.svg',
-  CHECK_CHECKED: './icons/Check_Checked.svg',
-  SUCCESS: './icons/Success.svg',
-  FAIL: './icons/Fail.svg',
-  ARROW: './icons/Arrow.svg',
-  URL: './icons/URL.svg',
-  SHARE: './icons/Share.svg',
-  INFO: './icons/Info.svg'
+// 기본 이미지 경로들 (절대경로)
+const RAW_IMAGES = {
+  DEFAULT_IMG: '/default_img.png',
+  KAKAO_ICON: '/icons/kakao.png',
+  KAKAO_ROUND: '/icons/kakao_round.png',
+  REFRESH: '/icons/Refresh.svg',
+  STAR: '/icons/Star.svg',
+  LOCATION: '/icons/Location.svg',
+  CLOCK: '/icons/Clock.svg',
+  CHEVRON_LEFT: '/icons/Chevron Left Bold.svg',
+  CHEVRON_DOWN: '/icons/Chevron Down.svg',
+  CHEVRON_RIGHT: '/icons/Chevron Right.svg',
+  DOT_LINE: '/icons/DotLine.svg',
+  DOT: '/icons/Dot.svg',
+  WALK: '/icons/Walk.svg',
+  CAR: '/icons/Car.svg',
+  AI: '/icons/AI.svg',
+  ARROW_RIGHT_WHITE: '/icons/Arrow Right White.svg',
+  CLOSE: '/icons/Close.svg',
+  ALONE: '/icons/Alone.png',
+  COUPLE: '/icons/Couple.png',
+  FAMILY: '/icons/Family.png',
+  FRIEND: '/icons/Friend.png',
+  AVATAR: '/icons/Avatar.svg',
+  MAIN_LOGO: '/icons/MainLogo.webp',
+  LINK: '/icons/Link.svg',
+  HANDLE_DESKTOP: '/icons/Handle Desktop.svg',
+  RE_REQUEST: '/icons/Re_Request.svg',
+  RESET: '/icons/Reset.svg',
+  PDF_DOWNLOAD: '/icons/Pdf Download.svg',
+  STAR_FILLED: '/icons/Star_Filled.svg',
+  STAR_NORMAL: '/icons/Star_Normal.svg',
+  CHECK_UNCHECKED: '/icons/Check_Unchecked.svg',
+  CHECK_CHECKED: '/icons/Check_Checked.svg',
+  SUCCESS: '/icons/Success.svg',
+  FAIL: '/icons/Fail.svg',
+  ARROW: '/icons/Arrow.svg',
+  URL: '/icons/URL.svg',
+  SHARE: '/icons/Share.svg',
+  INFO: '/icons/Info.svg'
 } as const;
 
-// 처리된 이미지 경로들
-export const PROCESSED_IMAGES = Object.fromEntries(
-  Object.entries(COMMON_IMAGES).map(([key, path]) => [key, getImagePath(path)])
-) as Record<keyof typeof COMMON_IMAGES, string>;
+// 자동으로 환경에 맞는 경로 처리가 된 이미지들
+export const COMMON_IMAGES = Object.fromEntries(
+  Object.entries(RAW_IMAGES).map(([key, path]) => [key, getImagePath(path)])
+) as Record<keyof typeof RAW_IMAGES, string>;
