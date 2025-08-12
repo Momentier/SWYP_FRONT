@@ -11,14 +11,6 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/proxy/:path*",
-        destination: "https://223.130.155.172:443/api/v1/:path*",
-      },
-    ];
-  },
   basePath: isGithubPages ? "/SWYP_FRONT" : "",
   assetPrefix: isStorybookExport ? "/SWYP_FRONT/" : (isGithubPages ? "/SWYP_FRONT/" : ""),
   images: {
