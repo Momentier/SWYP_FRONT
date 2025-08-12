@@ -136,7 +136,7 @@ const RAW_IMAGES = {
   ARROW: '/icons/Arrow.svg',
   URL: '/icons/URL.svg',
   SHARE: '/icons/Share.svg',
-  INFO: '/icons/Info.svg'
+  INFO: '/icons/Inform.svg'
 } as const;
 
 // 자동으로 환경에 맞는 경로 처리가 된 이미지들
