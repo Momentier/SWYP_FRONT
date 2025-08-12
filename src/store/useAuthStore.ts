@@ -63,8 +63,13 @@ export const useAuthStore = create<AuthState>()(
     {
       name: "auth-storage",
       onRehydrateStorage: () => (state) => {
-        state?.setHasHydrated(true);
+        // hydration 완료 후 setHasHydrated를 호출
+        if (state) {
+          state.setHasHydrated(true);
+        }
       },
+      // hydration 중 발생할 수 있는 오류 처리
+      skipHydration: false,
     }
   )
 );

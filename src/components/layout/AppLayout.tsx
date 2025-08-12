@@ -16,11 +16,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   const isPublic = PUBLIC_PATHS.some((path) => pathname.startsWith(path));
 
+  // 항상 훅을 같은 순서로 호출
   useAuthGuard(PUBLIC_PATHS);
-  if (!hasHydrated || (!isPublic && !isLoggedIn)) {
-    return (
-      <div />
-    );
+
+  // 조건부 렌더링을 return 문에서 처리하지 말고, 렌더링 내용을 조건부로 처리
+  const shouldShowLayout = hasHydrated && (isPublic || isLoggedIn);
+
+  if (!shouldShowLayout) {
+    return <div />;
   }
 
   return (

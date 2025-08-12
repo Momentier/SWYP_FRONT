@@ -21,31 +21,31 @@ export function useAuthGuard(publicPaths: string[] = []) {
   };
 
   useEffect(() => {
-    if (!hasHydrated) return;
-    if (isPublic) return;
-
-    const checkAndRefreshToken = async () => {
-      if (!isLoggedIn) {
-        router.replace('/main');
-        return;
-      }
-
-      if (isTokenExpired()) {
-        if (isRefreshing) return; // 이미 갱신 중이면 중단
-        setIsRefreshing(true);
-
-        console.warn('🔄 토큰이 만료되었습니다. 재발급 시도 중...');
-        const result = await reissueToken();
-
-        if (!result) {
-          console.error('🔒 재발급 실패, 로그인 페이지로 이동합니다.');
-          useAuthStore.getState().logout();
+    // 조건부 early return을 제거하고 조건을 중첩으로 변경
+    if (hasHydrated && !isPublic) {
+      const checkAndRefreshToken = async () => {
+        if (!isLoggedIn) {
           router.replace('/main');
+          return;
         }
-        setIsRefreshing(false);
-      }
-    };
 
-    checkAndRefreshToken();
+        if (isTokenExpired()) {
+          if (isRefreshing) return; // 이미 갱신 중이면 중단
+          setIsRefreshing(true);
+
+          console.warn('🔄 토큰이 만료되었습니다. 재발급 시도 중...');
+          const result = await reissueToken();
+
+          if (!result) {
+            console.error('🔒 재발급 실패, 로그인 페이지로 이동합니다.');
+            useAuthStore.getState().logout();
+            router.replace('/main');
+          }
+          setIsRefreshing(false);
+        }
+      };
+
+      checkAndRefreshToken();
+    }
   }, [hasHydrated, isLoggedIn, isPublic, router, isRefreshing]);
 }
