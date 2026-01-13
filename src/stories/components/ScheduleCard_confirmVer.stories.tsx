@@ -47,8 +47,8 @@ const sampleDailySchedule = {
       travelCarTime: "",
       travelDistance: "",
       type: "place" as const,
-      latitude: 37.571400,
-      longitude: 126.986330,
+      latitude: 37.5714,
+      longitude: 126.98633,
     },
     {
       id: 3,
@@ -92,7 +92,7 @@ export const Day2: Story = {
           travelDistance: "2.1km",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
         {
           id: 5,
@@ -107,7 +107,7 @@ export const Day2: Story = {
           travelDistance: "",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
       ],
     },
@@ -132,7 +132,7 @@ export const SingleAttraction: Story = {
           travelDistance: "",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
       ],
     },
@@ -157,7 +157,7 @@ export const ManyAttractions: Story = {
           travelDistance: "",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
         {
           id: 8,
@@ -172,7 +172,7 @@ export const ManyAttractions: Story = {
           travelDistance: "",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
         {
           id: 9,
@@ -187,7 +187,7 @@ export const ManyAttractions: Story = {
           travelDistance: "",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
         {
           id: 10,
@@ -202,7 +202,7 @@ export const ManyAttractions: Story = {
           travelDistance: "2.8km",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
         {
           id: 11,
@@ -217,7 +217,7 @@ export const ManyAttractions: Story = {
           travelDistance: "5.2km",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
       ],
     },
@@ -242,7 +242,7 @@ export const NoTravelInfo: Story = {
           travelDistance: "",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
         {
           id: 13,
@@ -257,7 +257,7 @@ export const NoTravelInfo: Story = {
           travelDistance: "",
           type: "place",
           latitude: 0,
-          longitude: 0
+          longitude: 0,
         },
       ],
     },

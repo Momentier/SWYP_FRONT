@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 
 interface ChipProps {
@@ -8,21 +7,21 @@ interface ChipProps {
   onClick?: () => void;
 }
 
-
 export default function Chip({
   children,
   imageSrc,
   selected = false,
-  onClick
+  onClick,
 }: ChipProps) {
-
   return (
     <div
       className={`
       p-[2px] rounded-full inline-block h-[40px]
-      ${selected
-          ? 'bg-gradient-to-r from-[#9A77FF] to-[#214BFF]'
-          : 'bg-white border border-[#E8E8EA]'}
+      ${
+        selected
+          ? "bg-gradient-to-r from-[#9A77FF] to-[#214BFF]"
+          : "bg-white border border-[#E8E8EA]"
+      }
     `}
     >
       <button
@@ -30,7 +29,7 @@ export default function Chip({
         className={`
         flex items-center px-4 py-2 rounded-full transition-all text-sm
         bg-white w-full h-full
-        ${selected ? 'text-[#214BFF] font-semibold' : 'text-gray-700 font-medium'}
+        ${selected ? "text-[#214BFF] font-semibold" : "text-gray-700 font-medium"}
       `}
       >
         {imageSrc && (

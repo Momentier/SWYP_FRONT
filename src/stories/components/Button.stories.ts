@@ -14,10 +14,24 @@ const meta: Meta<typeof Button> = {
     textStyle: {
       control: { type: "select" },
       options: [
-        "display1", "display2", "title1", "title2", "title3",
-        "heading1", "heading2", "headline1", "headline2",
-        "body1", "body1Reading", "body2", "body2Reading",
-        "label1", "label1Reading", "label2", "caption1", "caption2"
+        "display1",
+        "display2",
+        "title1",
+        "title2",
+        "title3",
+        "heading1",
+        "heading2",
+        "headline1",
+        "headline2",
+        "body1",
+        "body1Reading",
+        "body2",
+        "body2Reading",
+        "label1",
+        "label1Reading",
+        "label2",
+        "caption1",
+        "caption2",
       ],
       description: "텍스트 스타일",
     },
@@ -28,7 +42,7 @@ const meta: Meta<typeof Button> = {
     disabled: {
       control: "boolean",
       description: "비활성화 상태 여부",
-    }
+    },
   },
 };
 

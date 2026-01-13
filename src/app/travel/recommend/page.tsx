@@ -2,16 +2,24 @@
 
 import Button from "@/components/Button";
 import Card from "@/components/Card";
-import FullScreenLoader from '@/components/FullScreenLoader';
+import FullScreenLoader from "@/components/FullScreenLoader";
 import AlertModal from "@/components/modals/AlertModal";
 import Text from "@/components/Text";
-import { useModal } from '@/hooks/useModal';
-import { createItinerary, getRecommendedDestinations, type RecommendResponse } from "@/lib/api/itinerary";
+import { useModal } from "@/hooks/useModal";
+import {
+  createItinerary,
+  getRecommendedDestinations,
+  type RecommendResponse,
+} from "@/lib/api/itinerary";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useRecommendTravelDetailStore, useRecommendTravelListStore, useUserInputStore } from "@/store/useRecommendTravelStore";
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import {
+  useRecommendTravelDetailStore,
+  useRecommendTravelListStore,
+  useUserInputStore,
+} from "@/store/useRecommendTravelStore";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function TravelRecommendPage() {
@@ -24,8 +32,9 @@ export default function TravelRecommendPage() {
   const user = useAuthStore((state) => state.user);
 
   // 화면 내 상태 정의 영역
-  const [selectedTravel, setSelectedTravel] = useState<RecommendResponse | null>(null);
-  const [errMessage, setErrMessage] = useState('');
+  const [selectedTravel, setSelectedTravel] =
+    useState<RecommendResponse | null>(null);
+  const [errMessage, setErrMessage] = useState("");
 
   useEffect(() => {
     if (selectedTravel) {
@@ -45,7 +54,7 @@ export default function TravelRecommendPage() {
         travelWith: userInputs?.travelWith || "",
         startDate: userInputs?.startDate || "",
         duration: userInputs?.duration || -1,
-        theme: selectedTravel?.theme || '',
+        theme: selectedTravel?.theme || "",
         latitude: selectedTravel?.latitude || 0,
         longitude: selectedTravel?.longitude || 0,
       };
@@ -53,7 +62,13 @@ export default function TravelRecommendPage() {
       const temp = userInputs;
       if (!temp) return;
 
-      useUserInputStore.getState().setInputs({ ...temp, ...params, requestCount: userInputs?.requestCount || 0 })
+      useUserInputStore
+        .getState()
+        .setInputs({
+          ...temp,
+          ...params,
+          requestCount: userInputs?.requestCount || 0,
+        });
       router.push("/travel/detail");
     } catch (err) {
       console.error("일정 생성 중 오류 발생:", err);
@@ -69,10 +84,12 @@ export default function TravelRecommendPage() {
         feeling: params.wantedDto.feeling,
         atmosphere: params.wantedDto.atmosphere,
         activities: params.wantedDto.activities,
-      }
+      };
       const result = await getRecommendedDestinations(reqParams);
       useRecommendTravelListStore.getState().setItems(result);
-      useUserInputStore.getState().setInputs({ ...params, requestCount: userInputs.requestCount + 1 });
+      useUserInputStore
+        .getState()
+        .setInputs({ ...params, requestCount: userInputs.requestCount + 1 });
     } catch (err: any) {
       setErrMessage(err.message);
       errModal.open();
@@ -82,12 +99,12 @@ export default function TravelRecommendPage() {
   // 서버응답 에러 모달
   const errModal = useModal(() => (
     <AlertModal
-      title='정보를 불러오는데 실패했습니다!'
+      title="정보를 불러오는데 실패했습니다!"
       description={errMessage}
-      buttonText='확인'
+      buttonText="확인"
       onClose={errModal.close}
     />
-  ))
+  ));
 
   // JSX 리턴
   return (
@@ -99,7 +116,8 @@ export default function TravelRecommendPage() {
             떠나고 싶은 여행지를 선택해주세요!
           </Text>
           <Text as="p" textStyle="heading2" className="text-gray-500 font-bold">
-            {user ? user.userName : ''}님의 선호도에 맞춘 여행지입니다. 원하는 여행지를 선택하시고 새로운 일정을 짜드릴게요!
+            {user ? user.userName : ""}님의 선호도에 맞춘 여행지입니다. 원하는
+            여행지를 선택하시고 새로운 일정을 짜드릴게요!
           </Text>
         </section>
 
@@ -125,14 +143,18 @@ export default function TravelRecommendPage() {
             className="flex items-center justify-center w-[287px] h-[50px] px-5 gap-2"
             onClick={onClickOtherItinerary}
           >
-            <Image src={COMMON_IMAGES.REFRESH} alt="icon" width={24} height={24} />
+            <Image
+              src={COMMON_IMAGES.REFRESH}
+              alt="icon"
+              width={24}
+              height={24}
+            />
             <Text
               as="span"
               className="text-white font-[600] text-[16px] leading-[26.1px] tracking-[-0.0002em] font-['Pretendard_JP']"
             >
               다른 여행지를 추천받고 싶어요
             </Text>
-
           </Button>
 
           <Text textStyle="caption1" className="text-gray-400">

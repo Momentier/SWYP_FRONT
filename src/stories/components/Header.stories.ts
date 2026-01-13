@@ -5,8 +5,8 @@ import Header from "@/components/Header";
 import { User } from "@/store/useAuthStore";
 import { COMMON_IMAGES } from "@/utils/imagePath";
 const mockUser: User = {
-  userName: 'Jane Doe',
-  accessToken: 'dummy-access-token',
+  userName: "Jane Doe",
+  accessToken: "dummy-access-token",
   profileImage: COMMON_IMAGES.AVATAR, // or 다른 이미지 URL
 };
 const meta = {

@@ -51,7 +51,7 @@ const sampleAttractionData: Attraction = {
   businessTime: "09:00 - 18:00",
   rating: 4.5,
   latitude: 37.5796,
-  longitude: 126.9770,
+  longitude: 126.977,
   coverImage: COMMON_IMAGES.DEFAULT_IMG,
   travelWalkTime: "5분",
   travelCarTime: "10분",

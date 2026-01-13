@@ -7,7 +7,11 @@ import Image from "next/image";
 import { COMMON_IMAGES } from "@/utils/imagePath";
 
 // 실제 메인 페이지 컴포넌트 구조를 그대로 사용하는 스토리북용 컴포넌트
-const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }: {
+const MainPageStorybook = ({
+  isLoggedIn = false,
+  loading = false,
+  error = null,
+}: {
   isLoggedIn?: boolean;
   loading?: boolean;
   error?: string | null;
@@ -97,7 +101,8 @@ const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }
           모먼티어가 도와드릴게요
         </Text>
         <Text as="p" textStyle="heading2" className="mt-5 font-semibold">
-          복잡한 일정 없이, 몇 가지 정보만 알려주시면 추천은 저희가 알아서 해드려요.
+          복잡한 일정 없이, 몇 가지 정보만 알려주시면 추천은 저희가 알아서
+          해드려요.
         </Text>
       </main>
 
@@ -107,10 +112,7 @@ const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }
         ) : error ? (
           <div className="text-center text-red-500">에러 발생: {error}</div>
         ) : (
-          <div
-            ref={sliderRef}
-            className="flex w-max gap-4 animate-marquee"
-          >
+          <div ref={sliderRef} className="flex w-max gap-4 animate-marquee">
             {sampleCards.map((card) => (
               <div
                 key={card.id}
@@ -120,7 +122,7 @@ const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }
                   size="small"
                   region={card.title}
                   distanceInfo="알 수 없음"
-                  onClick={() => console.log('카드 클릭:', card.title)}
+                  onClick={() => console.log("카드 클릭:", card.title)}
                   imageUrl={
                     card.image_url && isValidUrl(card.image_url)
                       ? card.image_url
@@ -137,15 +139,23 @@ const MainPageStorybook = ({ isLoggedIn = false, loading = false, error = null }
         {!isLoggedIn ? (
           <button
             className="flex px-5 py-[13px] bg-[#FFE812] rounded-full cursor-pointer"
-            onClick={() => console.log('카카오 로그인 클릭')}
+            onClick={() => console.log("카카오 로그인 클릭")}
           >
-            <Image src={COMMON_IMAGES.KAKAO_ICON} alt="kakao icon" width={28} height={28} />
+            <Image
+              src={COMMON_IMAGES.KAKAO_ICON}
+              alt="kakao icon"
+              width={28}
+              height={28}
+            />
             <Text textStyle="headline1" className="ml-2 font-semibold">
               카카오로 시작하기
             </Text>
           </button>
         ) : (
-          <Button onClick={() => console.log('시작하기 클릭')} variant="gradation">
+          <Button
+            onClick={() => console.log("시작하기 클릭")}
+            variant="gradation"
+          >
             시작하기
           </Button>
         )}
@@ -162,7 +172,8 @@ const meta: Meta<typeof MainPageStorybook> = {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "메인 페이지 컴포넌트입니다. 헤더와 메인 컨텐츠를 포함하며, 여행지 추천 카드들과 시작하기 버튼이 있습니다.",
+        component:
+          "메인 페이지 컴포넌트입니다. 헤더와 메인 컨텐츠를 포함하며, 여행지 추천 카드들과 시작하기 버튼이 있습니다.",
       },
     },
   },

@@ -1,27 +1,31 @@
-'use client';
+"use client";
 
-import domtoimage from 'dom-to-image';
-import jsPDF from 'jspdf';
-import Image from 'next/image';
-import Text from './Text';
-import { COMMON_IMAGES } from '@/utils/imagePath';
+import domtoimage from "dom-to-image";
+import jsPDF from "jspdf";
+import Image from "next/image";
+import Text from "./Text";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 interface SavePdfButtonProps {
   onClickButton: () => void;
   fileName?: string;
 }
 
-export default function SavePdfButton({ onClickButton, fileName = 'my-document' }: SavePdfButtonProps) {
+export default function SavePdfButton({
+  onClickButton,
+  fileName = "my-document",
+}: SavePdfButtonProps) {
   const handleDownloadPDF = async () => {
-    const element = document.getElementById('pdf-target');
+    const element = document.getElementById("pdf-target");
     if (!element) return;
 
-    domtoimage.toPng(element, {
-      quality: 1,
-      bgcolor: '#FFFFFF',
-    })
+    domtoimage
+      .toPng(element, {
+        quality: 1,
+        bgcolor: "#FFFFFF",
+      })
       .then((dataUrl) => {
-        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdf = new jsPDF("p", "mm", "a4");
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
 
@@ -40,14 +44,7 @@ export default function SavePdfButton({ onClickButton, fileName = 'my-document' 
             if (page > 0) pdf.addPage();
             const position = -(pdfHeight * page);
 
-            pdf.addImage(
-              dataUrl,
-              'PNG',
-              0,
-              position,
-              imgWidth,
-              imgHeight
-            );
+            pdf.addImage(dataUrl, "PNG", 0, position, imgWidth, imgHeight);
           }
 
           // ✅ 지정된 파일명으로 저장
@@ -60,22 +57,25 @@ export default function SavePdfButton({ onClickButton, fileName = 'my-document' 
         };
       })
       .catch((error) => {
-        console.error('PDF 생성 중 에러 발생:', error);
+        console.error("PDF 생성 중 에러 발생:", error);
       });
   };
 
   return (
     <button
-      className='flex flex-col w-[80px] h-[90px] justify-center items-center text-[#C1C1C1]'
-      onClick={handleDownloadPDF}>
+      className="flex flex-col w-[80px] h-[90px] justify-center items-center text-[#C1C1C1]"
+      onClick={handleDownloadPDF}
+    >
       <Image
         src={COMMON_IMAGES.PDF_DOWNLOAD}
-        alt='Pdf Download'
+        alt="Pdf Download"
         width={60}
         height={60}
-        className='mb-2.5'
+        className="mb-2.5"
       />
-      <Text textStyle="label1" className="text-[#C1C1C1]">PDF 저장</Text>
+      <Text textStyle="label1" className="text-[#C1C1C1]">
+        PDF 저장
+      </Text>
     </button>
   );
 }

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type LoadingType = 'none' | 'fullscreen' | 'login' | 'skeleton';
+type LoadingType = "none" | "fullscreen" | "login" | "skeleton";
 
 interface LoadingStore {
   isLoading: boolean;
@@ -8,9 +8,9 @@ interface LoadingStore {
   setLoading: (isLoading: boolean, type?: LoadingType) => void;
 }
 
-
 export const useLoadingStore = create<LoadingStore>((set) => ({
   isLoading: false,
-  loadingType: 'none',
-  setLoading: (isLoading, type = 'fullscreen') => set({ isLoading, loadingType: isLoading ? type : 'none' }),
+  loadingType: "none",
+  setLoading: (isLoading, type = "fullscreen") =>
+    set({ isLoading, loadingType: isLoading ? type : "none" }),
 }));

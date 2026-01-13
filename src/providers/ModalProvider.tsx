@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode } from "react";
 
 type ModalElement = ReactNode;
 
@@ -26,19 +26,17 @@ export function ModalProvider({ children }: { children: ReactNode }) {
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
       {modals.map((ModalComponent, index) => (
-        <div
-          key={index}
-          className={`fixed inset-0 z-[${1000 + index}]`}
-        >
+        <div key={index} className={`fixed inset-0 z-[${1000 + index}]`}>
           {ModalComponent}
         </div>
       ))}
     </ModalContext.Provider>
-  )
+  );
 }
 
 export function useModalContext() {
   const context = useContext(ModalContext);
-  if (!context) throw new Error('useModalContext must be used within a ModalProvider');
+  if (!context)
+    throw new Error("useModalContext must be used within a ModalProvider");
   return context;
 }

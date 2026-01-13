@@ -60,7 +60,8 @@ export const WithValue: Story = {
   render: TextFieldWrapper,
   args: {
     placeholder: "여행 스타일을 자유롭게 입력해주세요",
-    value: "맛집 탐방과 역사적인 장소를 둘러보고 싶어요. 여유롭게 걸으면서 현지 문화를 체험하고 싶습니다.",
+    value:
+      "맛집 탐방과 역사적인 장소를 둘러보고 싶어요. 여유롭게 걸으면서 현지 문화를 체험하고 싶습니다.",
     variant: "outlined",
   },
 };
@@ -77,7 +78,8 @@ export const Disabled: Story = {
 export const LongPlaceholder: Story = {
   render: TextFieldWrapper,
   args: {
-    placeholder: "편했던 점, 아쉬웠던 점을 자유롭게 적어주세요. 여러분의 의견은 서비스 개선에 큰 도움이 됩니다.",
+    placeholder:
+      "편했던 점, 아쉬웠던 점을 자유롭게 적어주세요. 여러분의 의견은 서비스 개선에 큰 도움이 됩니다.",
     variant: "filled",
   },
 };

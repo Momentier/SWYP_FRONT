@@ -1,18 +1,24 @@
-'use client';
+"use client";
 
-import ChipGroupSingle from '@/components/ChipGroupSingle';
-import AlertModal from '@/components/modals/AlertModal';
-import ConfirmModal from '@/components/modals/ConfirmModal';
-import Text from '@/components/Text';
-import TextField from '@/components/TextField';
+import ChipGroupSingle from "@/components/ChipGroupSingle";
+import AlertModal from "@/components/modals/AlertModal";
+import ConfirmModal from "@/components/modals/ConfirmModal";
+import Text from "@/components/Text";
+import TextField from "@/components/TextField";
 import UserInputSummary from "@/components/UserInputSummary";
-import { COMPANIONS, DURATIONS } from '@/constants/UserInputConstants';
-import { useModal } from '@/hooks/useModal';
-import { getRecommendedDestinations, getRecommendText } from '@/lib/api/itinerary';
-import { useRecommendTravelListStore, useUserInputStore } from '@/store/useRecommendTravelStore';
-import { COMMON_IMAGES } from '@/utils/imagePath';
-import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { COMPANIONS, DURATIONS } from "@/constants/UserInputConstants";
+import { useModal } from "@/hooks/useModal";
+import {
+  getRecommendedDestinations,
+  getRecommendText,
+} from "@/lib/api/itinerary";
+import {
+  useRecommendTravelListStore,
+  useUserInputStore,
+} from "@/store/useRecommendTravelStore";
+import { COMMON_IMAGES } from "@/utils/imagePath";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
 export default function UserInputs() {
   const router = useRouter();
@@ -25,24 +31,24 @@ export default function UserInputs() {
    * isButtonDisabled : [다음] 버튼의 비활성화 여부
    */
   const [isTextLoading, setIsTextLoading] = useState(false);
-  const [companion, setCompanion] = useState('');
-  const [duration, setDuration] = useState('');
+  const [companion, setCompanion] = useState("");
+  const [duration, setDuration] = useState("");
   // 여행지 추천 텍스트
-  const [feelingDescription, setFeelingDescription] = useState('');
-  const [atmosphereDescription, setAtmosphereDescription] = useState('');
-  const [activityDescription, setActivityDescription] = useState('');
+  const [feelingDescription, setFeelingDescription] = useState("");
+  const [atmosphereDescription, setAtmosphereDescription] = useState("");
+  const [activityDescription, setActivityDescription] = useState("");
   const isButtonDisabled = useMemo(() => {
-    if (companion === '') return true;
-    if (duration === '') return true;
+    if (companion === "") return true;
+    if (duration === "") return true;
     return false;
   }, [companion, duration]);
-  const [errMessage, setErrMessage] = useState('');
+  const [errMessage, setErrMessage] = useState("");
 
   useEffect(() => {
     return () => {
       confirmRecommendModal.close();
-    }
-  }, [])
+    };
+  }, []);
 
   /**
    * 함수 선언
@@ -53,8 +59,8 @@ export default function UserInputs() {
       const today = new Date();
 
       const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0'); // 0-based
-      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, "0"); // 0-based
+      const dd = String(today.getDate()).padStart(2, "0");
 
       const formattedToday = `${yyyy}-${mm}-${dd}`;
 
@@ -62,20 +68,26 @@ export default function UserInputs() {
         feeling: feelingDescription,
         atmosphere: atmosphereDescription,
         activities: activityDescription,
-      }
+      };
       const additionalParams = {
         travelWith: companion,
         duration: Number(duration),
         startDate: formattedToday,
         // 아래는 추가된 항목
-        theme: '',
+        theme: "",
         latitude: 0,
-        longitude: 0
-      }
+        longitude: 0,
+      };
       const result = await getRecommendedDestinations(reqParams);
       // store 저장
       useRecommendTravelListStore.getState().setItems(result);
-      useUserInputStore.getState().setInputs({ ...additionalParams, requestCount: 0, wantedDto: reqParams });
+      useUserInputStore
+        .getState()
+        .setInputs({
+          ...additionalParams,
+          requestCount: 0,
+          wantedDto: reqParams,
+        });
 
       return true;
     } catch (err: any) {
@@ -85,12 +97,11 @@ export default function UserInputs() {
     }
   };
 
-
   /**
    * 이벤트 선언
    * onClickNext : [다음] 클릭 이벤트
    * onClickContinueRecommend : 컨펌 모달 [계속 추천받기] 클릭 이벤트
-   * onClickAutoFillInput : [잘 모르겠어요] 클릭 이벤트 
+   * onClickAutoFillInput : [잘 모르겠어요] 클릭 이벤트
    */
   const onClickNext = () => {
     confirmRecommendModal.open();
@@ -102,7 +113,7 @@ export default function UserInputs() {
 
     if (!isValid) return;
 
-    router.push('/travel/recommend');
+    router.push("/travel/recommend");
   };
 
   const onClickAutoFillInput = async () => {
@@ -112,10 +123,10 @@ export default function UserInputs() {
         feeling: feelingDescription,
         atmosphere: atmosphereDescription,
         activities: activityDescription,
-      }
-      setFeelingDescription('');
-      setAtmosphereDescription('');
-      setActivityDescription('');
+      };
+      setFeelingDescription("");
+      setAtmosphereDescription("");
+      setActivityDescription("");
       const result = await getRecommendText(params);
       setFeelingDescription(result.feeling);
       setAtmosphereDescription(result.atmosphere);
@@ -133,8 +144,10 @@ export default function UserInputs() {
    * errModal : 각종 서버 에러 모달
    */
   const confirmRecommendModal = useModal(() => {
-    const companionText = COMPANIONS.find(item => item.value === companion)?.label || '';
-    const durationText = DURATIONS.find(item => item.value === duration)?.label || '';
+    const companionText =
+      COMPANIONS.find((item) => item.value === companion)?.label || "";
+    const durationText =
+      DURATIONS.find((item) => item.value === duration)?.label || "";
     return (
       <ConfirmModal
         title="이 정보로 여행지를 추천해드릴게요"
@@ -150,17 +163,17 @@ export default function UserInputs() {
           inputText={feelingDescription}
         />
       </ConfirmModal>
-    )
+    );
   });
 
   const errModal = useModal(() => (
     <AlertModal
-      title='정보를 불러오는데 실패했습니다!'
+      title="정보를 불러오는데 실패했습니다!"
       description={errMessage}
-      buttonText='확인'
+      buttonText="확인"
       onClose={errModal.close}
     />
-  ))
+  ));
 
   /**
    * JSX 리턴(섹션별 설명 기재 요망)
@@ -172,14 +185,20 @@ export default function UserInputs() {
         <Text as="h1" textStyle="display2" className="mb-3 font-bold">
           여행 준비, 간단하고 쉽게 시작하세요!
         </Text>
-        <Text as="p" textStyle="body1" className="t mb-10 text-semantic-label-alternative">
-          모먼티어에게 몇 가지 정보를 알려주시면, 감정과 스타일에 딱 맞는 여행지를 추천해드릴게요.
+        <Text
+          as="p"
+          textStyle="body1"
+          className="t mb-10 text-semantic-label-alternative"
+        >
+          모먼티어에게 몇 가지 정보를 알려주시면, 감정과 스타일에 딱 맞는
+          여행지를 추천해드릴게요.
         </Text>
 
         {/* 동행자 선택 */}
         <div className="mt-[60px]">
           <Text textStyle="title3" className="block mb-4 font-bold">
-            누구와 함께 여행을 떠나시나요? <span className="text-semantic-primary-normal">*</span>
+            누구와 함께 여행을 떠나시나요?{" "}
+            <span className="text-semantic-primary-normal">*</span>
           </Text>
           <ChipGroupSingle
             items={COMPANIONS}
@@ -191,7 +210,8 @@ export default function UserInputs() {
         {/* 여행 기간 선택 */}
         <div className="mt-[60px]">
           <Text textStyle="title3" className="block mb-4 font-bold">
-            며칠 동안 떠나고 싶으신가요? <span className="text-semantic-primary-normal">*</span>
+            며칠 동안 떠나고 싶으신가요?{" "}
+            <span className="text-semantic-primary-normal">*</span>
           </Text>
           <ChipGroupSingle
             items={DURATIONS}
@@ -211,7 +231,11 @@ export default function UserInputs() {
               disabled={isTextLoading}
               value={feelingDescription}
               onChange={setFeelingDescription}
-              placeholder={!isTextLoading ? "요즘 너무 지쳐있어요, 새로운 기분 전환이 필요해요 등" : ""}
+              placeholder={
+                !isTextLoading
+                  ? "요즘 너무 지쳐있어요, 새로운 기분 전환이 필요해요 등"
+                  : ""
+              }
               variant="outlined"
             />
             {isTextLoading && (
@@ -238,7 +262,11 @@ export default function UserInputs() {
               disabled={isTextLoading}
               value={atmosphereDescription}
               onChange={setAtmosphereDescription}
-              placeholder={!isTextLoading ? "자연 속 조용한 곳, 북적이는 도시 분위기 등" : ""}
+              placeholder={
+                !isTextLoading
+                  ? "자연 속 조용한 곳, 북적이는 도시 분위기 등"
+                  : ""
+              }
               variant="outlined"
             />
             {isTextLoading && (
@@ -265,7 +293,11 @@ export default function UserInputs() {
               disabled={isTextLoading}
               value={activityDescription}
               onChange={setActivityDescription}
-              placeholder={!isTextLoading ? "푹 쉬기, 신나는 액티비티, 다양한 맛집 투어 등" : ""}
+              placeholder={
+                !isTextLoading
+                  ? "푹 쉬기, 신나는 액티비티, 다양한 맛집 투어 등"
+                  : ""
+              }
               variant="outlined"
             />
             {isTextLoading && (
@@ -286,12 +318,14 @@ export default function UserInputs() {
 
         <div className="mt-2">
           <button
-            className='flex items-center px-4 py-2 text-semantic-label-alternative border border-semantic-line-normalneutral rounded-[20px] bg-component-fill-alternative hover:bg-[#9A77FF1A] hover:border-[#9A77FF1A] active:text-semantic-primary-normal active:ring-2 active:ring-semantic-primary-normal ring-offset-0'
+            className="flex items-center px-4 py-2 text-semantic-label-alternative border border-semantic-line-normalneutral rounded-[20px] bg-component-fill-alternative hover:bg-[#9A77FF1A] hover:border-[#9A77FF1A] active:text-semantic-primary-normal active:ring-2 active:ring-semantic-primary-normal ring-offset-0"
             onClick={onClickAutoFillInput}
             disabled={isTextLoading}
           >
-            <img src={COMMON_IMAGES.AI} alt='추천을위한 별모양 아이콘' />
-            <Text as='p' className='ml-2 font-normal'>잘 모르겠어요. 추천해주세요!</Text>
+            <img src={COMMON_IMAGES.AI} alt="추천을위한 별모양 아이콘" />
+            <Text as="p" className="ml-2 font-normal">
+              잘 모르겠어요. 추천해주세요!
+            </Text>
           </button>
         </div>
 
@@ -310,12 +344,18 @@ export default function UserInputs() {
             after:bg-black after:opacity-0 hover:after:opacity-20
             after:transition-opacity
               w-[186px] text-[18px] px-5 py-3 rounded-[25px] font-semibold text-semantic-static-white 
-              ${isButtonDisabled ? 'bg-[#D9D9D9] cursor-not-allowed' : 'bg-semantic-primary-normal hover:bg-[#7C49FF]'}`}
+              ${isButtonDisabled ? "bg-[#D9D9D9] cursor-not-allowed" : "bg-semantic-primary-normal hover:bg-[#7C49FF]"}`}
             onClick={onClickNext}
           >
-            <Text textStyle='body1' className='relative z-10 flex justify-between'>
+            <Text
+              textStyle="body1"
+              className="relative z-10 flex justify-between"
+            >
               다음
-              <img src={COMMON_IMAGES.ARROW_RIGHT_WHITE} alt="오른쪽을 가리키는 화살표" />
+              <img
+                src={COMMON_IMAGES.ARROW_RIGHT_WHITE}
+                alt="오른쪽을 가리키는 화살표"
+              />
             </Text>
           </button>
         </div>

@@ -14,7 +14,12 @@ interface ChipGroupSingleProps {
   className?: string;
 }
 
-export default function ChipGroupSingle({ items, value, onChange, className = "flex gap-3 flex-wrap" }: ChipGroupSingleProps) {
+export default function ChipGroupSingle({
+  items,
+  value,
+  onChange,
+  className = "flex gap-3 flex-wrap",
+}: ChipGroupSingleProps) {
   const [internalValue, setInternalValue] = useState<string>(value || "");
   const selectedValue = value !== undefined ? value : internalValue;
 
@@ -38,4 +43,3 @@ export default function ChipGroupSingle({ items, value, onChange, className = "f
     </div>
   );
 }
-

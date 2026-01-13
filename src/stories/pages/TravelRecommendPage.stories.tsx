@@ -10,7 +10,7 @@ const TravelRecommendPageStorybook = ({
   userName = "김여행",
   requestCount = 0,
   maxRequests = 1,
-  isButtonDisabled = false
+  isButtonDisabled = false,
 }: {
   userName?: string;
   requestCount?: number;
@@ -48,26 +48,29 @@ const TravelRecommendPageStorybook = ({
   ];
 
   const handleCardClick = (data: any) => {
-    console.log('카드 클릭:', data);
+    console.log("카드 클릭:", data);
   };
 
   const handleOtherItinerary = () => {
-    console.log('다른 여행지 추천 클릭');
+    console.log("다른 여행지 추천 클릭");
   };
 
   return (
-    <main className="flex flex-col items-center w-full mx-auto px-4 pt-[60px] pb-[60px] gap-[84px]
+    <main
+      className="flex flex-col items-center w-full mx-auto px-4 pt-[60px] pb-[60px] gap-[84px]
                      max-w-[1100px] 
                      lg:max-w-[900px] 
                      md:max-w-[700px] 
-                     sm:max-w-[500px]">
+                     sm:max-w-[500px]"
+    >
       {/* 페이지 헤더 */}
       <section className="flex flex-col items-start self-stretch gap-3">
         <Text as="h2" textStyle="display2" className="font-bold">
           떠나고 싶은 여행지를 선택해주세요!
         </Text>
         <Text as="p" textStyle="heading2" className="text-gray-500 font-bold">
-          {userName}님의 선호도에 맞춘 여행지입니다. 원하는 여행지를 선택하시고 새로운 일정을 짜드릴게요!
+          {userName}님의 선호도에 맞춘 여행지입니다. 원하는 여행지를 선택하시고
+          새로운 일정을 짜드릴게요!
         </Text>
       </section>
 
@@ -94,7 +97,12 @@ const TravelRecommendPageStorybook = ({
           className="flex items-center justify-center w-[287px] h-[50px] px-5 gap-2"
           onClick={handleOtherItinerary}
         >
-          <Image src={COMMON_IMAGES.REFRESH} alt="icon" width={24} height={24} />
+          <Image
+            src={COMMON_IMAGES.REFRESH}
+            alt="icon"
+            width={24}
+            height={24}
+          />
           <Text
             as="span"
             className="text-white font-[600] text-[16px] leading-[26.1px] tracking-[-0.0002em] font-['Pretendard_JP']"
@@ -119,7 +127,8 @@ const meta: Meta<typeof TravelRecommendPageStorybook> = {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "여행지 추천 페이지 컴포넌트입니다. 사용자의 선호도에 맞춘 3개의 여행지를 추천하고 선택할 수 있습니다.",
+        component:
+          "여행지 추천 페이지 컴포넌트입니다. 사용자의 선호도에 맞춘 3개의 여행지를 추천하고 선택할 수 있습니다.",
       },
     },
   },
@@ -165,7 +174,8 @@ export const FirstRequest: Story = {
   parameters: {
     docs: {
       description: {
-        story: "첫 번째 추천 요청 상태입니다. '다른 여행지 추천' 버튼이 활성화되어 있습니다.",
+        story:
+          "첫 번째 추천 요청 상태입니다. '다른 여행지 추천' 버튼이 활성화되어 있습니다.",
       },
     },
   },
@@ -181,7 +191,8 @@ export const SecondRequest: Story = {
   parameters: {
     docs: {
       description: {
-        story: "두 번째 추천 요청 후 상태입니다. 더 이상 추천을 받을 수 없어 버튼이 비활성화됩니다.",
+        story:
+          "두 번째 추천 요청 후 상태입니다. 더 이상 추천을 받을 수 없어 버튼이 비활성화됩니다.",
       },
     },
   },
@@ -200,7 +211,8 @@ export const Desktop: Story = {
     },
     docs: {
       description: {
-        story: "데스크톱 화면에서의 여행지 추천 페이지입니다. 3개의 카드가 가로로 배치됩니다.",
+        story:
+          "데스크톱 화면에서의 여행지 추천 페이지입니다. 3개의 카드가 가로로 배치됩니다.",
       },
     },
   },
@@ -219,7 +231,8 @@ export const Mobile: Story = {
     },
     docs: {
       description: {
-        story: "모바일 화면에서의 여행지 추천 페이지입니다. 반응형으로 레이아웃이 조정됩니다.",
+        story:
+          "모바일 화면에서의 여행지 추천 페이지입니다. 반응형으로 레이아웃이 조정됩니다.",
       },
     },
   },

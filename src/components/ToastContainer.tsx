@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useToastStore } from '@/store/useToastStore';
-import Text from '@/components/Text';
-import { COMMON_IMAGES } from '@/utils/imagePath';
+import { useToastStore } from "@/store/useToastStore";
+import Text from "@/components/Text";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function ToastContainer() {
   const { toasts } = useToastStore();
@@ -13,15 +13,16 @@ export default function ToastContainer() {
         <div
           key={toast.id}
           className={`w-[880px] h-[60px] px-6 py-3 rounded-[11px] shadow-md text-sm transition-all flex items-center gap-3 backdrop-blur
-              ${toast.type === 'success'
-              ? 'bg-[#EEF4FFD9] '
-              : 'bg-[#FFEEEE]'
-            }
+              ${toast.type === "success" ? "bg-[#EEF4FFD9] " : "bg-[#FFEEEE]"}
         `}
         >
-          {toast.type === 'success' ? <img src={COMMON_IMAGES.SUCCESS} alt="success" /> : <img src={COMMON_IMAGES.FAIL} alt="fail" />}
+          {toast.type === "success" ? (
+            <img src={COMMON_IMAGES.SUCCESS} alt="success" />
+          ) : (
+            <img src={COMMON_IMAGES.FAIL} alt="fail" />
+          )}
 
-          <Text textStyle='body1' className='font-semibold'>
+          <Text textStyle="body1" className="font-semibold">
             {toast.message}
           </Text>
         </div>

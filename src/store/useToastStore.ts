@@ -1,15 +1,15 @@
-import { create } from 'zustand';
-import { v4 as uuidv4 } from 'uuid';
+import { create } from "zustand";
+import { v4 as uuidv4 } from "uuid";
 
 interface ToastMessage {
   id: string;
-  type: 'success' | 'error';
+  type: "success" | "error";
   message: string;
 }
 
 interface ToastStore {
   toasts: ToastMessage[];
-  addToast: (message: string, type: 'success' | 'error') => void;
+  addToast: (message: string, type: "success" | "error") => void;
   removeToast: (id: string) => void;
   clearToasts: () => void;
 }
@@ -39,7 +39,7 @@ export const useToastStore = create<ToastStore>((set) => ({
 
 export const toast = {
   success: (message: string) =>
-    useToastStore.getState().addToast(message, 'success'),
+    useToastStore.getState().addToast(message, "success"),
   error: (message: string) =>
-    useToastStore.getState().addToast(message, 'error'),
+    useToastStore.getState().addToast(message, "error"),
 };

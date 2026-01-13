@@ -71,7 +71,8 @@ export const WithInitialFeedback: Story = {
   render: UserExperienceRateWrapper,
   args: {
     initRate: 5,
-    initFeedback: "정말 만족스러운 여행이었습니다! 추천해주신 여행지들이 모두 좋았어요.",
+    initFeedback:
+      "정말 만족스러운 여행이었습니다! 추천해주신 여행지들이 모두 좋았어요.",
   },
 };
 
@@ -87,7 +88,8 @@ export const HighRating: Story = {
   render: UserExperienceRateWrapper,
   args: {
     initRate: 5,
-    initFeedback: "완벽한 여행이었습니다! 모든 일정이 완벽하게 짜여져 있어서 정말 편리했어요. 특히 맛집 추천이 너무 좋았습니다.",
+    initFeedback:
+      "완벽한 여행이었습니다! 모든 일정이 완벽하게 짜여져 있어서 정말 편리했어요. 특히 맛집 추천이 너무 좋았습니다.",
   },
 };
 

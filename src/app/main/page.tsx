@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Card from "@/components/Card"
-import Text from "@/components/Text"
+import Card from "@/components/Card";
+import Text from "@/components/Text";
 import { useLogin } from "@/hooks/useLogin";
 import { useEffect, useRef, useState } from "react";
 import { getPublicItineraries, PublicItinerary } from "@/lib/api/itinerary";
@@ -91,7 +91,8 @@ export default function Main() {
           모먼티어가 도와드릴게요
         </Text>
         <Text as="p" textStyle="heading2" className="mt-5 font-semibold">
-          복잡한 일정 없이, 몇 가지 정보만 알려주시면 추천은 저희가 알아서 해드려요.
+          복잡한 일정 없이, 몇 가지 정보만 알려주시면 추천은 저희가 알아서
+          해드려요.
         </Text>
       </main>
 
@@ -101,10 +102,7 @@ export default function Main() {
         ) : error ? (
           <div className="text-center text-red-500">에러 발생: {error}</div>
         ) : (
-          <div
-            ref={sliderRef}
-            className="flex w-max gap-4 animate-marquee"
-          >
+          <div ref={sliderRef} className="flex w-max gap-4 animate-marquee">
             {cards.map((card) => (
               <div
                 key={card.id}
@@ -128,23 +126,29 @@ export default function Main() {
       </section>
 
       <section className="mt-8 flex justify-center">
-        {
-          !isLoggedIn ?
-            (<button
-              className="flex px-5 py-[13px] bg-[#FFE812] rounded-full cursor-pointer"
-              onClick={() => openPopupAndHandleLogin()
-              }
-            >
-              <Image src={COMMON_IMAGES.KAKAO_ICON} alt="kakao icon" width={28} height={28} />
-              <Text textStyle="headline1" className="ml-2 font-semibold">
-                카카오로 시작하기
-              </Text>
-            </button>)
-            :
-            <Button onClick={() => router.push("/userinputs")} variant="gradation">
-              시작하기
-            </Button>
-        }
+        {!isLoggedIn ? (
+          <button
+            className="flex px-5 py-[13px] bg-[#FFE812] rounded-full cursor-pointer"
+            onClick={() => openPopupAndHandleLogin()}
+          >
+            <Image
+              src={COMMON_IMAGES.KAKAO_ICON}
+              alt="kakao icon"
+              width={28}
+              height={28}
+            />
+            <Text textStyle="headline1" className="ml-2 font-semibold">
+              카카오로 시작하기
+            </Text>
+          </button>
+        ) : (
+          <Button
+            onClick={() => router.push("/userinputs")}
+            variant="gradation"
+          >
+            시작하기
+          </Button>
+        )}
       </section>
     </div>
   );

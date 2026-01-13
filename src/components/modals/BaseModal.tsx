@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
-import { COMMON_IMAGES } from '@/utils/imagePath';
+import { useEffect, useState, useRef } from "react";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 interface BaseModalProps {
   children: React.ReactNode;
@@ -14,17 +14,17 @@ export default function BaseModal({ children, onClose }: BaseModalProps) {
     requestAnimationFrame(() => setShow(true));
 
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         triggerClose();
       }
     };
-    document.addEventListener('keydown', handleEsc);
+    document.addEventListener("keydown", handleEsc);
 
     const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener('keydown', handleEsc);
+      document.removeEventListener("keydown", handleEsc);
       document.body.style.overflow = prev;
     };
   }, []);
@@ -47,8 +47,9 @@ export default function BaseModal({ children, onClose }: BaseModalProps) {
     >
       <div
         ref={modalRef}
-        className={`bg-white rounded-2xl p-6 w-[460px] relative shadow-lg transition-all duration-200 ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`}
+        className={`bg-white rounded-2xl p-6 w-[460px] relative shadow-lg transition-all duration-200 ${
+          show ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
       >
         <div className="flex justify-end mb-[24px]">
           <button onClick={triggerClose} aria-label="Close">

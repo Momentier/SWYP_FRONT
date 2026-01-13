@@ -74,15 +74,15 @@ export const WithForm: Story = {
       <form className="space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">제목</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             className="w-full p-2 border border-gray-300 rounded-lg"
             placeholder="여행 제목을 입력하세요"
           />
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">설명</label>
-          <textarea 
+          <textarea
             className="w-full p-2 border border-gray-300 rounded-lg h-20"
             placeholder="여행에 대한 설명을 입력하세요"
           />
@@ -105,7 +105,9 @@ export const WithFilters: Story = {
     <DefaultModalWrapper {...args}>
       <div className="space-y-4">
         <div>
-          <Text textStyle="label1" className="font-semibold mb-2 block">지역 선택</Text>
+          <Text textStyle="label1" className="font-semibold mb-2 block">
+            지역 선택
+          </Text>
           <div className="grid grid-cols-2 gap-2">
             {["서울", "부산", "제주", "강릉", "전주", "경주"].map((city) => (
               <label key={city} className="flex items-center">
@@ -116,14 +118,18 @@ export const WithFilters: Story = {
           </div>
         </div>
         <div>
-          <Text textStyle="label1" className="font-semibold mb-2 block">여행 타입</Text>
+          <Text textStyle="label1" className="font-semibold mb-2 block">
+            여행 타입
+          </Text>
           <div className="space-y-1">
-            {["휴양", "관광", "맛집투어", "문화체험", "액티비티"].map((type) => (
-              <label key={type} className="flex items-center">
-                <input type="radio" name="travelType" className="mr-2" />
-                <Text textStyle="body2">{type}</Text>
-              </label>
-            ))}
+            {["휴양", "관광", "맛집투어", "문화체험", "액티비티"].map(
+              (type) => (
+                <label key={type} className="flex items-center">
+                  <input type="radio" name="travelType" className="mr-2" />
+                  <Text textStyle="body2">{type}</Text>
+                </label>
+              ),
+            )}
           </div>
         </div>
         <div className="flex justify-end">
@@ -167,12 +173,8 @@ export const WithTabs: Story = {
           <button className="px-4 py-2 border-b-2 border-blue-500 text-blue-600">
             추천 여행지
           </button>
-          <button className="px-4 py-2 text-gray-500">
-            인기 여행지
-          </button>
-          <button className="px-4 py-2 text-gray-500">
-            최근 여행지
-          </button>
+          <button className="px-4 py-2 text-gray-500">인기 여행지</button>
+          <button className="px-4 py-2 text-gray-500">최근 여행지</button>
         </div>
         <div className="space-y-2">
           {[
@@ -181,10 +183,17 @@ export const WithTabs: Story = {
             { name: "명동", desc: "쇼핑과 맛집의 중심지" },
             { name: "남산타워", desc: "서울의 랜드마크" },
           ].map((place, index) => (
-            <div key={index} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+            <div
+              key={index}
+              className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50"
+            >
               <div>
-                <Text textStyle="body1" className="font-semibold">{place.name}</Text>
-                <Text textStyle="body2" className="text-gray-600">{place.desc}</Text>
+                <Text textStyle="body1" className="font-semibold">
+                  {place.name}
+                </Text>
+                <Text textStyle="body2" className="text-gray-600">
+                  {place.desc}
+                </Text>
               </div>
               <Button variant="default">선택</Button>
             </div>
@@ -218,7 +227,8 @@ export const AlwaysOpen: Story = {
   parameters: {
     docs: {
       description: {
-        story: "스토리북에서 모달 디자인을 확인하기 위해 항상 열린 상태로 표시됩니다.",
+        story:
+          "스토리북에서 모달 디자인을 확인하기 위해 항상 열린 상태로 표시됩니다.",
       },
     },
   },

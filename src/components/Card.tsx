@@ -1,6 +1,10 @@
 import Text from "./Text";
 import { ElementType } from "react";
-import { getImagePath, getBackgroundImageUrl, COMMON_IMAGES } from "@/utils/imagePath";
+import {
+  getImagePath,
+  getBackgroundImageUrl,
+  COMMON_IMAGES,
+} from "@/utils/imagePath";
 
 const CARD_STYLES = {
   large:
@@ -17,7 +21,10 @@ const CARD_WIDTHS = {
   small: "300px",
 };
 
-const CARD_TEXT_STYLES: Record<keyof typeof CARD_STYLES, { region: TextStyle; info: TextStyle }> = {
+const CARD_TEXT_STYLES: Record<
+  keyof typeof CARD_STYLES,
+  { region: TextStyle; info: TextStyle }
+> = {
   large: { region: "title2", info: "label2" },
   medium: { region: "title2", info: "label2" },
   small: { region: "heading2", info: "label2" },
@@ -51,16 +58,19 @@ export default function Card({
   onClick,
   as: Component = "div",
 }: CardProps) {
-  const resolvedRegionTextStyle = regionTextStyle ?? CARD_TEXT_STYLES[size].region;
+  const resolvedRegionTextStyle =
+    regionTextStyle ?? CARD_TEXT_STYLES[size].region;
   const resolvedInfoTextStyle = infoTextStyle ?? CARD_TEXT_STYLES[size].info;
 
   const textAlignClass = size === "small" ? "justify-start" : "justify-end";
   const endAlignClass = size === "small" ? "items-start" : "items-end";
 
   // className이 제공되면 width를 무시하고 className 사용
-  const customStyles = className ? {} : {
-    width: width ?? CARD_WIDTHS[size],
-  };
+  const customStyles = className
+    ? {}
+    : {
+        width: width ?? CARD_WIDTHS[size],
+      };
 
   const resolvedImageUrl = (() => {
     if (!imageUrl?.trim()) {
@@ -69,7 +79,7 @@ export default function Card({
     }
 
     // /default_img.png인 경우 경로 처리 후 proxy 사용하지 않음
-    if (imageUrl.includes('/default_img.png')) {
+    if (imageUrl.includes("/default_img.png")) {
       return getImagePath(imageUrl);
     }
 
@@ -79,7 +89,7 @@ export default function Card({
 
   return (
     <Component
-      className={`${CARD_STYLES[size]} relative overflow-hidden cursor-pointer ${className || ''}`}
+      className={`${CARD_STYLES[size]} relative overflow-hidden cursor-pointer ${className || ""}`}
       style={customStyles}
       onClick={onClick}
     >
@@ -89,7 +99,9 @@ export default function Card({
       />
       <div className="absolute inset-0 bg-black/30" />
 
-      <div className={`relative z-10 flex flex-col ${textAlignClass} h-full gap-2`}>
+      <div
+        className={`relative z-10 flex flex-col ${textAlignClass} h-full gap-2`}
+      >
         <div className={`flex ${endAlignClass} gap-2 min-h-[76px]`}>
           <Text
             textStyle={resolvedRegionTextStyle}
@@ -97,7 +109,11 @@ export default function Card({
           >
             {region}
           </Text>
-          <img src={COMMON_IMAGES.LINK} alt="icon" className="w-6 h-6 mt-[2px]" />
+          <img
+            src={COMMON_IMAGES.LINK}
+            alt="icon"
+            className="w-6 h-6 mt-[2px]"
+          />
         </div>
 
         {size !== "small" && (
@@ -107,7 +123,6 @@ export default function Card({
           >
             {distanceInfo}
           </Text>
-
         )}
       </div>
     </Component>

@@ -60,7 +60,8 @@ export const PreChecked: Story = {
 export const LongTitle: Story = {
   render: ConfirmSaveItineraryWrapper,
   args: {
-    title: "여행 일정이 완성되었습니다! 이 멋진 여행 계획을 저장하고 다른 사용자들과 공유하시겠습니까? 저장된 일정은 마이페이지에서 언제든지 확인하실 수 있습니다.",
+    title:
+      "여행 일정이 완성되었습니다! 이 멋진 여행 계획을 저장하고 다른 사용자들과 공유하시겠습니까? 저장된 일정은 마이페이지에서 언제든지 확인하실 수 있습니다.",
     initValue: false,
   },
 };

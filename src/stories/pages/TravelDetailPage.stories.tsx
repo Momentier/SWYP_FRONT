@@ -9,7 +9,7 @@ import { COMMON_IMAGES } from "@/utils/imagePath";
 const TravelDetailPageStorybook = ({
   userName = "김여행",
   isLoading = false,
-  showSkeleton = false
+  showSkeleton = false,
 }: {
   userName?: string;
   isLoading?: boolean;
@@ -28,7 +28,7 @@ const TravelDetailPageStorybook = ({
           businessTime: "09:00 - 18:00",
           rating: 4.5,
           latitude: 37.5796,
-          longitude: 126.9770,
+          longitude: 126.977,
           coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "5분",
           travelCarTime: "10분",
@@ -43,7 +43,7 @@ const TravelDetailPageStorybook = ({
           businessTime: "11:00 - 21:00",
           rating: 4.3,
           latitude: 37.5703,
-          longitude: 126.9850,
+          longitude: 126.985,
           coverImage: COMMON_IMAGES.DEFAULT_IMG,
           travelWalkTime: "15분",
           travelCarTime: "",
@@ -130,28 +130,30 @@ const TravelDetailPageStorybook = ({
   };
 
   const handleSaveItinerary = () => {
-    console.log('일정 저장하기 클릭');
+    console.log("일정 저장하기 클릭");
   };
 
   if (showSkeleton) {
     return (
-      <div className='flex h-[calc(100vh-60px)] max-w-[100vw] overflow-hidden'>
-        <div className='flex flex-col items-start py-[60px] px-[40px] gap-5 overflow-y-auto box-border
+      <div className="flex h-[calc(100vh-60px)] max-w-[100vw] overflow-hidden">
+        <div
+          className="flex flex-col items-start py-[60px] px-[40px] gap-5 overflow-y-auto box-border
                       w-[980px] 
                       xl:w-[800px] 
                       lg:w-[700px] 
                       md:w-[600px] 
                       sm:w-full
-                      max-w-[90vw]'>
+                      max-w-[90vw]"
+        >
           {/* 스켈레톤 헤더 */}
-          <section className='flex flex-col w-full mb-5'>
-            <div className='w-[98px] h-[26px] animate-pulse bg-[#E8E8EA] mb-[8px]'></div>
-            <div className='w-[541px] h-[38px] animate-pulse bg-[#E8E8EA] mb-[40px]'></div>
-            <div className='w-[41px] h-[32px] animate-pulse bg-[#E8E8EA]'></div>
+          <section className="flex flex-col w-full mb-5">
+            <div className="w-[98px] h-[26px] animate-pulse bg-[#E8E8EA] mb-[8px]"></div>
+            <div className="w-[541px] h-[38px] animate-pulse bg-[#E8E8EA] mb-[40px]"></div>
+            <div className="w-[41px] h-[32px] animate-pulse bg-[#E8E8EA]"></div>
           </section>
 
           {/* 스켈레톤 카드들 */}
-          <section className='w-full flex flex-col gap-5'>
+          <section className="w-full flex flex-col gap-5">
             {[1, 2, 3].map((_, index) => (
               <div key={index} className="animate-pulse">
                 <div className="w-full h-[50px] bg-[#E8E8EA] rounded-xl mb-2"></div>
@@ -164,8 +166,8 @@ const TravelDetailPageStorybook = ({
           </section>
 
           {/* 스켈레톤 버튼 */}
-          <div className='w-full flex justify-end mt-5'>
-            <div className='mx-auto rounded-[25px] h-[48px] w-[180px] animate-pulse bg-[#C7C8C9]'></div>
+          <div className="w-full flex justify-end mt-5">
+            <div className="mx-auto rounded-[25px] h-[48px] w-[180px] animate-pulse bg-[#C7C8C9]"></div>
           </div>
         </div>
       </div>
@@ -173,44 +175,48 @@ const TravelDetailPageStorybook = ({
   }
 
   return (
-    <div className='flex h-[calc(100vh-60px)] max-w-[100vw] overflow-hidden'>
-      <div className='flex flex-col items-start py-[60px] px-[40px] gap-5 overflow-y-auto box-border
+    <div className="flex h-[calc(100vh-60px)] max-w-[100vw] overflow-hidden">
+      <div
+        className="flex flex-col items-start py-[60px] px-[40px] gap-5 overflow-y-auto box-border
                     w-[980px] 
                     xl:w-[800px] 
                     lg:w-[700px] 
                     md:w-[600px] 
                     sm:w-full
-                    max-w-[90vw]'>
+                    max-w-[90vw]"
+      >
         <div id="pdf-target">
           {/* 해당페이지의 헤더 */}
-          <section className='flex flex-col w-full mb-5'>
-            <Text textStyle='headline1' className='mb-[8px] text-gray-600'>
-              {itinerary?.title || '여행 일정'}
+          <section className="flex flex-col w-full mb-5">
+            <Text textStyle="headline1" className="mb-[8px] text-gray-600">
+              {itinerary?.title || "여행 일정"}
             </Text>
-            <Text textStyle='title2' className='font-bold mb-[40px]'>
-              {userName}님을 위한 {itinerary?.title || '여행코스'}
+            <Text textStyle="title2" className="font-bold mb-[40px]">
+              {userName}님을 위한 {itinerary?.title || "여행코스"}
             </Text>
-            <Text textStyle='title3' className='font-bold'>일정</Text>
+            <Text textStyle="title3" className="font-bold">
+              일정
+            </Text>
           </section>
 
           {/* 세부일정의 카드 UI 영역 */}
-          <section className='w-full flex flex-col gap-5'>
-            {itinerary ?
-              itinerary.dailyScheduleDtos.map((schedule, index) => (
-                <ScheduleCard
-                  key={`${index}-${JSON.stringify(schedule.attractions)}`}
-                  dailySchedule={schedule}
-                />
-              ))
+          <section className="w-full flex flex-col gap-5">
+            {itinerary
+              ? itinerary.dailyScheduleDtos.map((schedule, index) => (
+                  <ScheduleCard
+                    key={`${index}-${JSON.stringify(schedule.attractions)}`}
+                    dailySchedule={schedule}
+                  />
+                ))
               : null}
           </section>
         </div>
 
         {/* 저장 버튼 영역 */}
-        <div className='w-full flex justify-end mt-5'>
+        <div className="w-full flex justify-end mt-5">
           <Button
-            variant='gradation'
-            className='text-white font-semibold text-[16px] leading-[24px] tracking-[0.091px] mx-auto'
+            variant="gradation"
+            className="text-white font-semibold text-[16px] leading-[24px] tracking-[0.091px] mx-auto"
             onClick={handleSaveItinerary}
           >
             일정 저장하기
@@ -229,7 +235,8 @@ const meta: Meta<typeof TravelDetailPageStorybook> = {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "여행 상세 페이지 컴포넌트입니다. 생성된 여행 일정을 상세히 보여주고 저장할 수 있습니다.",
+        component:
+          "여행 상세 페이지 컴포넌트입니다. 생성된 여행 일정을 상세히 보여주고 저장할 수 있습니다.",
       },
     },
   },
@@ -269,7 +276,8 @@ export const LoadingSkeleton: Story = {
   parameters: {
     docs: {
       description: {
-        story: "일정을 불러오는 중인 로딩 상태입니다. 스켈레톤 UI가 표시됩니다.",
+        story:
+          "일정을 불러오는 중인 로딩 상태입니다. 스켈레톤 UI가 표시됩니다.",
       },
     },
   },
@@ -284,7 +292,8 @@ export const Seoul3Days: Story = {
   parameters: {
     docs: {
       description: {
-        story: "서울 3일 여행 일정입니다. 경복궁, 인사동, 명동 등 주요 관광지들이 포함되어 있습니다.",
+        story:
+          "서울 3일 여행 일정입니다. 경복궁, 인사동, 명동 등 주요 관광지들이 포함되어 있습니다.",
       },
     },
   },
@@ -302,7 +311,8 @@ export const Desktop: Story = {
     },
     docs: {
       description: {
-        story: "데스크톱 화면에서의 여행 상세 페이지입니다. 800px 폭의 컴팩트한 컨테이너에 일정이 표시됩니다.",
+        story:
+          "데스크톱 화면에서의 여행 상세 페이지입니다. 800px 폭의 컴팩트한 컨테이너에 일정이 표시됩니다.",
       },
     },
   },
@@ -320,7 +330,8 @@ export const Mobile: Story = {
     },
     docs: {
       description: {
-        story: "모바일 화면에서의 여행 상세 페이지입니다. 반응형으로 레이아웃이 조정됩니다.",
+        story:
+          "모바일 화면에서의 여행 상세 페이지입니다. 반응형으로 레이아웃이 조정됩니다.",
       },
     },
   },

@@ -23,8 +23,8 @@ type Story = StoryObj<typeof SavePdfButton>;
 // PDF 타겟이 될 더미 컨텐츠를 추가하는 데코레이터
 const withPdfTarget = (Story: any) => (
   <div>
-    <div 
-      id="pdf-target" 
+    <div
+      id="pdf-target"
       className="w-[800px] h-[600px] bg-white p-8 border border-gray-200 mb-8"
     >
       <h1 className="text-2xl font-bold mb-4">여행 일정서</h1>
@@ -84,11 +84,13 @@ export const WithoutTarget: Story = {
 export const Interactive: Story = {
   render: (args) => (
     <div>
-      <div 
-        id="pdf-target" 
+      <div
+        id="pdf-target"
         className="w-[600px] h-[400px] bg-gradient-to-br from-blue-50 to-purple-50 p-6 border rounded-lg mb-8"
       >
-        <h1 className="text-3xl font-bold text-purple-800 mb-6">🗾 제주도 여행 계획</h1>
+        <h1 className="text-3xl font-bold text-purple-800 mb-6">
+          🗾 제주도 여행 계획
+        </h1>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white p-4 rounded shadow">
             <h2 className="font-bold text-lg mb-2">📍 1일차</h2>
@@ -110,7 +112,9 @@ export const Interactive: Story = {
           </div>
         </div>
         <div className="mt-4 p-3 bg-yellow-100 rounded">
-          <p className="text-sm text-yellow-800">💡 팁: 렌트카 예약은 미리 하세요!</p>
+          <p className="text-sm text-yellow-800">
+            💡 팁: 렌트카 예약은 미리 하세요!
+          </p>
         </div>
       </div>
       <SavePdfButton {...args} />

@@ -1,6 +1,6 @@
-import BaseModal from './BaseModal';
-import Button from '../Button';
-import Text from '../Text';
+import BaseModal from "./BaseModal";
+import Button from "../Button";
+import Text from "../Text";
 
 interface ConfirmModalProps {
   title: string;
@@ -13,37 +13,42 @@ interface ConfirmModalProps {
   onClose?: () => void;
 }
 
-export default function
-  ConfirmModal({
-    title,
-    description,
-    onCancel,
-    onConfirm,
-    children,
-    cancelText,
-    confirmText,
-    onClose
-  }: ConfirmModalProps) {
+export default function ConfirmModal({
+  title,
+  description,
+  onCancel,
+  onConfirm,
+  children,
+  cancelText,
+  confirmText,
+  onClose,
+}: ConfirmModalProps) {
   return (
     <BaseModal onClose={onClose ? onClose : onCancel}>
-      <Text as='h2' textStyle='heading1' className='font-semibold text-center'>{title}</Text>
+      <Text as="h2" textStyle="heading1" className="font-semibold text-center">
+        {title}
+      </Text>
       {description ? (
-        <Text as='p' textStyle='body1' className='whitespace-pre-line text-center text-semantic-label-alternative mt-3'>
+        <Text
+          as="p"
+          textStyle="body1"
+          className="whitespace-pre-line text-center text-semantic-label-alternative mt-3"
+        >
           {description}
         </Text>
       ) : null}
       {children && <div className="mt-4">{children}</div>}
       <div className="flex justify-between mt-9">
         <Button
-          variant='cancel'
-          textStyle='body1'
+          variant="cancel"
+          textStyle="body1"
           className="w-[50%] mr-2.5 hover:bg-[#EBE1FF] hover:text-[#9A77FF]"
           onClick={onCancel}
         >
           {cancelText}
         </Button>
         <Button
-          variant='gradation'
+          variant="gradation"
           onClick={onConfirm}
           className={`
             w-[50%] relative overflow-hidden text-[#214BFF] bg-white
@@ -57,11 +62,11 @@ export default function
             after:transition-opacity
           `}
         >
-          <Text textStyle='body1' className='relative z-10'>
+          <Text textStyle="body1" className="relative z-10">
             {confirmText}
           </Text>
         </Button>
       </div>
-    </BaseModal >
+    </BaseModal>
   );
 }

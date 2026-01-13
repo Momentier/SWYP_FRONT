@@ -46,8 +46,10 @@ export const ShortMessage: Story = {
 
 export const LongMessage: Story = {
   args: {
-    title: "AI가 여러분의 취향에 맞는 최적의 여행 코스를 분석하고 추천하고 있습니다",
-    subTitle: "개인화된 여행 계획을 만들기 위해 열심히 작업 중이니 조금만 기다려주세요",
+    title:
+      "AI가 여러분의 취향에 맞는 최적의 여행 코스를 분석하고 추천하고 있습니다",
+    subTitle:
+      "개인화된 여행 계획을 만들기 위해 열심히 작업 중이니 조금만 기다려주세요",
   },
 };
 

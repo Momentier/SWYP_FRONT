@@ -11,7 +11,7 @@ const MyPageStorybook = ({
   userName = "김여행",
   hasItineraries = true,
   itineraryCount = 5,
-  createdAt = "2024.11.15"
+  createdAt = "2024.11.15",
 }: {
   userName?: string;
   hasItineraries?: boolean;
@@ -25,13 +25,15 @@ const MyPageStorybook = ({
   const scrollLeft = useRef(0);
 
   // 샘플 여행 일정 데이터
-  const courseList = hasItineraries ? Array.from({ length: itineraryCount }, (_, index) => ({
-    id: index + 1,
-    title: `${["서울", "부산", "제주도", "경주", "강릉"][index % 5]} ${Math.floor(index / 5) + 2}박 ${Math.floor(index / 5) + 3}일 여행`,
-    image_url: [COMMON_IMAGES.DEFAULT_IMG],
-    createdAt: "2024.12.15",
-    isPublic: index % 2 === 0,
-  })) : [];
+  const courseList = hasItineraries
+    ? Array.from({ length: itineraryCount }, (_, index) => ({
+        id: index + 1,
+        title: `${["서울", "부산", "제주도", "경주", "강릉"][index % 5]} ${Math.floor(index / 5) + 2}박 ${Math.floor(index / 5) + 3}일 여행`,
+        image_url: [COMMON_IMAGES.DEFAULT_IMG],
+        createdAt: "2024.12.15",
+        isPublic: index % 2 === 0,
+      }))
+    : [];
 
   const displayedCourses = isExpanded ? courseList : courseList.slice(0, 3);
 
@@ -68,28 +70,30 @@ const MyPageStorybook = ({
   };
 
   const handleUnlink = () => {
-    console.log('서비스 탈퇴하기 클릭');
+    console.log("서비스 탈퇴하기 클릭");
   };
 
   const handleBack = () => {
-    console.log('뒤로가기 클릭');
+    console.log("뒤로가기 클릭");
   };
 
   const handleCardClick = (id: number) => {
-    console.log('카드 클릭:', id);
+    console.log("카드 클릭:", id);
   };
 
   const handleCreateCourse = () => {
-    console.log('지금 코스 만들러 가기 클릭');
+    console.log("지금 코스 만들러 가기 클릭");
   };
 
   return (
-    <div className="w-full flex flex-col gap-[40px] mx-auto px-5 py-[60px] 
+    <div
+      className="w-full flex flex-col gap-[40px] mx-auto px-5 py-[60px] 
                     max-w-[1100px] 
                     lg:max-w-[900px] 
                     md:max-w-[700px] 
                     sm:max-w-[500px]
-                    min-h[1180px]">
+                    min-h[1180px]"
+    >
       <div className="flex items-center gap-2 ">
         <Image
           src={COMMON_IMAGES.CHEVRON_LEFT}
@@ -113,7 +117,11 @@ const MyPageStorybook = ({
           className="rounded-full"
         />
         <div className="flex flex-col justify-center">
-          <Text as="p" textStyle="headline1" className="font-semibold text-left text-[18px] text-[#404040] font-pretendard leading-[144.5%] tracking-[-0.004px]">
+          <Text
+            as="p"
+            textStyle="headline1"
+            className="font-semibold text-left text-[18px] text-[#404040] font-pretendard leading-[144.5%] tracking-[-0.004px]"
+          >
             {userName}
           </Text>
           <Text as="p" textStyle="label1" className="text-gray-500">
@@ -174,15 +182,21 @@ const MyPageStorybook = ({
             </>
           ) : (
             <div className="w-full h-[160px] bg-[#F8F8F8] flex flex-col justify-center items-center rounded-[12px] mt-[16px] p-[20px]">
-              <Text textStyle='body1' className="text-gray-500 mb-[8px] font-bold">
+              <Text
+                textStyle="body1"
+                className="text-gray-500 mb-[8px] font-bold"
+              >
                 아직 저장된 여행 코스가 없어요.
               </Text>
-              <Text textStyle='label1' className="text-gray-400 mb-[16px] font-bold">
+              <Text
+                textStyle="label1"
+                className="text-gray-400 mb-[16px] font-bold"
+              >
                 나에게 꼭 맞는 여행지를 추천받고, 나만의 일정을 만들어보세요!
               </Text>
               <Button
-                variant='gradation'
-                className='text-white font-semibold text-[16px] leading-[24px] tracking-[0.091px] mx-auto'
+                variant="gradation"
+                className="text-white font-semibold text-[16px] leading-[24px] tracking-[0.091px] mx-auto"
                 onClick={handleCreateCourse}
               >
                 지금 코스 만들러 가기 →
@@ -216,7 +230,8 @@ const meta: Meta<typeof MyPageStorybook> = {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "마이페이지 컴포넌트입니다. 사용자 프로필과 저장된 여행 일정들을 보여줍니다.",
+        component:
+          "마이페이지 컴포넌트입니다. 사용자 프로필과 저장된 여행 일정들을 보여줍니다.",
       },
     },
   },
@@ -262,7 +277,8 @@ export const EmptyState: Story = {
   parameters: {
     docs: {
       description: {
-        story: "저장된 여행 일정이 없는 상태입니다. 코스 만들기 버튼이 표시됩니다.",
+        story:
+          "저장된 여행 일정이 없는 상태입니다. 코스 만들기 버튼이 표시됩니다.",
       },
     },
   },
@@ -278,7 +294,8 @@ export const FewItineraries: Story = {
   parameters: {
     docs: {
       description: {
-        story: "3개 미만의 여행 일정이 있는 상태입니다. 더보기 버튼이 표시되지 않습니다.",
+        story:
+          "3개 미만의 여행 일정이 있는 상태입니다. 더보기 버튼이 표시되지 않습니다.",
       },
     },
   },
@@ -294,7 +311,8 @@ export const ManyItineraries: Story = {
   parameters: {
     docs: {
       description: {
-        story: "많은 여행 일정이 있는 상태입니다. 더보기/접기 버튼으로 확장할 수 있습니다.",
+        story:
+          "많은 여행 일정이 있는 상태입니다. 더보기/접기 버튼으로 확장할 수 있습니다.",
       },
     },
   },
@@ -313,7 +331,8 @@ export const Desktop: Story = {
     },
     docs: {
       description: {
-        story: "데스크톱 화면에서의 마이페이지입니다. 3열 그리드로 카드들이 배치됩니다.",
+        story:
+          "데스크톱 화면에서의 마이페이지입니다. 3열 그리드로 카드들이 배치됩니다.",
       },
     },
   },
@@ -332,7 +351,8 @@ export const Mobile: Story = {
     },
     docs: {
       description: {
-        story: "모바일 화면에서의 마이페이지입니다. 반응형으로 레이아웃이 조정됩니다.",
+        story:
+          "모바일 화면에서의 마이페이지입니다. 반응형으로 레이아웃이 조정됩니다.",
       },
     },
   },

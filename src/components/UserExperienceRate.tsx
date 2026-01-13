@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import TextField from './TextField';
-import { COMMON_IMAGES } from '@/utils/imagePath';
+import { useState } from "react";
+import Image from "next/image";
+import TextField from "./TextField";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 interface UserExperienceRateProps {
   initRate?: number;
@@ -12,9 +12,9 @@ interface UserExperienceRateProps {
 
 export default function UserExperienceRate({
   initRate = 0,
-  initFeedback = '',
+  initFeedback = "",
   onChangeRate,
-  onChangeFeedback
+  onChangeFeedback,
 }: UserExperienceRateProps) {
   const [rating, setRating] = useState(initRate);
   const [hoverRating, setHoverRating] = useState(0);
@@ -55,7 +55,11 @@ export default function UserExperienceRate({
               type="button"
             >
               <Image
-                src={isFilled ? COMMON_IMAGES.STAR_FILLED : COMMON_IMAGES.STAR_NORMAL}
+                src={
+                  isFilled
+                    ? COMMON_IMAGES.STAR_FILLED
+                    : COMMON_IMAGES.STAR_NORMAL
+                }
                 alt={`${index}점`}
                 width={60}
                 height={60}

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Header from '@/components/Header';
-import { useRouter, usePathname } from 'next/navigation';
+import Header from "@/components/Header";
+import { useRouter, usePathname } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useAuthGuard } from '@/hooks/useAuthGuard';
+import { useAuthGuard } from "@/hooks/useAuthGuard";
 
-const PUBLIC_PATHS = ['/main', '/oauth/callback/kakao'];
+const PUBLIC_PATHS = ["/main", "/oauth/callback/kakao"];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -31,10 +31,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       {/* TODO: push || replace 검토 */}
       <Header
         user={user}
-        onClickLogo={() => router.push('/')}
-        onClickProfile={() => router.push('/mypage')}
+        onClickLogo={() => router.push("/")}
+        onClickProfile={() => router.push("/mypage")}
       />
-      <main className='max-w-[100vw] overflow-hidden'>{children}</main>
+      <main className="max-w-[100vw] overflow-hidden">{children}</main>
     </>
   );
 }

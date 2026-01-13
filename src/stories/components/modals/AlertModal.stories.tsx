@@ -57,9 +57,7 @@ const AlertModalWrapper = ({ children, ...args }: any) => {
 };
 
 export const Success: Story = {
-  render: (args) => (
-    <AlertModalWrapper {...args} />
-  ),
+  render: (args) => <AlertModalWrapper {...args} />,
   args: {
     title: "저장 완료",
     description: "여행 일정이 성공적으로 저장되었습니다.",
@@ -68,9 +66,7 @@ export const Success: Story = {
 };
 
 export const Error: Story = {
-  render: (args) => (
-    <AlertModalWrapper {...args} />
-  ),
+  render: (args) => <AlertModalWrapper {...args} />,
   args: {
     title: "오류 발생",
     description: "네트워크 연결을 확인하고 다시 시도해주세요.",
@@ -79,9 +75,7 @@ export const Error: Story = {
 };
 
 export const Warning: Story = {
-  render: (args) => (
-    <AlertModalWrapper {...args} />
-  ),
+  render: (args) => <AlertModalWrapper {...args} />,
   args: {
     title: "주의사항",
     description: "이 작업은 되돌릴 수 없습니다.\n정말로 계속하시겠습니까?",
@@ -90,9 +84,7 @@ export const Warning: Story = {
 };
 
 export const WithoutDescription: Story = {
-  render: (args) => (
-    <AlertModalWrapper {...args} />
-  ),
+  render: (args) => <AlertModalWrapper {...args} />,
   args: {
     title: "알림",
     buttonText: "확인",
@@ -100,12 +92,11 @@ export const WithoutDescription: Story = {
 };
 
 export const LongTitle: Story = {
-  render: (args) => (
-    <AlertModalWrapper {...args} />
-  ),
+  render: (args) => <AlertModalWrapper {...args} />,
   args: {
     title: "여행 일정 생성이 완료되었습니다",
-    description: "AI가 분석한 맞춤형 여행 일정을 확인해보세요. 마음에 들지 않는 부분이 있다면 언제든지 수정하실 수 있습니다.",
+    description:
+      "AI가 분석한 맞춤형 여행 일정을 확인해보세요. 마음에 들지 않는 부분이 있다면 언제든지 수정하실 수 있습니다.",
     buttonText: "일정 확인하기",
   },
 };
@@ -115,7 +106,8 @@ export const WithCustomContent: Story = {
     <AlertModalWrapper {...args}>
       <div className="bg-blue-50 p-4 rounded-lg">
         <Text textStyle="body2" className="text-blue-800">
-          💡 <strong>팁:</strong> 생성된 일정은 마이페이지에서 언제든지 확인하고 수정할 수 있습니다.
+          💡 <strong>팁:</strong> 생성된 일정은 마이페이지에서 언제든지 확인하고
+          수정할 수 있습니다.
         </Text>
       </div>
     </AlertModalWrapper>
@@ -128,9 +120,7 @@ export const WithCustomContent: Story = {
 };
 
 export const LoginRequired: Story = {
-  render: (args) => (
-    <AlertModalWrapper {...args} />
-  ),
+  render: (args) => <AlertModalWrapper {...args} />,
   args: {
     title: "로그인 필요",
     description: "이 기능을 사용하려면 로그인이 필요합니다.",
@@ -154,7 +144,8 @@ export const AlwaysOpen: Story = {
   parameters: {
     docs: {
       description: {
-        story: "스토리북에서 모달 디자인을 확인하기 위해 항상 열린 상태로 표시됩니다.",
+        story:
+          "스토리북에서 모달 디자인을 확인하기 위해 항상 열린 상태로 표시됩니다.",
       },
     },
   },

@@ -43,7 +43,9 @@ const KakaoMapPlaceholder = () => {
   return (
     <div className="w-full h-full bg-gradient-to-br from-green-100 to-blue-100 rounded-lg flex items-center justify-center">
       <div className="text-center">
-        <Text textStyle="title2" className="mb-4">🗺️ 카카오맵</Text>
+        <Text textStyle="title2" className="mb-4">
+          🗺️ 카카오맵
+        </Text>
         <Text textStyle="body1" className="text-gray-600 mb-2">
           실제 환경에서는 여기에 지도가 표시됩니다
         </Text>
@@ -62,7 +64,8 @@ const meta: Meta<typeof KakaoMap> = {
   parameters: {
     docs: {
       description: {
-        component: "카카오맵 컴포넌트입니다. API 키가 필요하며, 여행 일정 데이터가 있을 때 마커와 경로를 표시합니다.",
+        component:
+          "카카오맵 컴포넌트입니다. API 키가 필요하며, 여행 일정 데이터가 있을 때 마커와 경로를 표시합니다.",
       },
     },
   },
@@ -80,7 +83,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: "기본 카카오맵 컴포넌트입니다. 실제 API 키가 있을 때의 모습을 시뮬레이션합니다.",
+        story:
+          "기본 카카오맵 컴포넌트입니다. 실제 API 키가 있을 때의 모습을 시뮬레이션합니다.",
       },
     },
   },
@@ -167,12 +171,14 @@ export const WithTravelRoute: Story = {
     <div style={{ width: "100%", height: "500px" }}>
       <div className="w-full h-full bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center relative">
         <div className="text-center">
-          <Text textStyle="title2" className="mb-4">🗺️ 여행 경로 지도</Text>
+          <Text textStyle="title2" className="mb-4">
+            🗺️ 여행 경로 지도
+          </Text>
           <Text textStyle="body1" className="text-gray-600 mb-2">
             3일간의 서울 여행 경로
           </Text>
         </div>
-        
+
         {/* 가상 마커들 */}
         <div className="absolute top-1/4 left-1/4 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
           1
@@ -183,7 +189,7 @@ export const WithTravelRoute: Story = {
         <div className="absolute bottom-1/3 right-1/3 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
           3
         </div>
-        
+
         {/* 가상 경로 선 */}
         <svg className="absolute inset-0 w-full h-full">
           <path
@@ -214,7 +220,10 @@ export const ErrorState: Story = {
           <div className="w-16 h-16 bg-red-200 rounded-full flex items-center justify-center mx-auto mb-4">
             <Text textStyle="title2">❌</Text>
           </div>
-          <Text textStyle="heading2" className="font-semibold mb-2 text-red-700">
+          <Text
+            textStyle="heading2"
+            className="font-semibold mb-2 text-red-700"
+          >
             지도 로드 실패
           </Text>
           <Text textStyle="body2" className="text-red-600 mb-4">

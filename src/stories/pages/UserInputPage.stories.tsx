@@ -1,46 +1,54 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
-import ChipGroupSingle from '@/components/ChipGroupSingle';
-import Text from '@/components/Text';
-import TextField from '@/components/TextField';
+import ChipGroupSingle from "@/components/ChipGroupSingle";
+import Text from "@/components/Text";
+import TextField from "@/components/TextField";
 import UserInputSummary from "@/components/UserInputSummary";
-import { COMPANIONS, DURATIONS } from '@/constants/UserInputConstants';
-import { COMMON_IMAGES } from '@/utils/imagePath';
+import { COMPANIONS, DURATIONS } from "@/constants/UserInputConstants";
+import { COMMON_IMAGES } from "@/utils/imagePath";
 
 // 실제 UserInputPage 컴포넌트 구조를 그대로 사용하는 스토리북용 컴포넌트
-const UserInputPageStorybook = ({ 
+const UserInputPageStorybook = ({
   isTextLoading = false,
-  showModal = false 
+  showModal = false,
 }: {
   isTextLoading?: boolean;
   showModal?: boolean;
 }) => {
-  const [companion, setCompanion] = useState('');
-  const [duration, setDuration] = useState('');
-  const [feelingDescription, setFeelingDescription] = useState('');
-  const [atmosphereDescription, setAtmosphereDescription] = useState('');
-  const [activityDescription, setActivityDescription] = useState('');
+  const [companion, setCompanion] = useState("");
+  const [duration, setDuration] = useState("");
+  const [feelingDescription, setFeelingDescription] = useState("");
+  const [atmosphereDescription, setAtmosphereDescription] = useState("");
+  const [activityDescription, setActivityDescription] = useState("");
 
   const isButtonDisabled = useMemo(() => {
-    if (companion === '') return true;
-    if (duration === '') return true;
+    if (companion === "") return true;
+    if (duration === "") return true;
     return false;
   }, [companion, duration]);
 
   const onClickNext = () => {
-    console.log('다음 버튼 클릭');
+    console.log("다음 버튼 클릭");
   };
 
   const onClickAutoFillInput = async () => {
-    console.log('AI 추천 버튼 클릭');
+    console.log("AI 추천 버튼 클릭");
     // 샘플 데이터로 채우기
-    setFeelingDescription('요즘 너무 지쳐있어서 새로운 기분 전환이 필요해요. 일상에서 벗어나 힐링하고 싶습니다.');
-    setAtmosphereDescription('자연 속 조용한 곳에서 여유롭게 시간을 보내고 싶어요.');
-    setActivityDescription('맛있는 음식도 먹고, 예쁜 카페에서 커피도 마시면서 푹 쉬고 싶어요.');
+    setFeelingDescription(
+      "요즘 너무 지쳐있어서 새로운 기분 전환이 필요해요. 일상에서 벗어나 힐링하고 싶습니다.",
+    );
+    setAtmosphereDescription(
+      "자연 속 조용한 곳에서 여유롭게 시간을 보내고 싶어요.",
+    );
+    setActivityDescription(
+      "맛있는 음식도 먹고, 예쁜 카페에서 커피도 마시면서 푹 쉬고 싶어요.",
+    );
   };
 
-  const companionText = COMPANIONS.find(item => item.value === companion)?.label || '';
-  const durationText = DURATIONS.find(item => item.value === duration)?.label || '';
+  const companionText =
+    COMPANIONS.find((item) => item.value === companion)?.label || "";
+  const durationText =
+    DURATIONS.find((item) => item.value === duration)?.label || "";
 
   return (
     <>
@@ -50,13 +58,15 @@ const UserInputPageStorybook = ({
           여행 준비, 간단하고 쉽게 시작하세요!
         </Text>
         <Text as="p" textStyle="body1" className="mb-10 text-[#858588]">
-          모먼티어에게 몇 가지 정보를 알려주시면, 감정과 스타일에 딱 맞는 여행지를 추천해드릴게요.
+          모먼티어에게 몇 가지 정보를 알려주시면, 감정과 스타일에 딱 맞는
+          여행지를 추천해드릴게요.
         </Text>
 
         {/* 동행자 선택 */}
         <div className="mt-[60px]">
           <Text textStyle="title3" className="block mb-4 font-bold">
-            누구와 함께 여행을 떠나시나요? <span className="text-[#9A77FF]">*</span>
+            누구와 함께 여행을 떠나시나요?{" "}
+            <span className="text-[#9A77FF]">*</span>
           </Text>
           <ChipGroupSingle
             items={COMPANIONS}
@@ -68,7 +78,8 @@ const UserInputPageStorybook = ({
         {/* 여행 기간 선택 */}
         <div className="mt-[60px]">
           <Text textStyle="title3" className="block mb-4 font-bold">
-            며칠 동안 떠나고 싶으신가요? <span className="text-[#9A77FF]">*</span>
+            며칠 동안 떠나고 싶으신가요?{" "}
+            <span className="text-[#9A77FF]">*</span>
           </Text>
           <ChipGroupSingle
             items={DURATIONS}
@@ -87,7 +98,11 @@ const UserInputPageStorybook = ({
               disabled={isTextLoading}
               value={feelingDescription}
               onChange={setFeelingDescription}
-              placeholder={!isTextLoading ? "요즘 너무 지쳐있어요, 새로운 기분 전환이 필요해요 등" : ""}
+              placeholder={
+                !isTextLoading
+                  ? "요즘 너무 지쳐있어요, 새로운 기분 전환이 필요해요 등"
+                  : ""
+              }
               variant="outlined"
             />
             {isTextLoading && (
@@ -115,7 +130,11 @@ const UserInputPageStorybook = ({
               disabled={isTextLoading}
               value={atmosphereDescription}
               onChange={setAtmosphereDescription}
-              placeholder={!isTextLoading ? "자연 속 조용한 곳, 북적이는 도시 분위기 등" : ""}
+              placeholder={
+                !isTextLoading
+                  ? "자연 속 조용한 곳, 북적이는 도시 분위기 등"
+                  : ""
+              }
               variant="outlined"
             />
             {isTextLoading && (
@@ -143,7 +162,11 @@ const UserInputPageStorybook = ({
               disabled={isTextLoading}
               value={activityDescription}
               onChange={setActivityDescription}
-              placeholder={!isTextLoading ? "푹 쉬기, 신나는 액티비티, 다양한 맛집 투어 등" : ""}
+              placeholder={
+                !isTextLoading
+                  ? "푹 쉬기, 신나는 액티비티, 다양한 맛집 투어 등"
+                  : ""
+              }
               variant="outlined"
             />
             {isTextLoading && (
@@ -164,12 +187,14 @@ const UserInputPageStorybook = ({
 
         <div className="mt-2">
           <button
-            className='flex items-center px-4 py-2 text-[#858588] border border-[#E8E8EA] rounded-[20px] bg-[#F8F8F8] hover:bg-[#9A77FF1A] hover:border-[#9A77FF1A] active:text-[#9A77FF] active:ring-2 active:ring-[#9A77FF] ring-offset-0'
+            className="flex items-center px-4 py-2 text-[#858588] border border-[#E8E8EA] rounded-[20px] bg-[#F8F8F8] hover:bg-[#9A77FF1A] hover:border-[#9A77FF1A] active:text-[#9A77FF] active:ring-2 active:ring-[#9A77FF] ring-offset-0"
             onClick={onClickAutoFillInput}
             disabled={isTextLoading}
           >
-            <img src={COMMON_IMAGES.AI} alt='추천을위한 별모양 아이콘' />
-            <Text as='p' className='ml-2 font-normal'>잘 모르겠어요. 추천해주세요!</Text>
+            <img src={COMMON_IMAGES.AI} alt="추천을위한 별모양 아이콘" />
+            <Text as="p" className="ml-2 font-normal">
+              잘 모르겠어요. 추천해주세요!
+            </Text>
           </button>
         </div>
 
@@ -188,12 +213,18 @@ const UserInputPageStorybook = ({
             after:bg-black after:opacity-0 hover:after:opacity-20
             after:transition-opacity
               w-[186px] text-[18px] px-5 py-3 rounded-[25px] font-semibold text-white 
-              ${isButtonDisabled ? 'bg-[#D9D9D9] cursor-not-allowed' : 'bg-[#9A77FF] hover:bg-[#7C49FF]'}`}
+              ${isButtonDisabled ? "bg-[#D9D9D9] cursor-not-allowed" : "bg-[#9A77FF] hover:bg-[#7C49FF]"}`}
             onClick={onClickNext}
           >
-            <Text textStyle='body1' className='relative z-10 flex justify-between'>
+            <Text
+              textStyle="body1"
+              className="relative z-10 flex justify-between"
+            >
               다음
-              <img src={COMMON_IMAGES.ARROW_RIGHT_WHITE} alt="오른쪽을 가리키는 화살표" />
+              <img
+                src={COMMON_IMAGES.ARROW_RIGHT_WHITE}
+                alt="오른쪽을 가리키는 화살표"
+              />
             </Text>
           </button>
         </div>
@@ -204,14 +235,25 @@ const UserInputPageStorybook = ({
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-[rgba(0,0,0,0.5)]">
           <div className="bg-white rounded-2xl p-6 w-[460px] shadow-lg">
             <div className="flex justify-end mb-[24px]">
-              <button onClick={() => console.log('모달 닫기')} aria-label="Close">
+              <button
+                onClick={() => console.log("모달 닫기")}
+                aria-label="Close"
+              >
                 <img src={COMMON_IMAGES.CLOSE} alt="닫기" />
               </button>
             </div>
-            <Text as='h2' textStyle='heading1' className='font-semibold text-center'>
+            <Text
+              as="h2"
+              textStyle="heading1"
+              className="font-semibold text-center"
+            >
               이 정보로 여행지를 추천해드릴게요
             </Text>
-            <Text as='p' textStyle='body1' className='whitespace-pre-line text-center text-[#858588] mt-3'>
+            <Text
+              as="p"
+              textStyle="body1"
+              className="whitespace-pre-line text-center text-[#858588] mt-3"
+            >
               맞는지 한 번 더 확인해주세요!
             </Text>
             <div className="mt-4">
@@ -220,18 +262,36 @@ const UserInputPageStorybook = ({
                   <Text textStyle="label1" className="mr-[12px] font-semibold">
                     여행 인원
                   </Text>
-                  <Text textStyle="label1" className="text-[#9A77FF] font-medium">{companionText}</Text>
+                  <Text
+                    textStyle="label1"
+                    className="text-[#9A77FF] font-medium"
+                  >
+                    {companionText}
+                  </Text>
                 </div>
                 <div>
                   <Text textStyle="label1" className="mr-[12px] font-semibold">
                     여행 기간
                   </Text>
-                  <Text textStyle="label1" className="text-[#9A77FF] font-medium">{durationText}</Text>
+                  <Text
+                    textStyle="label1"
+                    className="text-[#9A77FF] font-medium"
+                  >
+                    {durationText}
+                  </Text>
                 </div>
-                <Text textStyle="label1" className="mb-2 font-semibold inline-block">
+                <Text
+                  textStyle="label1"
+                  className="mb-2 font-semibold inline-block"
+                >
                   여행 스타일
                 </Text>
-                <Text textStyle="label1" className="bg-white rounded-[12px] px-4 py-3 text-[#404040] break-words block">{feelingDescription}</Text>
+                <Text
+                  textStyle="label1"
+                  className="bg-white rounded-[12px] px-4 py-3 text-[#404040] break-words block"
+                >
+                  {feelingDescription}
+                </Text>
               </div>
             </div>
             <div className="flex justify-between mt-9">
@@ -257,7 +317,8 @@ const meta: Meta<typeof UserInputPageStorybook> = {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "사용자 입력 페이지 컴포넌트입니다. 여행 정보를 입력받는 페이지로, 동행자, 여행기간, 여행스타일을 선택할 수 있습니다.",
+        component:
+          "사용자 입력 페이지 컴포넌트입니다. 여행 정보를 입력받는 페이지로, 동행자, 여행기간, 여행스타일을 선택할 수 있습니다.",
       },
     },
   },
@@ -267,7 +328,7 @@ const meta: Meta<typeof UserInputPageStorybook> = {
       description: "AI 텍스트 생성 로딩 상태",
     },
     showModal: {
-      control: "boolean", 
+      control: "boolean",
       description: "확인 모달 표시 여부",
     },
   },
@@ -290,7 +351,7 @@ export const FilledForm: Story = {
   },
   play: async ({ canvasElement }) => {
     // 폼이 채워진 상태를 시뮬레이션
-    const companionButtons = canvasElement.querySelectorAll('button');
+    const companionButtons = canvasElement.querySelectorAll("button");
     // 첫 번째 동행자 선택 (혼자)
     if (companionButtons[0]) companionButtons[0].click();
   },

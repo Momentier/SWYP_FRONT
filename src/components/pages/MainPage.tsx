@@ -5,16 +5,16 @@ import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function MainPage() {
   const mockUser: User = {
-    userName: 'Jane Doe',
-    accessToken: 'dummy-access-token',
+    userName: "Jane Doe",
+    accessToken: "dummy-access-token",
     profileImage: COMMON_IMAGES.AVATAR,
-    expiresIn: 100000
+    expiresIn: 100000,
   };
 
   return (
     <>
-      <Header user={mockUser} onClickLogo={() => { }} />
+      <Header user={mockUser} onClickLogo={() => {}} />
       <Main />
     </>
-  )
+  );
 }

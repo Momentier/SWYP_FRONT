@@ -8,16 +8,42 @@ const meta: Meta<typeof Text> = {
   argTypes: {
     as: {
       control: { type: "select" },
-      options: ["span", "div", "p", "h1", "h2", "h3", "h4", "h5", "h6", "strong", "em"],
+      options: [
+        "span",
+        "div",
+        "p",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "strong",
+        "em",
+      ],
       description: "HTML 태그 타입",
     },
     textStyle: {
       control: { type: "select" },
       options: [
-        "display1", "display2", "title1", "title2", "title3",
-        "heading1", "heading2", "headline1", "headline2",
-        "body1", "body1Reading", "body2", "body2Reading",
-        "label1", "label1Reading", "label2", "caption1", "caption2"
+        "display1",
+        "display2",
+        "title1",
+        "title2",
+        "title3",
+        "heading1",
+        "heading2",
+        "headline1",
+        "headline2",
+        "body1",
+        "body1Reading",
+        "body2",
+        "body2Reading",
+        "label1",
+        "label1Reading",
+        "label2",
+        "caption1",
+        "caption2",
       ],
       description: "텍스트 스타일",
     },
@@ -73,7 +99,8 @@ export const Heading1: Story = {
 export const Body1: Story = {
   args: {
     textStyle: "body1",
-    children: "Body 1 - 본문 텍스트입니다. 일반적인 내용을 표시할 때 사용합니다.",
+    children:
+      "Body 1 - 본문 텍스트입니다. 일반적인 내용을 표시할 때 사용합니다.",
   },
 };
 

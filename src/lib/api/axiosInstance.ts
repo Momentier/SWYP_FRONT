@@ -21,21 +21,32 @@ axiosInstance.interceptors.request.use(
     }
 
     // 🟢 요청에 따라 로딩 타입 설정
-    const type = (config as any).loadingType ?? 'fullscreen';
+    const type = (config as any).loadingType ?? "fullscreen";
     useLoadingStore.getState().setLoading(true, type);
     return config;
   },
   (error) => {
     useLoadingStore.getState().setLoading(false);
     return Promise.reject(error);
-  }
+  },
 );
 
 axiosInstance.interceptors.response.use(
   (response) => {
     // 로딩 끝
     useLoadingStore.getState().setLoading(false);
-    return response
+
+    // MSA ApiResponse 래퍼 처리: { success: true, data: T } -> T
+    if (
+      response.data &&
+      typeof response.data === "object" &&
+      "success" in response.data &&
+      "data" in response.data
+    ) {
+      response.data = response.data.data;
+    }
+
+    return response;
   },
   async (error) => {
     useLoadingStore.getState().setLoading(false);
@@ -43,7 +54,7 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
 
     // 🔍 만약 토큰 재발급 요청이면 인터셉터가 잡지 않도록 한다.
-    if (originalRequest.url.includes('/auth/token/reissue')) {
+    if (originalRequest.url.includes("/api/v1/auth/refresh")) {
       console.warn("🛑 토큰 재발급 요청은 인터셉터에서 무시합니다.");
       return Promise.reject(error);
     }
@@ -73,13 +84,13 @@ axiosInstance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosInstance;
 
-declare module 'axios' {
+declare module "axios" {
   export interface AxiosRequestConfig {
-    loadingType?: 'fullscreen' | 'login' | 'none' | 'skeleton';
+    loadingType?: "fullscreen" | "login" | "none" | "skeleton";
   }
 }

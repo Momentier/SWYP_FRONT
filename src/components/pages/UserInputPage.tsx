@@ -5,15 +5,15 @@ import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function UserInput() {
   const mockUser: User = {
-    userName: 'Jane Doe',
-    accessToken: 'dummy-access-token',
+    userName: "Jane Doe",
+    accessToken: "dummy-access-token",
     profileImage: COMMON_IMAGES.AVATAR, // or 다른 이미지 URL
-    expiresIn: 100000
+    expiresIn: 100000,
   };
   return (
     <>
-      <Header user={mockUser} onClickLogo={() => { }} />
+      <Header user={mockUser} onClickLogo={() => {}} />
       <UserInputs />
     </>
-  )
+  );
 }

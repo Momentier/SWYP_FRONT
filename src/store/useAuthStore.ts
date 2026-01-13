@@ -70,6 +70,6 @@ export const useAuthStore = create<AuthState>()(
       },
       // hydration 중 발생할 수 있는 오류 처리
       skipHydration: false,
-    }
-  )
+    },
+  ),
 );

@@ -13,7 +13,12 @@ interface ChipGroupMultiProps {
   className?: string;
 }
 
-export default function ChipGroupMulti({ items, values, onChange, className = "flex gap-3 flex-wrap" }: ChipGroupMultiProps) {
+export default function ChipGroupMulti({
+  items,
+  values,
+  onChange,
+  className = "flex gap-3 flex-wrap",
+}: ChipGroupMultiProps) {
   const [internalValues, setInternalValues] = useState<string[]>(values || []);
   const selectedValues = values !== undefined ? values : internalValues;
 

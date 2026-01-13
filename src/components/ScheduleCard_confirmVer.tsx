@@ -7,97 +7,128 @@ import DetailCard_confirmVer from "./DetailCard_confirmVer";
 import { COMMON_IMAGES } from "@/utils/imagePath";
 
 type DayScheduleCardProps = {
-    dailySchedule: DailyScheduleDtos;
+  dailySchedule: DailyScheduleDtos;
 };
 
 const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
-    const [isExpanded, setIsExpanded] = useState(true);
-    const contentRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-    const handleExpandClick = () => {
-        setIsExpanded(!isExpanded);
-    };
+  const handleExpandClick = () => {
+    setIsExpanded(!isExpanded);
+  };
 
-    return (
-        <div className="flex flex-col gap-2 w-[880px]">
-            <div className="w-[880px] h-[50px] flex items-center justify-between p-[12px_24px] bg-[#F3EEFF] text-black rounded-xl">
-                <Text textStyle="headline1" className="font-bold">
-                    {dailySchedule.dayDate}일 차
-                </Text>
-                <button
-                    onClick={handleExpandClick}
-                    className="w-[28px] h-[28px] transition"
-                >
-                    {isExpanded ? (
-                        <img src={COMMON_IMAGES.CHEVRON_DOWN} alt="expand" className="w-full h-full" />
-                    ) : (
-                        <img src={COMMON_IMAGES.CHEVRON_RIGHT} alt="collapse" className="w-full h-full" />
-                    )}
-                </button>
-            </div>
+  return (
+    <div className="flex flex-col gap-2 w-[880px]">
+      <div className="w-[880px] h-[50px] flex items-center justify-between p-[12px_24px] bg-[#F3EEFF] text-black rounded-xl">
+        <Text textStyle="headline1" className="font-bold">
+          {dailySchedule.dayDate}일 차
+        </Text>
+        <button
+          onClick={handleExpandClick}
+          className="w-[28px] h-[28px] transition"
+        >
+          {isExpanded ? (
+            <img
+              src={COMMON_IMAGES.CHEVRON_DOWN}
+              alt="expand"
+              className="w-full h-full"
+            />
+          ) : (
+            <img
+              src={COMMON_IMAGES.CHEVRON_RIGHT}
+              alt="collapse"
+              className="w-full h-full"
+            />
+          )}
+        </button>
+      </div>
 
+      <div
+        ref={contentRef}
+        style={{
+          height: isExpanded ? `${contentRef.current?.scrollHeight}px` : "0px",
+          overflow: "hidden",
+          transition: "height 0.3s ease",
+        }}
+      >
+        <div className="flex flex-col gap-2">
+          {dailySchedule.attractions.map((place, index) => (
             <div
-                ref={contentRef}
-                style={{
-                    height: isExpanded ? `${contentRef.current?.scrollHeight}px` : "0px",
-                    overflow: "hidden",
-                    transition: "height 0.3s ease",
-                }}
+              key={`${dailySchedule.dayDate}-${place.id || place.name}-${index}`}
+              className="relative flex flex-col gap-2"
             >
-                <div className="flex flex-col gap-2">
-                    {dailySchedule.attractions.map((place, index) => (
-                        <div key={`${dailySchedule.dayDate}-${place.id || place.name}-${index}`} className="relative flex flex-col gap-2">
-                            <DetailCard_confirmVer
-                                title={place.name}
-                                subtitle={place.description}
-                                address={place.address}
-                                hours={place.businessTime}
-                                rating={place.rating}
-                                imageUrl={place.coverImage}
-                                attractionData={place}
-                            />
+              <DetailCard_confirmVer
+                title={place.name}
+                subtitle={place.description}
+                address={place.address}
+                hours={place.businessTime}
+                rating={place.rating}
+                imageUrl={place.coverImage}
+                attractionData={place}
+              />
 
-                            {index < dailySchedule.attractions.length - 1 && (
-                                <div className="flex items-center w-full pl-[60px] pr-[60px] py-[4px] gap-2">
-                                    <div
-                                        className="w-[2px] h-[40px] bg-repeat-y bg-center"
-                                        style={{ backgroundImage: `url(${COMMON_IMAGES.DOT_LINE}` }}
-                                    />
-                                    {place.travelWalkTime && (
-                                        <div className="flex items-center gap-2">
-                                            <img src={COMMON_IMAGES.WALK} alt="walk icon" className="w-5 h-5" />
-                                            <span className="text-[#a2a3e4]">{place.travelWalkTime}</span>
-                                        </div>
-                                    )}
+              {index < dailySchedule.attractions.length - 1 && (
+                <div className="flex items-center w-full pl-[60px] pr-[60px] py-[4px] gap-2">
+                  <div
+                    className="w-[2px] h-[40px] bg-repeat-y bg-center"
+                    style={{ backgroundImage: `url(${COMMON_IMAGES.DOT_LINE}` }}
+                  />
+                  {place.travelWalkTime && (
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={COMMON_IMAGES.WALK}
+                        alt="walk icon"
+                        className="w-5 h-5"
+                      />
+                      <span className="text-[#a2a3e4]">
+                        {place.travelWalkTime}
+                      </span>
+                    </div>
+                  )}
 
-                                    {place.travelWalkTime && place.travelCarTime && (
-                                        <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }} />
-                                    )}
+                  {place.travelWalkTime && place.travelCarTime && (
+                    <div
+                      className="w-5 h-5 bg-contain bg-no-repeat"
+                      style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }}
+                    />
+                  )}
 
-                                    {place.travelCarTime && (
-                                        <div className="flex items-center gap-2">
-                                            <img src={COMMON_IMAGES.CAR} alt="car icon" className="w-5 h-5" />
-                                            <span className="text-[#a2a3e4]">{place.travelCarTime}</span>
-                                        </div>
-                                    )}
+                  {place.travelCarTime && (
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={COMMON_IMAGES.CAR}
+                        alt="car icon"
+                        className="w-5 h-5"
+                      />
+                      <span className="text-[#a2a3e4]">
+                        {place.travelCarTime}
+                      </span>
+                    </div>
+                  )}
 
-                                    {place.travelCarTime && place.travelDistance && (
-                                        <div className="w-5 h-5 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }} />
-                                    )}
+                  {place.travelCarTime && place.travelDistance && (
+                    <div
+                      className="w-5 h-5 bg-contain bg-no-repeat"
+                      style={{ backgroundImage: `url(${COMMON_IMAGES.DOT})` }}
+                    />
+                  )}
 
-                                    {place.travelDistance && (
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-[#a2a3e4]">{place.travelDistance}</span>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                  {place.travelDistance && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-[#a2a3e4]">
+                        {place.travelDistance}
+                      </span>
+                    </div>
+                  )}
                 </div>
+              )}
             </div>
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default DayScheduleCard;
