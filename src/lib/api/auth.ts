@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance, { getErrorMessage } from "./axiosInstance";
 import { useAuthStore } from "@/store/useAuthStore";
 
 export interface KakaoLoginResponse {
@@ -9,25 +9,13 @@ export interface KakaoLoginResponse {
 }
 
 /**
- * 🍪 **쿠키에서 특정 쿠키 값을 가져오는 함수**
- */
-const getCookie = (name: string) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(";").shift();
-  return null;
-};
-
-/**
  * ✅ **카카오 로그인 API 요청**
  * @param code 인가 코드
  * @returns KakaoLoginResponse
  */
 export const kakaoLogin = async (code: string): Promise<KakaoLoginResponse> => {
   try {
-    const redirectUri =
-      process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI ||
-      "http://localhost:3000/oauth/callback";
+    const redirectUri = `${window.location.origin}/oauth/callback/kakao`;
     const response = await axiosInstance.post<{
       accessToken: string;
       refreshToken: string;
@@ -64,8 +52,8 @@ export const kakaoLogin = async (code: string): Promise<KakaoLoginResponse> => {
       expiresIn: 3600,
       hasSubmittedExperience,
     };
-  } catch (error: any) {
-    throw new Error(error.response?.data.message || "카카오 로그인 실패");
+  } catch (error) {
+    throw new Error(getErrorMessage(error, "카카오 로그인 실패"));
   }
 };
 
@@ -84,10 +72,8 @@ export const unlinkKakaoAccount = async (): Promise<UnlinkResponse> => {
     // 탈퇴 후 로컬 토큰 정리
     localStorage.removeItem("refreshToken");
     return { success: true, message: "계정이 성공적으로 탈퇴되었습니다" };
-  } catch (error: any) {
-    throw new Error(
-      error.response?.data.message || "회원 탈퇴에 실패했습니다.",
-    );
+  } catch (error) {
+    throw new Error(getErrorMessage(error, "회원 탈퇴에 실패했습니다."));
   }
 };
 
@@ -108,30 +94,8 @@ export const fetchItineraries = async (limit: number): Promise<Itinerary[]> => {
       `/api/v1/itineraries/list?limit=${limit}`,
     );
     return response.data;
-  } catch (error: any) {
-    throw new Error(
-      error.response?.data.message || "여행 코스 불러오기에 실패했습니다.",
-    );
-  }
-};
-
-/**
- * ✅ **관리자 토큰 정보 반환**
- * @returns AdminTokenResponse
- */
-export const getAdminToken = async (): Promise<KakaoLoginResponse> => {
-  try {
-    // 테스트용 관리자 토큰 반환
-    return {
-      accessToken: "test-admin-token",
-      userName: "관리자",
-      expiresIn: 3600,
-      hasSubmittedExperience: true,
-    };
-  } catch (error: any) {
-    throw new Error(
-      error.response?.data.message || "관리자 토큰 정보를 불러오지 못했습니다.",
-    );
+  } catch (error) {
+    throw new Error(getErrorMessage(error, "여행 코스 불러오기에 실패했습니다."));
   }
 };
 
@@ -193,7 +157,7 @@ export const reissueToken = async (): Promise<KakaoLoginResponse | null> => {
       useAuthStore.getState().logout();
       return null;
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error("토큰 재발급 중 오류 발생:", error);
     useAuthStore.getState().logout();
     return null;

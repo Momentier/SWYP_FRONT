@@ -40,7 +40,8 @@ const DayScheduleCard: React.FC<DayScheduleCardProps> = ({ dailySchedule }) => {
         },
       ]);
     }, 300),
-    [dailySchedule],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [dailySchedule, updateItinerary],
   );
 
   return (

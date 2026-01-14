@@ -19,7 +19,7 @@ const nextConfig = {
   output: isStorybookExport ? "export" : "standalone",
   trailingSlash: isGithubPages,
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 };
 

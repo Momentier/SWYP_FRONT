@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import {
   useRecommendTravelDetailStore,
   usePublicTravelDetailStore,
@@ -7,9 +7,59 @@ import {
 import { usePathname } from "next/navigation";
 import Text from "./Text";
 
+// Kakao Maps SDK 타입 선언
+interface KakaoMapsNamespace {
+  maps: {
+    load: (callback: () => void) => void;
+    LatLng: new (lat: number, lng: number) => KakaoLatLng;
+    Map: new (container: HTMLElement, options: KakaoMapOptions) => KakaoMap;
+    Polyline: new (options: KakaoPolylineOptions) => KakaoPolyline;
+    CustomOverlay: new (options: KakaoCustomOverlayOptions) => KakaoCustomOverlay;
+    event: {
+      addListener: (target: unknown, type: string, callback: () => void) => void;
+    };
+  };
+}
+
+interface KakaoLatLng {
+  getLat: () => number;
+  getLng: () => number;
+}
+
+interface KakaoMapOptions {
+  center: KakaoLatLng;
+  level: number;
+}
+
+interface KakaoMap {
+  setCenter: (latlng: KakaoLatLng) => void;
+}
+
+interface KakaoPolylineOptions {
+  path: KakaoLatLng[];
+  strokeWeight: number;
+  strokeColor: string;
+  strokeOpacity: number;
+  strokeStyle: string;
+}
+
+interface KakaoPolyline {
+  setMap: (map: KakaoMap) => void;
+}
+
+interface KakaoCustomOverlayOptions {
+  content: string;
+  position: KakaoLatLng;
+  yAnchor: number;
+}
+
+interface KakaoCustomOverlay {
+  setMap: (map: KakaoMap) => void;
+}
+
 declare global {
   interface Window {
-    kakao: any;
+    kakao: KakaoMapsNamespace;
   }
 }
 
@@ -21,22 +71,30 @@ const KakaoMap: React.FC = () => {
   // ✅ 현재 경로 확인
   const pathname = usePathname();
   const isDetailPage = pathname === "/travel/detail";
-  const isDetailIdPage = pathname?.startsWith("/travel/detail/");
 
-  // ✅ 상태 분리
-  const itinerary = isDetailPage
-    ? useRecommendTravelDetailStore((state) => state.itinerary)
-    : usePublicTravelDetailStore((state) => state.itinerary);
+  // ✅ 두 스토어 모두 호출 (조건부 호출 방지)
+  const recommendItinerary = useRecommendTravelDetailStore(
+    (state) => state.itinerary,
+  );
+  const publicItinerary = usePublicTravelDetailStore(
+    (state) => state.itinerary,
+  );
 
-  const colorCycle = [
-    "#9A77FF",
-    "#7779FF",
-    "#77ABFF",
-    "#C477FF",
-    "#E477FF",
-    "#4B0082",
-    "#8B00FF",
-  ];
+  // ✅ 경로에 따라 올바른 itinerary 선택
+  const itinerary = isDetailPage ? recommendItinerary : publicItinerary;
+
+  const colorCycle = useMemo(
+    () => [
+      "#9A77FF",
+      "#7779FF",
+      "#77ABFF",
+      "#C477FF",
+      "#E477FF",
+      "#4B0082",
+      "#8B00FF",
+    ],
+    [],
+  );
 
   // API 키 검증 및 에러 처리 - 항상 호출
   useEffect(() => {
@@ -81,7 +139,7 @@ const KakaoMap: React.FC = () => {
       return;
     }
 
-    const kakao = (window as any).kakao;
+    const kakao = window.kakao;
     const container = document.getElementById("map");
     if (!container) {
       return;
@@ -109,7 +167,7 @@ const KakaoMap: React.FC = () => {
     };
 
     const map = new kakao.maps.Map(container, options);
-    const linePath: any[] = [];
+    const linePath: KakaoLatLng[] = [];
     let markerIndex = 1;
 
     if (itinerary?.dailyScheduleDtos) {
@@ -168,7 +226,7 @@ const KakaoMap: React.FC = () => {
 
       polyline.setMap(map);
     }
-  }, [isLoaded, itinerary, error]);
+  }, [isLoaded, itinerary, error, colorCycle]);
 
   // 에러 상태 렌더링
   if (error) {

@@ -2,6 +2,27 @@
 
 import React, { useEffect, useState } from "react";
 import Text from "@/components/Text";
+
+// Kakao SDK 타입 선언
+interface KakaoSDK {
+  init: (key: string) => void;
+  Share: {
+    sendDefault: (options: {
+      objectType: string;
+      text: string;
+      link: {
+        mobileWebUrl: string;
+        webUrl: string;
+      };
+    }) => void;
+  };
+}
+
+declare global {
+  interface Window {
+    Kakao?: KakaoSDK;
+  }
+}
 import { deleteItinerary, getItineraryDetail } from "@/lib/api/itinerary";
 import { getUserItinerariesById } from "@/lib/api/user";
 import { useParams, usePathname } from "next/navigation";
@@ -77,8 +98,9 @@ const TravelSchedulePage: React.FC = () => {
 
   const onLoadKakao = () => {
     const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY;
-    const Kakao = (window as any).Kakao;
-    Kakao.init(KAKAO_API_KEY);
+    if (window.Kakao && KAKAO_API_KEY) {
+      window.Kakao.init(KAKAO_API_KEY);
+    }
   };
 
   const handleCopyUrl = () => {
@@ -87,22 +109,23 @@ const TravelSchedulePage: React.FC = () => {
     try {
       navigator.clipboard.writeText(fullUrl);
       toast.success("링크를 클립보드에 복사했어요.");
-    } catch (err) {
+    } catch {
       toast.error("곧 URL 링크복사 기능을 추가할게요.");
     }
   };
 
   const handleShareKakao = () => {
     const fullUrl = `${window.location.origin}${pathname}`;
-    const Kakao = (window as any).Kakao;
-    Kakao.Share.sendDefault({
-      objectType: "text",
-      text: "어디로 떠날지 고민 중이라면, 모먼티어가 도와드릴게요",
-      link: {
-        mobileWebUrl: fullUrl,
-        webUrl: fullUrl,
-      },
-    });
+    if (window.Kakao) {
+      window.Kakao.Share.sendDefault({
+        objectType: "text",
+        text: "어디로 떠날지 고민 중이라면, 모먼티어가 도와드릴게요",
+        link: {
+          mobileWebUrl: fullUrl,
+          webUrl: fullUrl,
+        },
+      });
+    }
     shareModal.close();
   };
 
@@ -160,7 +183,7 @@ const TravelSchedulePage: React.FC = () => {
       }
       toast.success("일정 삭제를 완료했어요. 메인화면으로 이동할게요");
       router.replace("/main");
-    } catch (err) {
+    } catch {
       toast.error("일정 삭제에 실패했어요. 다시 시도해주세요");
     }
   };

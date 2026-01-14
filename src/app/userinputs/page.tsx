@@ -48,6 +48,7 @@ export default function UserInputs() {
     return () => {
       confirmRecommendModal.close();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -90,8 +91,8 @@ export default function UserInputs() {
         });
 
       return true;
-    } catch (err: any) {
-      setErrMessage(err.message);
+    } catch (err) {
+      setErrMessage(err instanceof Error ? err.message : "알 수 없는 오류가 발생했습니다.");
       errModal.open();
       return false;
     }
@@ -131,8 +132,8 @@ export default function UserInputs() {
       setFeelingDescription(result.feeling);
       setAtmosphereDescription(result.atmosphere);
       setActivityDescription(result.activities);
-    } catch (err: any) {
-      setErrMessage(err.message);
+    } catch (err) {
+      setErrMessage(err instanceof Error ? err.message : "알 수 없는 오류가 발생했습니다.");
       errModal.open();
     } finally {
       setIsTextLoading(false);

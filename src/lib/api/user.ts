@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance, { getErrorMessage } from "./axiosInstance";
 
 export interface ExperienceRequest {
   rating: number;
@@ -29,10 +29,8 @@ export const saveUserExperience = async (
     );
 
     return response.data;
-  } catch (error: any) {
-    throw new Error(
-      error.response?.data.message || "경험 등록에 실패했습니다.",
-    );
+  } catch (error) {
+    throw new Error(getErrorMessage(error, "경험 등록에 실패했습니다."));
   }
 };
 
@@ -64,9 +62,9 @@ export const getUserItineraries = async (): Promise<Itinerary[]> => {
       title: item.title,
       image_url: item.coverImage ? [item.coverImage] : [],
     }));
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "여행 일정 목록을 불러오지 못했습니다.",
+      getErrorMessage(error, "여행 일정 목록을 불러오지 못했습니다."),
     );
   }
 };
@@ -93,9 +91,9 @@ export const getUserItinerariesById = async (
       id: response.data.id,
       username: response.data.nickname || "사용자",
     };
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "사용자 정보를 불러오지 못했습니다.",
+      getErrorMessage(error, "사용자 정보를 불러오지 못했습니다."),
     );
   }
 };
@@ -122,9 +120,9 @@ export const getMyInfo = async (): Promise<MyInfo> => {
       name: response.data.nickname || "사용자",
       createdAt: response.data.createdAt || new Date().toISOString(),
     };
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "사용자 정보를 불러오지 못했습니다.",
+      getErrorMessage(error, "사용자 정보를 불러오지 못했습니다."),
     );
   }
 };

@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance";
+import axiosInstance, { getErrorMessage } from "./axiosInstance";
 
 export interface Attraction {
   id: number;
@@ -55,10 +55,9 @@ export const getItineraryDetails = async (
     );
 
     return mergedItineraries;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message ||
-        "여행 일정 상세 정보를 불러오지 못했습니다.",
+      getErrorMessage(error, "여행 일정 상세 정보를 불러오지 못했습니다."),
     );
   }
 };
@@ -94,9 +93,9 @@ export const getRecommendedDestinations = async (
       },
     );
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "추천 장소를 불러오지 못했습니다.",
+      getErrorMessage(error, "추천 장소를 불러오지 못했습니다."),
     );
   }
 };
@@ -130,9 +129,9 @@ export const createItinerary = async (
       { loadingType: "skeleton" },
     );
     return mergeItineraryByDate(response.data);
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "여행 일정을 생성하지 못했습니다.",
+      getErrorMessage(error, "여행 일정을 생성하지 못했습니다."),
     );
   }
 };
@@ -156,10 +155,9 @@ export const getPublicItineraries = async (
       `/api/v1/itinerary/public?limit=${limit}`,
     );
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message ||
-        "공개된 여행 코스 목록을 불러오지 못했습니다.",
+      getErrorMessage(error, "공개된 여행 코스 목록을 불러오지 못했습니다."),
     );
   }
 };
@@ -193,9 +191,9 @@ export const saveItinerary = async (
       normalizedData,
     );
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "여행 코스 저장에 실패했습니다.",
+      getErrorMessage(error, "여행 코스 저장에 실패했습니다."),
     );
   }
 };
@@ -214,10 +212,9 @@ export const getRecommendText = async (params: GetRecommendTextParams) => {
       },
     );
     return response.data;
-  } catch (err: any) {
+  } catch (error) {
     throw new Error(
-      err.response?.data.message ||
-        "여행테마 추천 검색어 불러오기에 실패했습니다.",
+      getErrorMessage(error, "여행테마 추천 검색어 불러오기에 실패했습니다."),
     );
   }
 };
@@ -232,9 +229,9 @@ export const changeAttraction = async (
       { loadingType: "none" },
     );
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "관광지 정보를 변경하지 못했습니다.",
+      getErrorMessage(error, "관광지 정보를 변경하지 못했습니다."),
     );
   }
 };
@@ -247,9 +244,9 @@ export const getItineraryDetail = async (
       `/api/v1/itinerary/${id}`,
     );
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "여행 일정을 불러오지 못했습니다.",
+      getErrorMessage(error, "여행 일정을 불러오지 못했습니다."),
     );
   }
 };
@@ -294,9 +291,9 @@ export const deleteItinerary = async (id: number): Promise<boolean> => {
       `/api/v1/itinerary/${id}`,
     );
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(
-      error.response?.data.message || "여행 일정 삭제에 실패했습니다.",
+      getErrorMessage(error, "여행 일정 삭제에 실패했습니다."),
     );
   }
 };

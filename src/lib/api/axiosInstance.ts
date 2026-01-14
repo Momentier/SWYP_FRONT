@@ -94,3 +94,16 @@ declare module "axios" {
     loadingType?: "fullscreen" | "login" | "none" | "skeleton";
   }
 }
+
+/**
+ * axios 에러에서 메시지를 안전하게 추출하는 헬퍼 함수
+ */
+export const getErrorMessage = (error: unknown, defaultMessage: string): string => {
+  if (axios.isAxiosError(error)) {
+    return error.response?.data?.message || defaultMessage;
+  }
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return defaultMessage;
+};

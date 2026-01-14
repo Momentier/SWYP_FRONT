@@ -19,7 +19,7 @@ import {
 } from "@/store/useRecommendTravelStore";
 import { toast } from "@/store/useToastStore";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 const TravelSchedulePage: React.FC = () => {
   const router = useRouter();
@@ -42,6 +42,12 @@ const TravelSchedulePage: React.FC = () => {
 
   const userInputs = useUserInputStore((state) => state.inputs);
 
+  // 엣지케이스 핸들링
+  const handleErrorState = useCallback(() => {
+    errModal.open();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // 최초 렌더링 부수효과
   useEffect(() => {
     if (!userInputs) {
@@ -51,20 +57,21 @@ const TravelSchedulePage: React.FC = () => {
 
     const getItinerary = async () => {
       try {
-        const { requestCount, ...params } = userInputs;
+        const { requestCount: _requestCount, ...params } = userInputs;
+        void _requestCount; // Explicitly ignore unused variable
         const result = await createItinerary(params);
         if (result) {
           useRecommendTravelDetailStore.getState().setItinerary(result);
         } else {
           handleErrorState();
         }
-      } catch (err) {
+      } catch {
         handleErrorState();
       }
     };
 
     getItinerary();
-  }, []);
+  }, [userInputs, router, handleErrorState]);
 
   // public 저장여부 부수효과
   useEffect(() => {
@@ -81,7 +88,7 @@ const TravelSchedulePage: React.FC = () => {
       }
     };
     fetchData();
-  }, [itinerary]);
+  }, [itinerary, isLoading]);
 
   // 상세일정 저장 모달
   const confirmSaveModal = useModal(() => (
@@ -124,9 +131,9 @@ const TravelSchedulePage: React.FC = () => {
         }
         goToTravelDetail();
       }
-    } catch (err) {
+    } catch (error) {
       toast.error("여행 일정 저장에 실패했어요. 다시 한 번 시도해 주세요.");
-      console.error("일정 저장 중 오류 발생:", err);
+      console.error("일정 저장 중 오류 발생:", error);
     }
   };
 
@@ -174,11 +181,6 @@ const TravelSchedulePage: React.FC = () => {
   // 저장 시 최종저장화면으로 이동
   const goToTravelDetail = () => {
     router.push(`/travel/detail/${createdId}`);
-  };
-
-  // 엣지케이스 핸들링
-  const handleErrorState = (err: string = "") => {
-    errModal.open();
   };
 
   const onCloseErrModal = () => {

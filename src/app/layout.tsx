@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import QueryProvider from "@/components/QueryProvider";
 import "./globals.css";
-import LayoutSelector from "@/components/layout/LayoutSelector";
-import { ModalProvider } from "@/providers/ModalProvider";
-import ToastContainer from "@/components/ToastContainer";
 import ClientLayout from "@/components/layout/ClientLayout";
 
 export const metadata: Metadata = {

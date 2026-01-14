@@ -26,7 +26,7 @@ export default function Main() {
     try {
       new URL(url);
       return true;
-    } catch (_) {
+    } catch {
       return false;
     }
   };
@@ -37,8 +37,8 @@ export default function Main() {
       try {
         const data = await getPublicItineraries(15);
         setCards(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "알 수 없는 오류");
       } finally {
         setLoading(false);
       }

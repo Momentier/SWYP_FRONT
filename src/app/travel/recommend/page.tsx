@@ -2,18 +2,15 @@
 
 import Button from "@/components/Button";
 import Card from "@/components/Card";
-import FullScreenLoader from "@/components/FullScreenLoader";
 import AlertModal from "@/components/modals/AlertModal";
 import Text from "@/components/Text";
 import { useModal } from "@/hooks/useModal";
 import {
-  createItinerary,
   getRecommendedDestinations,
   type RecommendResponse,
 } from "@/lib/api/itinerary";
 import { useAuthStore } from "@/store/useAuthStore";
 import {
-  useRecommendTravelDetailStore,
   useRecommendTravelListStore,
   useUserInputStore,
 } from "@/store/useRecommendTravelStore";
@@ -40,6 +37,7 @@ export default function TravelRecommendPage() {
     if (selectedTravel) {
       onConfirmCreateItinerary();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTravel]);
 
   // 카드 클릭 이벤트
@@ -79,7 +77,8 @@ export default function TravelRecommendPage() {
   const onClickOtherItinerary = async () => {
     try {
       if (!userInputs) return;
-      const { requestCount, ...params } = userInputs;
+      const { requestCount: _requestCount, ...params } = userInputs;
+      void _requestCount; // Explicitly ignore unused variable
       const reqParams = {
         feeling: params.wantedDto.feeling,
         atmosphere: params.wantedDto.atmosphere,
@@ -90,8 +89,8 @@ export default function TravelRecommendPage() {
       useUserInputStore
         .getState()
         .setInputs({ ...params, requestCount: userInputs.requestCount + 1 });
-    } catch (err: any) {
-      setErrMessage(err.message);
+    } catch (err) {
+      setErrMessage(err instanceof Error ? err.message : "알 수 없는 오류");
       errModal.open();
     }
   };

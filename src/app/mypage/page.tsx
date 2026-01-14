@@ -16,9 +16,6 @@ import { COMMON_IMAGES } from "@/utils/imagePath";
 
 export default function MyPage() {
   const [courseList, setCourseList] = useState<Itinerary[]>([]);
-  const [experience, setExperience] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [createdAt, setCreatedAt] = useState<string | null>(null);
 
@@ -29,15 +26,15 @@ export default function MyPage() {
   const router = useRouter();
   const logout = useAuthStore((state) => state.logout);
   const displayedCourses = isExpanded ? courseList : courseList.slice(0, 3);
-  const { isLoggedIn, user } = useAuthStore();
+  const { user } = useAuthStore();
 
   useEffect(() => {
     const fetchItineraries = async () => {
       try {
         const data = await getUserItineraries();
         setCourseList(data);
-      } catch (err: any) {
-        console.error("여행 일정을 불러오는 중 오류 발생:", err.message);
+      } catch (err) {
+        console.error("여행 일정을 불러오는 중 오류 발생:", err);
       }
     };
 
@@ -113,17 +110,12 @@ export default function MyPage() {
   const onClickUnlink = async () => {
     try {
       await unlinkKakaoAccount();
-      // alert("카카오 계정이 성공적으로 탈퇴되었습니다."); // FIXME: figma에 안보여서 주석처리
       logout();
       router.push("/");
-    } catch (err: any) {
-      alert("계정 탈퇴에 실패하였습니다."); // TODO: window alert?
+    } catch {
+      alert("계정 탈퇴에 실패하였습니다.");
     }
   };
-
-  const onClickCard = (id: number) => {};
-
-  const onClickBack = () => {};
 
   return (
     <div className="w-full flex flex-col gap-[40px] max-w-[1100px] min-h[1180px] mx-auto px-5 py-[60px]">
