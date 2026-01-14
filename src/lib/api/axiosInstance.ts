@@ -4,7 +4,7 @@ import { useLoadingStore } from "@/store/useLoadingStore";
 import axios from "axios";
 
 // 프록시를 통해 API 요청 (Mixed Content 방지)
-// Next.js rewrites가 /api/* 요청을 백엔드로 프록시함
+// /api/v1/[...path] 라우트가 백엔드로 프록시함
 const axiosInstance = axios.create({
   baseURL: "",
   headers: {
