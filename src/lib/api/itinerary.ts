@@ -48,7 +48,7 @@ export const getItineraryDetails = async (
 ): Promise<ItineraryDetail[]> => {
   try {
     const response = await axiosInstance.get<ItineraryDetail[]>(
-      `/api/v1/itinerary/lists/${id}`,
+      `/api/v1/itineraries/lists/${id}`,
     );
     const mergedItineraries = response.data.map((itinerary: ItineraryDetail) =>
       mergeItineraryByDate(itinerary),
@@ -87,7 +87,7 @@ export const getRecommendedDestinations = async (
 ): Promise<RecommendResponse[]> => {
   try {
     const response = await axiosInstance.get<RecommendResponse[]>(
-      "/api/v1/itinerary/preview",
+      "/api/v1/itineraries/preview",
       {
         params: data,
       },
@@ -124,7 +124,7 @@ export const createItinerary = async (
 ): Promise<ItineraryDetail> => {
   try {
     const response = await axiosInstance.post<ItineraryDetail>(
-      "/api/v1/itinerary/create",
+      "/api/v1/itineraries/create",
       data,
       { loadingType: "skeleton" },
     );
@@ -152,7 +152,7 @@ export const getPublicItineraries = async (
 ): Promise<PublicItinerary[]> => {
   try {
     const response = await axiosInstance.get<PublicItinerary[]>(
-      `/api/v1/itinerary/public?limit=${limit}`,
+      `/api/v1/itineraries/public?limit=${limit}`,
     );
     return response.data;
   } catch (error) {
@@ -187,7 +187,7 @@ export const saveItinerary = async (
     };
 
     const response = await axiosInstance.patch<SaveItineraryResponse>(
-      "/api/v1/itinerary",
+      "/api/v1/itineraries",
       normalizedData,
     );
     return response.data;
@@ -201,7 +201,7 @@ export const saveItinerary = async (
 export const getRecommendText = async (params: GetRecommendTextParams) => {
   try {
     const response = await axiosInstance.get<GetRecommendTextParams>(
-      "/api/v1/itinerary/recommend/text",
+      "/api/v1/itineraries/recommend/text",
       {
         params: {
           feeling: params.feeling,
@@ -224,7 +224,7 @@ export const changeAttraction = async (
 ): Promise<Attraction> => {
   try {
     const response = await axiosInstance.post<Attraction>(
-      "/api/v1/itinerary/change/attraction",
+      "/api/v1/itineraries/change/attraction",
       data,
       { loadingType: "none" },
     );
@@ -241,7 +241,7 @@ export const getItineraryDetail = async (
 ): Promise<ItineraryDetail> => {
   try {
     const response = await axiosInstance.get<ItineraryDetail>(
-      `/api/v1/itinerary/${id}`,
+      `/api/v1/itineraries/${id}`,
     );
     return response.data;
   } catch (error) {
@@ -288,7 +288,7 @@ const mergeItineraryByDate = (itinerary: ItineraryDetail): ItineraryDetail => {
 export const deleteItinerary = async (id: number): Promise<boolean> => {
   try {
     const response = await axiosInstance.delete<boolean>(
-      `/api/v1/itinerary/${id}`,
+      `/api/v1/itineraries/${id}`,
     );
     return response.data;
   } catch (error) {
