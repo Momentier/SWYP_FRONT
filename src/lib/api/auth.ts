@@ -49,7 +49,7 @@ export const kakaoLogin = async (code: string): Promise<KakaoLoginResponse> => {
     return {
       accessToken,
       userName: response.data.nickname || "사용자",
-      expiresIn: 3600,
+      expiresIn: Date.now() + 3600 * 1000, // 현재 시간 + 1시간 (밀리초)
       hasSubmittedExperience,
     };
   } catch (error) {
@@ -122,7 +122,7 @@ export const reissueToken = async (): Promise<KakaoLoginResponse | null> => {
 
       useAuthStore.getState().refresh({
         accessToken,
-        expiresIn: 3600,
+        expiresIn: Date.now() + 3600 * 1000, // 현재 시간 + 1시간 (밀리초)
       });
 
       // 새 refresh token 저장
@@ -149,7 +149,7 @@ export const reissueToken = async (): Promise<KakaoLoginResponse | null> => {
       return {
         accessToken,
         userName: nickname || "사용자",
-        expiresIn: 3600,
+        expiresIn: Date.now() + 3600 * 1000, // 현재 시간 + 1시간 (밀리초)
         hasSubmittedExperience,
       };
     } else {
