@@ -29,10 +29,13 @@
     "jsonwebtoken": "^9.0.2",
     "jspdf": "^3.0.1",
     "jwt-decode": "^4.0.0",
+    "leaflet": "^1.9.4",
     "lodash.debounce": "^4.0.8",
+    "msw": "^2.12.10",
     "next": "15.2.8",
     "react": "^18",
     "react-dom": "^18",
+    "react-leaflet": "^4.2.1",
     "uuid": "^11.1.0",
     "zustand": "^5.0.3"
   },
@@ -49,6 +52,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/dom-to-image": "^2.6.7",
     "@types/jsonwebtoken": "^9.0.9",
+    "@types/leaflet": "^1.9.21",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -71,6 +75,11 @@
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
     ]
   }
 }
